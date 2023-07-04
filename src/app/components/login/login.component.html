@@ -1,0 +1,38 @@
+<div id="body" class="body">
+  <div class="container">
+    <div class="blueBg">
+      <div class="box signin">
+        <h2>¿Ya tienes una cuenta?</h2>
+        <button class="signinBtn" (click)="signIn()">Iniciar Sesión</button>
+      </div>
+      <div class="box signup">
+        <h2>¿No tienes una cuenta?</h2>
+        <button class="signupBtn" (click)="signUp()">Registrarse</button>
+      </div>
+    </div>
+    <div class="formBx" [class.active]="isFormActive">
+      <div class="form signinForm" style="padding-top: 0;">
+        <form>
+          <img src="../../../assets/logo colegio.png" alt="Logo del Colegio" style="width: 70px; margin-left: auto;
+          margin-right: auto; margin-bottom: 2rem;">
+          <h3>Iniciar Sesión</h3>
+          <input type="text" placeholder="Usuario" />
+          <input type="password" placeholder="Contraseña" />
+          <input type="submit" value="Iniciar Sesión" />
+          <a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
+        </form>
+      </div>
+
+      <div class="form signupForm">
+        <form>
+          <h3>Registrarse</h3>
+          <input type="number" placeholder="D.N.I" />
+          <input type="text" placeholder="Correo Electrónico" />
+          <input type="password" placeholder="Contraseña" />
+          <input type="password" placeholder="Confirmar Contraseña" />
+          <input type="submit" value="Registrarse" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
