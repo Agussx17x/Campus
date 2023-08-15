@@ -1,35 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { VerificarComponent } from './components/verificar/verificar.component';
-import { RecuperarPasswordComponent } from './components/recuperar-password/recuperar-password.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+
+// Componentes
 
 const routes: Routes = [
   //rutas
   {
-    path : '', redirectTo: 'login', pathMatch: 'full'
+    path : '', redirectTo: 'inicio', pathMatch: 'full'
   },
   {
-    path : 'login', component: LoginComponent
+    path:"", loadChildren:()=>import ("./modules/inicio/inicio.module").then(m=>m.InicioModule)
   },
   {
-    path : 'register', component: RegisterComponent
+    path:"", loadChildren:()=>import ("./modules/nosotros/nosotros.module").then(m=>m.NosotrosModule)
   },
   {
-    path : 'verificar', component: VerificarComponent
+    path:"", loadChildren:()=>import ("./shared/shared.module").then(m=>m.SharedModule)
   },
   {
-    path : 'recuperar', component: RecuperarPasswordComponent
+    path:"", loadChildren:()=>import ("./modules/auth/auth.module").then(m=>m.AuthModule)
   },
   {
-    path : 'dashboard', component: DashboardComponent
-  }
+    path : '**', redirectTo: 'inicio', pathMatch: 'full'
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
