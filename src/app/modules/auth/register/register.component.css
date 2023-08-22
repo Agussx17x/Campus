@@ -10,12 +10,17 @@
   input.example-right-align::-webkit-inner-spin-button {
     display: none;
   }
+  .btn-register{
+    margin-top: 1rem;
+  }
   .container {
     padding-top: 4rem;
     display: flex;
     justify-content: center;
     width: 20rem;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     & #iconperson {
       font-size: 200px;
       display: flex;
@@ -28,5 +33,5 @@
       
   }
   .login{
-      padding-top: 1rem;
+      padding-top: 2rem;
   }

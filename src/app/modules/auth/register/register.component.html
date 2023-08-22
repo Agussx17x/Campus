@@ -1,44 +1,43 @@
 <div class="container">
-    <div class="row">
-      <h1><b>REGISTRATE</b></h1>
-      <i id="iconperson" class="material-icons">person</i>
-  
-      <mat-form-field appearance="fill">
-        <mat-label>Usuario</mat-label>
-        <input
-          [(ngModel)]="usuarios.nombre"
-          matInput
-          placeholder=""
-          type="text"
-          required
-        />
-      </mat-form-field>
-  
-      <mat-form-field>
-        <mat-label>Contraseña</mat-label>
-        <input
-          [(ngModel)]="usuarios.password"
-          matInput
-          [type]="hide ? 'password' : 'text'"
-          #input
-          minlength="6"
-          required
-        />
-        <button
-          mat-icon-button
-          matSuffix
-          (click)="hide = !hide"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide"
-        >
-          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-        </button>
-        <mat-hint align="start">Minimo:6/{{ input.value.length }}</mat-hint>
-      </mat-form-field>
-  
-      <button mat-raised-button color="primary" (click)="registrarse()">
-        Registrar
+  <div class="row">
+    <h1><b>REGISTRATE</b></h1>
+    <i id="iconperson" class="material-icons">person</i>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Usuario</mat-label>
+      <input
+        [(ngModel)]="usuarios.nombre"
+        matInput
+        placeholder=""
+        type="text"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+      <input
+        [(ngModel)]="usuarios.password"
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        #input
+        minlength="6"
+        required
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
       </button>
-      <p class="login">Ya tienes cuenta? <button routerLink="/login">inicia sesion</button></p>
-    </div>
+      <mat-hint align="start">Minimo:6/{{ input.value.length }}</mat-hint>
+    </mat-form-field>
+
+    <button class="btn-register" mat-raised-button color="primary" (click)="registrarse()">
+      Registrar
+    </button>
   </div>
+</div>
