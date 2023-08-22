@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
   hide = true;
-  asd=2
 }
