@@ -7,10 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Modulos
 import { SharedModule } from './shared/shared.module';
-import { InicioRoutingModule } from './modules/inicio/inicio-routing.module';
-import { NosotrosRoutingModule } from './modules/nosotros/nosotros-routing.module';
-import { AuthRoutingModule } from './modules/auth/auth-routing.module';
 import { AngularFireStorageModule } from "@angular/fire/compat/storage";
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment'; // CONECTAMOS CON LA BD
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 
 @NgModule({
@@ -23,11 +23,12 @@ import { AngularFireStorageModule } from "@angular/fire/compat/storage";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    //modulo de shared (componentes globales).
     SharedModule,
-    InicioRoutingModule,
-    NosotrosRoutingModule,
-    AuthRoutingModule,
+    //firebase.
     AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,9 +4,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { CalendaryComponent } from './calendary/calendary.component';
 
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from '../app-routing.module';
 import { CardComponent } from './card/card.component';
 
@@ -25,7 +25,6 @@ import { CardComponent } from './card/card.component';
     MatButtonModule,
     MatToolbarModule,
     AppRoutingModule,
-
   ],
   exports:[
     NavbarComponent,
