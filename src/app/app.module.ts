@@ -7,29 +7,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Modulos
 import { SharedModule } from './shared/shared.module';
-import { InicioRoutingModule } from './modules/inicio/inicio-routing.module';
-import { NosotrosRoutingModule } from './modules/nosotros/nosotros-routing.module';
-import { AuthRoutingModule } from './modules/auth/auth-routing.module';
-import { AngularFireStorageModule } from "@angular/fire/compat/storage";
-
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 @NgModule({
-  declarations: [
-
-    AppComponent,
-
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    InicioRoutingModule,
-    NosotrosRoutingModule,
-    AuthRoutingModule,
     AngularFireStorageModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
