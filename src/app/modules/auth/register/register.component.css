@@ -1,0 +1,32 @@
+.example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+  }
+  
+  .example-right-align {
+    text-align: right;
+  }
+  
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  .container {
+    padding-top: 4rem;
+    display: flex;
+    justify-content: center;
+    width: 20rem;
+    text-align: center;
+    & #iconperson {
+      font-size: 200px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  h1{
+      font-size: 2rem;
+      color: rgb(93, 93, 227);
+      
+  }
+  .login{
+      padding-top: 1rem;
+  }

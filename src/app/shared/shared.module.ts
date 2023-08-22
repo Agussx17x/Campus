@@ -18,8 +18,14 @@ import { CardComponent } from './card/card.component';
     CalendaryComponent,
     CardComponent,
   ],
-  imports: [CommonModule, MatIconModule, MatButtonModule, MatToolbarModule],
-  exports: [
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+    AppRoutingModule,
+  ],
+  exports:[
     NavbarComponent,
     FooterComponent,
     CalendaryComponent,
