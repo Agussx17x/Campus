@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { CalendaryComponent } from './calendary/calendary.component';
@@ -9,8 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from '../app-routing.module';
 import { CardComponent } from './card/card.component';
-
-
 
 @NgModule({
   declarations: [
@@ -31,6 +30,6 @@ import { CardComponent } from './card/card.component';
     FooterComponent,
     CalendaryComponent,
     CardComponent,
-  ]
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

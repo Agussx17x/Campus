@@ -6,21 +6,36 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   //rutas
   {
-    path:"", loadChildren:()=>import ("./modules/inicio/inicio.module").then(m=>m.InicioModule)
+    path: '',
+    redirectTo: 'inicio',
+    pathMatch: 'full',
   },
   {
-    path:"", loadChildren:()=>import ("./modules/nosotros/nosotros.module").then(m=>m.NosotrosModule)
+    path: '',
+    loadChildren: () =>
+      import('./modules/inicio/inicio.module').then((m) => m.InicioModule),
   },
   {
-    path:"", loadChildren:()=>import ("./modules/auth/auth.module").then(m=>m.AuthModule)
+    path: '',
+    loadChildren: () =>
+      import('./modules/nosotros/nosotros.module').then(
+        (m) => m.NosotrosModule
+      ),
   },
   {
-    path : '**', redirectTo: 'inicio', pathMatch: 'full'
+    path: '',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: '**',
+    redirectTo: 'inicio',
+    pathMatch: 'full',
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

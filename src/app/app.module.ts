@@ -12,25 +12,19 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment'; // CONECTAMOS CON LA BD
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
-
 @NgModule({
-  declarations: [
-
-    AppComponent,
-
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     //modulo de shared (componentes globales).
     SharedModule,
-    //firebase.
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
