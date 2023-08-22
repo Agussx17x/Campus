@@ -16,9 +16,9 @@
       <div class="form signinForm">
         <form>
           <h3>Iniciar Sesión</h3>
-          <input type="text" placeholder="Usuario" />
-          <input type="password" placeholder="Contraseña" />
-          <input type="submit" value="Iniciar Sesión" />
+          <input type="text" [(ngModel)]="email" name="email" placeholder="Usuario" />
+          <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" />
+          <input type="submit" (click)="login()" value="Iniciar Sesión" />
         </form>
       </div>
 

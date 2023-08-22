@@ -13,4 +13,8 @@ export class AuthService {
     // retorna nuevo valor de nombre y contrasena
     return this.auth.createUserWithEmailAndPassword(nombre,password);
   }
+
+  login(email:string, password:string){
+    return this.auth.signInWithEmailAndPassword(email, password);
+  }
 }
