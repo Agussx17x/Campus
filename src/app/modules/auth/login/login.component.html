@@ -1,27 +1,35 @@
-<div class="container">
-    <div class="row">
-      <h1>Login</h1>
-      <i id="iconperson" class="material-icons">person</i>
-  
-      <mat-form-field appearance="fill">
-        <mat-label>Usuario</mat-label>
-        <input matInput placeholder="" />
-      </mat-form-field>
-  
-      <mat-form-field>
-        <mat-label>Contraseña</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" />
-        <button
-          mat-icon-button
-          matSuffix
-          (click)="hide = !hide"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide"
-        >
-          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+<div id="body">
+  <div class="container">
+    <div class="blueBg">
+      <div class="box signin">
+        <h2>¿ Recordaste tu Contraseña ?</h2>
+        <button class="signinBtn" (click)="activeSignin()">
+          Iniciar Sesión
         </button>
-      </mat-form-field>
-  
-      <button mat-raised-button color="primary">Iniciar</button>
+      </div>
+      <div class="box signup">
+        <h2>¿ Olvidaste tu Contraseña ?</h2>
+        <button class="signupBtn" (click)="activeSignup()">Recuperar</button>
+      </div>
+    </div>
+    <div class="formBx" id="formBx">
+      <div class="form signinForm">
+        <form>
+          <h3>Iniciar Sesión</h3>
+          <input type="text" placeholder="Usuario" />
+          <input type="password" placeholder="Contraseña" />
+          <input type="submit" value="Iniciar Sesión" />
+        </form>
+      </div>
+
+      <div class="form signupForm">
+        <form>
+          <h3>Recuperar</h3>
+          <input type="text" placeholder="Usuario" />
+          <input type="text" placeholder="Correo Electrónico" />
+          <input type="submit" value="Recuperar" />
+        </form>
+      </div>
     </div>
   </div>
+</div>
