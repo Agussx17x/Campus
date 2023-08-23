@@ -5,10 +5,12 @@ import { Component } from '@angular/core';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
+
 export class NavbarComponent {
   //Agregamos y quitamos la clase active par ala responsividad.
   claseActive() {
     let header = document.querySelector('header');
     header?.classList.toggle('active');
   }
+  icon : string = 'person_circle'
 }
