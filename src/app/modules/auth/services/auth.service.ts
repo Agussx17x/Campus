@@ -7,14 +7,25 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class AuthService {
   // referenciamos Auth de Firebase
-  constructor(public auth: AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth) { }
 
   registrar(nombre: string, password: string){
     // retorna nuevo valor de nombre y contrasena
-    return this.auth.createUserWithEmailAndPassword(nombre,password);
+    return this.afAuth.createUserWithEmailAndPassword(nombre,password);
   }
 
+  // Método para verificar el estado de autenticación
+  isAuthenticated(){
+    return this.afAuth.authState;
+  }
+
+  // Metodo para Loguearse
   login(email:string, password:string){
-    return this.auth.signInWithEmailAndPassword(email, password);
+    return this.afAuth.signInWithEmailAndPassword(email, password);
+  }
+
+  // Método para cerrar sesión
+  logout(): Promise<void> {
+    return this.afAuth.signOut();
   }
 }
