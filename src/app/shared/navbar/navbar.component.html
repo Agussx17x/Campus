@@ -1,29 +1,52 @@
-<mat-toolbar color="primary">
-  <img (click)="returnhome()" src="../../../assets/logo colegio.png" alt="LOGO CET 30" />
-  <span class="example-spacer"></span>
-  <div class="container">
-    <button
-      mat-icon-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
-    >
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button
-      mat-icon-button
-      class="example-icon"
-      aria-label="Example icon-button with share icon"
-    >
-      <mat-icon>info</mat-icon>
-    </button>
-
-    <button
-      routerLink="/login"
-      mat-icon-button
-      class="example-icon"
-      aria-label="Example icon-button with menu icon"
-    >
-      <mat-icon>person_circle</mat-icon>
-    </button>
-  </div>
-</mat-toolbar>
+<!--NavBar-->
+<header>
+  <!--Logo-->
+  <a routerLink="/inicio" class="logo">
+    <div class="logoBody">
+      <img src="../../../assets/logo colegio.png" alt="Logo de la escuela" />
+    </div>
+  </a>
+  <!--Boton responsive-->
+  <div class="menuToggle" (click)="claseActive()"></div>
+  <nav>
+    <!--Lista de botones-->
+    <ul>
+      <li>
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <a href="#">About</a>
+      </li>
+      <li>
+        <a href="#">Dropdown<b>▼</b></a>
+        <ul>
+          <li><a href="#">Product 01</a></li>
+          <li><a href="#">Product 02</a></li>
+          <li>
+            <a href="#">Product 03 <b>+</b></a>
+            <ul>
+              <li><a href="#">Submenu 01</a></li>
+              <li><a href="#">Submenu 02</a></li>
+              <li><a href="#">Submenu 03</a></li>
+              <li><a href="#">Submenu 04</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Portfolio</a>
+      </li>
+      <li>
+        <a href="#">Blog<b>▼</b></a>
+        <ul>
+          <li><a href="#">Post Link 01</a></li>
+          <li><a href="#">Post Link 02</a></li>
+          <li><a href="#">Post Link 03</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Contact</a>
+      </li>
+    </ul>
+  </nav>
+</header>

@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Modulos
 import { SharedModule } from './shared/shared.module';
-import { AngularFireStorageModule } from "@angular/fire/compat/storage";
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment'; // CONECTAMOS CON LA BD
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
