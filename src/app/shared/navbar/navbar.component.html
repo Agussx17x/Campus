@@ -1,5 +1,5 @@
 <!--NavBar-->
-<header>
+<header *ngIf="shouldShowNavbar()">
   <!--Logo-->
   <a routerLink="/inicio" class="logo">
     <div class="logoBody">
@@ -45,7 +45,7 @@
         </ul>
       </li>
       <li>
-        <a href="#">Contact</a>
+        <a href="/login"><mat-icon>{{icon}}</mat-icon></a>
       </li>
     </ul>
   </nav>
