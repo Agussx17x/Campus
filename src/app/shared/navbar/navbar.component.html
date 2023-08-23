@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <img src="../../../assets/logo colegio.png" alt="LOGO CET 30" />
+  <img (click)="returnhome()" src="../../../assets/logo colegio.png" alt="LOGO CET 30" />
   <span class="example-spacer"></span>
   <div class="container">
     <button
@@ -18,8 +18,8 @@
     </button>
 
     <button
-      routerLink="/register"
-      mat-button
+      routerLink="/login"
+      mat-icon-button
       class="example-icon"
       aria-label="Example icon-button with menu icon"
     >

@@ -10,11 +10,17 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+import { HomeAdminComponent } from './login/pages/home-admin/home-admin.component';
+import { HomeAlumnoComponent } from './login/pages/home-alumno/home-alumno.component';
+import { HomeDocentesComponent } from './login/pages/home-docentes/home-docentes.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
+    HomeAdminComponent,
+    HomeAlumnoComponent,
+    HomeDocentesComponent,
   ],
   imports: [
     CommonModule,

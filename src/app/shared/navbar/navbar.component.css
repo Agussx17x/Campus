@@ -4,6 +4,5 @@ img{
 }
 .container{
     display: flex;
-    align-items: center;
-    margin-left: auto
+    justify-content: end;
 }
