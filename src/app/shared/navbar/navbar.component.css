@@ -5,4 +5,5 @@ img{
 .container{
     display: flex;
     justify-content: end;
+    margin-left: auto
 }
