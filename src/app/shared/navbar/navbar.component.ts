@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 
-
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 
 export class NavbarComponent {
-  returnhome(){
-    window.history.back();
+  //Agregamos y quitamos la clase active par ala responsividad.
+  claseActive() {
+    let header = document.querySelector('header');
+    header?.classList.toggle('active');
   }
   icon : string = 'person_circle'
 }
