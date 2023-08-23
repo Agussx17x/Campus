@@ -40,10 +40,11 @@ export class LoginComponent {
     this.authService.login(this.email, this.password)
       .then(() => {
         // Inicio de sesión exitoso, redirige a la página segura
-        this.router.navigate(['/inicio']);
+        this.router.navigate(['/home-admin']);
       })
       .catch(error => {
         this.errorMessage = error.message;
+        alert("Usuario Invalido");
       });
   }
 }
