@@ -112,3 +112,6 @@ footer .container .contact .info li a {
     grid-gap: 20px;
   }
 }
+.footer{
+  padding: 50px;
+}
