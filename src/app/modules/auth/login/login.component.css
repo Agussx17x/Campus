@@ -15,6 +15,10 @@
   background: #03a9f4;
   transition: 0.5s;
 }
+#volver{
+  background-color: #fff;
+  color: #03a9f4;
+}
 #body.active {
   background: #f43648;
 }
