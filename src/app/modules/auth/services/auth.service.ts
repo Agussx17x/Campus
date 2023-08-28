@@ -18,4 +18,18 @@ export class AuthService {
   login(email:string, password:string){
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
+
+
+  //Recolectar UID del usuario
+  async getuid(){
+    //Genera una Promesa, y const user para la captura
+    const user = await this.afAuth.currentUser;
+
+    //Condicion para devolver nulo, o el uid si es que lo tiene
+    if (user == null) {
+      return null;
+    }else{
+      //Devuelve uid del usuario
+      return user.uid;    }
+  }
 }

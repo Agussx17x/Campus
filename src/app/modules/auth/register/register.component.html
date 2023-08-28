@@ -2,11 +2,119 @@
   <div class="row">
     <h1><b>REGISTRATE</b></h1>
     <i id="iconperson" class="material-icons">person</i>
+  </div>
+</div>
+<div class="formulario">
+  <form class="row g-3">
+    <div class="col-md-6">
+      <label for="name" class="form-label">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        required
+        name="nombre"
+        [(ngModel)]="usuarios.nombre"
+      />
+    </div>
+    <div class="col-md-6">
+      <label for="surname" class="form-label">Apellido</label>
+      <input
+        type="text"
+        class="form-control"
+        id="surname"
+        required
+        name="apellido"
+        [(ngModel)]="usuarios.apellido"
+      />
+    </div>
+    
+    <div class="col-12">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        required
+        name="email"
+        [(ngModel)]="usuarios.email"
+      />
+    </div>
+  
+    <div class="col-md-6">
+      <label for="password" class="form-label">Contraseña</label>
+      <input
+        [(ngModel)]="usuarios.password"
+        type="text"
+        class="form-control"
+        id="password"
+        [type]="hide ? 'password' : 'text'"
+        #input
+        minlength="6"
+        name="password"
+      />
+      <p>Minimo:6/{{ input.value.length }}</p>
+    </div>
+    <div class="col-md-6">
+      <label for="dni" class="form-label">DNI</label>
+      <input
+        type="text"
+        class="form-control"
+        id="dni"
+        required
+        [(ngModel)]="usuarios.dni"
+        name="dni"
+      />
+    </div>
+    <div id="credenciales" class="col-md-4">
+      <label for="credencial" class="form-label">Credencial</label>
+      <select
+        id="credencial"
+        class="form-select"
+        required
+        [(ngModel)]="usuarios.credencial"
+        name="credencial"
+      >
+        <option value="admin" >Admin</option>
+        <option value="profesor" >Profesor</option>
+        <option value="estudiante" selected>Estudiante</option>
+      </select>
+    </div>
+    <div class="col-12">
+      <button type="submit" (click)="registrarse()" class="btn btn-primary">
+        Registrarse
+      </button>
+    </div>
+  </form>
+</div>
 
-    <mat-form-field appearance="fill">
+
+<!--
+  <mat-form-field appearance="fill">
       <mat-label>Usuario</mat-label>
       <input
+        [(ngModel)]="usuarios.email"
+        matInput
+        placeholder=""
+        type="text"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input
         [(ngModel)]="usuarios.nombre"
+        matInput
+        placeholder=""
+        type="text"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido</mat-label>
+      <input
+        [(ngModel)]="usuarios.apellido"
         matInput
         placeholder=""
         type="text"
@@ -36,8 +144,32 @@
       <mat-hint align="start">Minimo:6/{{ input.value.length }}</mat-hint>
     </mat-form-field>
 
-    <button class="btn-register" mat-raised-button color="primary" (click)="registrarse()">
+    <mat-form-field appearance="fill">
+      <mat-label>Credencial</mat-label>
+      <div class="form-floating">
+        <select
+          [(ngModel)]="usuarios.credencial"
+          class="form-select"
+          id="floatingSelect"
+          aria-label="Floating label select example"
+        >
+          <option value="1">Admin</option>
+          <option value="2">Profesor</option>
+          <option selected value="3">Estudiante</option>
+        </select>
+        <label for="floatingSelect">Works with selects</label>
+      </div>
+    </mat-form-field>
+
+    <button
+      class="btn-register"
+      mat-raised-button
+      color="primary"
+      (click)="registrarse()"
+    >
       Registrar
     </button>
   </div>
 </div>
+
+-->
