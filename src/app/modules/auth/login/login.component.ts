@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { AngularFireModule } from '@angular/fire/compat';
+import "firebase/firestore";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
+
+
 export class LoginComponent {
   email : string = '';
   password : string= '';
@@ -32,19 +36,21 @@ export class LoginComponent {
     body?.classList.remove('active');
   }
 
-  constructor( private authService: AuthService, private router: Router){
-
-  }
+  constructor( private authService: AuthService, private router: Router, private firestore: AngularFireModule){}
 
   login() {
     this.authService.login(this.email, this.password)
       .then(() => {
-        // Inicio de sesión exitoso, redirige a la página segura
-        this.router.navigate(['/home-admin']);
+        ////////Base de Datos/////////
+        alert('Correo: VALID Contraseña: VALID');        
+        ////////Fin Base de Datos/////////
       })
       .catch(error => {
         this.errorMessage = error.message;
         alert("Usuario Invalido");
       });
+  }
+  back(){
+    window.history.back ();
   }
 }

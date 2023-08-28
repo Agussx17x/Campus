@@ -14,18 +14,8 @@ export class AuthService {
     return this.afAuth.createUserWithEmailAndPassword(nombre,password);
   }
 
-  // Método para verificar el estado de autenticación
-  isAuthenticated(){
-    return this.afAuth.authState;
-  }
-
   // Metodo para Loguearse
   login(email:string, password:string){
     return this.afAuth.signInWithEmailAndPassword(email, password);
-  }
-
-  // Método para cerrar sesión
-  logout(): Promise<void> {
-    return this.afAuth.signOut();
   }
 }
