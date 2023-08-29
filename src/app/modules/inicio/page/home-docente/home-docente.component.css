@@ -1,0 +1,15 @@
+.grid-out {
+  justify-content: end;
+  background-color: bisque;
+  display: grid;
+  grid-template-rows: 100px 100px;
+  grid-template-columns: 100px 100px 100px;
+}
+
+.grid-in {
+  background-color: aqua;
+}
+
+.select-container {
+  justify-content: end;
+}
