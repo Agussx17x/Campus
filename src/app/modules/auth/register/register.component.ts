@@ -8,7 +8,7 @@ import { FirestoreService } from 'src/app/shared/services/firestore.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
   hide = true;
 
   usuarios: Usuario = {
