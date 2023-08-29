@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { AngularFireModule } from '@angular/fire/compat';
-import "firebase/firestore";
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-login',
@@ -42,7 +42,7 @@ export class LoginComponent {
     this.authService.login(this.email, this.password)
       .then(() => {
         ////////Base de Datos/////////
-        alert('Correo: VALID Contraseña: VALID');        
+                
         ////////Fin Base de Datos/////////
       })
       .catch(error => {
