@@ -10,7 +10,9 @@ import { Usuario } from 'src/app/models/usuario';
 @Injectable({
   providedIn: 'root',
 })
+
 export class FirestoreService {
+  
   private usuariosCollection: AngularFirestoreCollection<Usuario>;
 
   //Referenciamos a la coleccion de la DB
@@ -22,15 +24,22 @@ export class FirestoreService {
   agregarUsuario(usuario: Usuario, id: string) {
     return new Promise(async (resolve, reject) => {
       //Resolve = Promesa Resuelta = then. Reject = Promesa Rechazada = catch
+      
       try {
+      
         usuario.uid = id;
+        
         //Muestra Resultado sin Problema
         const resultado = await this.usuariosCollection.doc(id).set(usuario);
+
         resolve(resultado);
+      
       } catch (error) {
+
         //En caso de que ocurra un error
         reject(error);
+      
       }
-    });
+    })
   }
 }
