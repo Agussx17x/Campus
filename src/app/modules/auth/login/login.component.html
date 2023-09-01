@@ -16,12 +16,35 @@
       <div class="form signinForm">
         <form>
           <h3>Iniciar Sesión</h3>
-          <input type="text" [(ngModel)]="email" name="email" placeholder="Usuario" />
-          <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" />
-          <input type="submit" (click)="login()" value="Iniciar Sesión" />
+          <input
+            type="text"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="Usuario"
+          />
+          <input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="Contraseña"
+          />
+          <div class="row">
+            <input
+              class="col"
+              type="submit"
+              (click)="login()"
+              value="Iniciar Sesión"
+            />
+            <input
+              id="volver"
+              class="col"
+              type="submit"
+              (click)="back()"
+              value="Volver"
+            />
+          </div>
         </form>
       </div>
-
       <div class="form signupForm">
         <form>
           <h3>Recuperar</h3>

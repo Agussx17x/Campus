@@ -14,18 +14,22 @@ export class AuthService {
     return this.afAuth.createUserWithEmailAndPassword(nombre,password);
   }
 
-  // Método para verificar el estado de autenticación
-  isAuthenticated(){
-    return this.afAuth.authState;
-  }
-
   // Metodo para Loguearse
   login(email:string, password:string){
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
-  // Método para cerrar sesión
-  logout(): Promise<void> {
-    return this.afAuth.signOut();
+
+  //Recolectar UID del usuario
+  async getuid(){
+    //Genera una Promesa, y const user para la captura
+    const user = await this.afAuth.currentUser;
+
+    //Condicion para devolver nulo, o el uid si es que lo tiene
+    if (user == null) {
+      return null;
+    }else{
+      //Devuelve uid del usuario
+      return user.uid;    }
   }
 }
