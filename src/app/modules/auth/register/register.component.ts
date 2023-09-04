@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Usuario } from 'src/app/models/usuario';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -27,21 +28,24 @@ export class RegisterComponent implements OnInit{
 
   constructor(
     public serviceAuth: AuthService,
-    public firestore: FirestoreService
+    public firestore: FirestoreService,
+    public router : Router,
   ) {}
 
   async registrarse() {
     const credenciales = {
-      nombre: this.usuarios.email,
+      email: this.usuarios.email,
       password: this.usuarios.password,
     };
     const res = await this.serviceAuth
-      .registrar(credenciales.nombre, credenciales.password)
+      .registrar(credenciales.email, credenciales.password)
       .then((res) => {
         alert('Ha agregado un nuevo usuario con exito');
+        this.router.navigate(['/admin'])
       })
       .catch((error) =>
         alert('Hubo un error al cargar el usuario :( \n' + error)
+        
       );
 
     //UID
