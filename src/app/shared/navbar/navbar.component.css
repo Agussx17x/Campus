@@ -129,6 +129,11 @@ header ul li ul li ul {
   header.active .menuToggle::after {
     transform: rotate(-45deg);
   }
+  header.active{ /* Se abre el header en mobile, y desaparece el logo mientras esta abierto */
+    & img{
+      display:none;
+    }
+  }
 }
 
 /*PRUEBA*/
