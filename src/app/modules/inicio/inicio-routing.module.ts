@@ -1,22 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './page/inicio/inicio.component';
-import { HomeAdminComponent } from './page/home-admin/home-admin.component';
-import { HomeDocenteComponent } from './page/home-docente/home-docente.component';
-import { HomeEstudianteComponent } from './page/home-estudiante/home-estudiante.component';
+import { HomeAdminComponent } from './page/home/home-admin/home-admin.component';
+import { HomeDocenteComponent } from './page/home/home-docente/home-docente.component';
+import { HomeEstudianteComponent } from './page/home/home-estudiante/home-estudiante.component';
 
 const routes: Routes = [
   {
     path : 'inicio', component : InicioComponent
-  },
-  {
-    path : 'admin', component : HomeAdminComponent
-  },
-  {
-    path : 'docentes', component : HomeDocenteComponent
-  },
-  {
-    path : 'estudiantes', component : HomeEstudianteComponent
   },
 ];
 
