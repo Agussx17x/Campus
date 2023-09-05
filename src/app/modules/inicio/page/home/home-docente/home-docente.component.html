@@ -1,29 +1,31 @@
-<div class="contenido" style="padding: 8rem">
-  <h1>Home Docente</h1>
-  <section>
-    <!-- Grid -->
-    <div class="grid-out">
-      <div class="grid-in">
-        <!-- Aquí se ajustaran las materias -->
-        <div class="section-preferencias">
-          <!-- Select de las materias -->
-          <div class="select-container">
-            <select name="dropdown-materias" id="dropdown-materias">
-              <option value="volvo">Orden alfábetico</option>
-              <option value="saab">Último accedido</option>
-              <option value="mercedes">Trabajos pendientes</option>
-            </select>
-          </div>
-          <!-- Cambiar aspecto de las materias -->
-          <div class="block-container">
-            <button><i class="icon fa fa-th fa-fw"></i></button>
-            <button><i class="fa-solid fa-bars"></i></button>
-          </div>
-        </div>
-        <div class="section-materias">
-          <!-- Aquí se colocará las materias  -->
-        </div>
+<section>
+  <!-- Grid -->
+  <div class="grid-container">
+    <!-- Aquí se ajustaran las materias -->
+    <div class="section-preferencias">
+      <h1>Materias</h1>
+      <!-- Select de las materias -->
+      <div class="select-container">
+        <select class="form-select" id="dropdown-materias">
+          <option value="volvo">Orden alfábetico</option>
+          <option value="saab">Último accedido</option>
+          <option value="mercedes">Trabajos pendientes</option>
+        </select>
+      </div>
+      <!-- Cambiar aspecto de las materias -->
+      <div class="block-container">
+        <button id="boton" class="btn btn-secondary" (click)="changeButton()">
+          <i
+            id="cuadricula"
+            [class.bi-grid-fill]="isGridView"
+            [class.bi-list]="!isGridView"
+          ></i>
+        </button>
       </div>
     </div>
-  </section>
-</div>
+    <div class="section-materias">
+      <!-- Aquí se colocará las materias -->
+    </div>
+  </div>
+  <script src="./home-docente.component.ts"></script>
+</section>
