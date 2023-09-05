@@ -1,0 +1,160 @@
+.register {
+  color: black;
+}
+#barralateral {
+  background-color: rgba(72, 72, 72, 0.401);
+  border-radius: 12px;
+}
+
+/*!AVISOS*/
+
+html,
+body,
+.container,
+.carousel,
+.carousel-inner,
+.carousel-item {
+  height: 100%;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.card {
+  border-radius: 20px;
+  height: 500px;
+  width: 90%;
+  border: none;
+}
+
+.carousel-item {
+  z-index: 2;
+  /*padding: 10px 25px;*/
+}
+.carousel-item > .row {
+  margin: 0;
+}
+.title {
+  color: #fff;
+  text-align: center;
+}
+.bgTitle {
+  position: absolute;
+  z-index: 1;
+}
+
+.title h3 {
+  text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.btn-next {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 100px;
+  border-radius: 20px;
+  background-color: #316e99;
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  z-index: 3;
+}
+
+input {
+  background-color: transparent !important;
+}
+
+/*-- vertical bootstrap slider --*/
+.carousel .carousel-item-next.carousel-item-left,
+.carousel .carousel-item-prev.carousel-item-right {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.carousel .carousel-item-next,
+.carousel .active.carousel-item-right {
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100% 0);
+}
+
+.carousel .carousel-item-prev,
+.carousel .active.carousel-item-left {
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+}
+
+/*-- vertical carousel indicators --*/
+.carousel-indicators {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 40px;
+  right: 0px;
+  left: auto;
+  width: auto;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.carousel-indicators li {
+  display: block;
+  margin-bottom: 0px;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background: #bdbdbd;
+  transition: all ease 0.6s;
+}
+.carousel-indicators li.active {
+  background: #000;
+  width: 20px;
+  border-radius: 25px;
+}
+/* Media Querys */
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+  .bgTitle {
+    height: 30%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 100%;
+    top: 0;
+  }
+  .content {
+    padding: 15px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+  .bgTitle {
+    height: 100%;
+    width: 50%;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 0px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+}

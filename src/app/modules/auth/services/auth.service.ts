@@ -6,7 +6,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   providedIn: 'root'
 })
 export class AuthService {
-  // referenciamos Auth de Firebase
+  // Referenciamos Auth de Firebase
   constructor(private afAuth: AngularFireAuth) { }
 
   // Metodo para registrarse

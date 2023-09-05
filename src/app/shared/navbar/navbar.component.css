@@ -6,6 +6,12 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
+.navbar{
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  z-index: 999;
+}
 /*Cuerpo del NavBar*/
 header {
   position: absolute;
