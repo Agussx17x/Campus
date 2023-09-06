@@ -1,12 +1,6 @@
-import {inject } from '@angular/core';
-import {CanMatchFn} from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/modules/auth/services/auth.service';
+import { CanActivateFn } from '@angular/router';
 
+export const authGuard: CanActivateFn = (route, state) => {
+    return true;
 
-export const authGuard : CanMatchFn = (route, state) => {
-
-  const authService = inject(AuthService);
-  return authService.getAuthToken()
-  
-}
+};

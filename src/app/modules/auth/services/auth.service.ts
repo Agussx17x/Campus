@@ -34,8 +34,4 @@ export class AuthService {
       //Devuelve uid del usuario
       return user.uid;    }
   }
-
-  getAuthToken(): Observable<boolean>{
-    return of(true)
-  }
 }

@@ -61,6 +61,7 @@ export class LoginComponent {
       .then(res => {
         //////// Base de Datos /////////
         this.router.navigate(['/admin'])
+        
         //////// Fin Base de Datos /////////
       })
       .catch((error) => {
