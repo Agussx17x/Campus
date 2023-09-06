@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeAdminComponent } from './home-admin/home-admin.component';
-import { HomeDocenteComponent } from './home-docente/home-docente.component';
-import { HomeEstudianteComponent } from './home-estudiante/home-estudiante.component';
+import { authGuard } from 'src/app/shared/guard/auth.guard';
 
 const routes: Routes = [
   {
-    path : 'admin' , component : HomeAdminComponent
+    path : 'admin' , canMatch: [authGuard], loadComponent : () => import('./home-admin/home-admin.component').then(comp => comp.HomeAdminComponent)
   },
   {
-    path : 'docente' , component : HomeDocenteComponent
+    path : 'docente' , canActivate: [authGuard], loadComponent : () => import('./home-docente/home-docente.component').then(comp => comp.HomeDocenteComponent)
   },
   {
-    path : 'estudiante' , component : HomeEstudianteComponent
+    path : 'estudiante' , canActivate: [authGuard], loadComponent : () => import('./home-estudiante/home-estudiante.component').then(comp => comp.HomeEstudianteComponent)
   },
 ];
 
