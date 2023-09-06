@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-//Guard
-import { AdminGuard } from './shared/guard/admin.guard';
-
-// Carga perezosa de Modulos (se importan dentro del routes). 
+// Carga perezosa de Modulos (se importan dentro del routes).
 
 const routes: Routes = [
   // Rutas de Modulos
@@ -21,11 +18,9 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./modules/inicio/page/home/home.module').then( // Modulo de los Home de Est, Doc, y Adm.
+      import('./modules/inicio/page/home/home.module').then(
         (m) => m.HomeModule
       ),
-    canActivate: [AdminGuard],
-    data: { preload: true }, //agregue canActive
   },
   {
     path: '',

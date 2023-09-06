@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 // Servicio de Autentificación de Firebase
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  // referenciamos Auth de Firebase
+  // Referenciamos Auth de Firebase
   constructor(private afAuth: AngularFireAuth) { }
 
   // Metodo para registrarse
@@ -32,5 +33,9 @@ export class AuthService {
     }else{
       //Devuelve uid del usuario
       return user.uid;    }
+  }
+
+  getAuthToken(): Observable<boolean>{
+    return of(true)
   }
 }

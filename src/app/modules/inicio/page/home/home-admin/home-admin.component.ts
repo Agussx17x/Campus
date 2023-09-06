@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class HomeAdminComponent {
 
+  //le agrega a la clase carrousel el intervalo 0  $(".carousel").carousel({
+  //  interval: 0
+  //});
+  //clase btn-nex $(".btn-next")//llama la funcion al hacer click .click(function () {
+  //ejecuta $(".carousel").carousel("next");
+  //});
+  
 }

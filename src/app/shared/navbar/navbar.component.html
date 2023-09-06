@@ -1,50 +1,52 @@
-<!--NavBar-->
-<header *ngIf="shouldShowNavbar()">
-  <!--Logo-->
-  <a routerLink="/inicio" class="logo">
-    <div class="logoBody">
-      <img src="../../../assets/logo colegio.png" alt="Logo de la escuela" />
-    </div>
-  </a>
-  <!--Boton responsive-->
-  <div class="menuToggle" (click)="claseActive()"></div>
-  <nav>
-    <!--Lista de botones-->
-    <ul>
-      <li>
-        <a routerLink="/inicio">Home</a>
-      </li>
-      <li>
-        <a routerLink="/nosotros">Nosotros</a>
-      </li>
-      <li>
-        <a>Dropdown <b>▼</b></a>
-        <ul>
-          <li><a routerLink="/register">Register</a></li>
-          <li>
-            <a>Home <b>+</b></a>
-            <ul>
-              <li><a routerLink="admin">Admin</a></li>
-              <li><a routerLink="docente">Docentes</a></li>
-              <li><a routerLink="estudiante">Alumnos</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a>Portfolio</a>
-      </li>
-      <li>
-        <a>Blog<b>▼</b></a>
-        <ul>
-          <li><a href="#">Post Link 01</a></li>
-          <li><a href="#">Post Link 02</a></li>
-          <li><a href="#">Post Link 03</a></li>
-        </ul>
-      </li>
-      <li>
-        <a routerLink="/login">Iniciar Sesión</a>
-      </li>
-    </ul>
-  </nav>
-</header>
+<div class="navbar">
+  <!--NavBar-->
+  <header *ngIf="shouldShowNavbar()">
+    <!--Logo-->
+    <a routerLink="/inicio" class="logo">
+      <div class="logoBody">
+        <img src="../../../assets/logo colegio.png" alt="Logo de la escuela" />
+      </div>
+    </a>
+    <!--Boton responsive-->
+    <div class="menuToggle" (click)="claseActive()"></div>
+    <nav>
+      <!--Lista de botones-->
+      <ul>
+        <li>
+          <a routerLink="/inicio">Home</a>
+        </li>
+        <li>
+          <a routerLink="/nosotros">Nosotros</a>
+        </li>
+         <li>
+          <a>Dropdown <b>▼</b></a>
+          <ul>
+            <li><a routerLink="/register">Register</a></li>
+            <li>
+              <a>Home <b>+</b></a>
+              <ul>
+                <li><a routerLink="admin">Admin</a></li>
+                <li><a routerLink="docente">Docentes</a></li>
+                <li><a routerLink="estudiante">Alumnos</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a>Portfolio</a>
+        </li>
+        <li>
+          <a>Blog<b>▼</b></a>
+          <ul>
+            <li><a href="#">Post Link 01</a></li>
+            <li><a href="#">Post Link 02</a></li>
+            <li><a href="#">Post Link 03</a></li>
+          </ul>
+        </li>
+        <li>
+          <a routerLink="/login">Iniciar Sesión</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</div>
