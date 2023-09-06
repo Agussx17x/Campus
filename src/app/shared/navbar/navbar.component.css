@@ -8,8 +8,7 @@
 }
 
 .navbar{
-  margin-bottom: 2rem;
-  margin-top: 2rem;
+  display: block;
   z-index: 999;
 }
 /*Cuerpo del NavBar*/

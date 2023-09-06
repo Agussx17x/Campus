@@ -18,7 +18,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    
     BrowserAnimationsModule,
     //modulo de shared (componentes globales).
     SharedModule,
