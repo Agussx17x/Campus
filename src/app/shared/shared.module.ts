@@ -19,7 +19,6 @@ import { AppRoutingModule } from '../app-routing.module';
     AppRoutingModule,
   ],
   exports:[
-    AppRoutingModule,
     NavbarComponent,
     FooterComponent,
   ],
