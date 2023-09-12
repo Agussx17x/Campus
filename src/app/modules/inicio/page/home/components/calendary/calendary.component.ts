@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './calendary.component.html',
   styleUrls: ['./calendary.component.css']
 })
-
 export class CalendaryComponent {
 
 }

@@ -1,6 +1,6 @@
 export interface Usuario {
   uid: string | any; // uid = id para auth de firebase
-  email: string;
+  email: string; // email
   password: string; //password del email
 
   //////////// Datos Usuario ///////////////////

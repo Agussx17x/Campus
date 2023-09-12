@@ -1,23 +1,30 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { AngularFireModule } from '@angular/fire/compat';
-import { Usuario } from 'src/app/models/usuario';
+import { Router } from '@angular/router'; // Rutas
+import { AuthService } from '../services/auth.service'; // Funcion Iniciar Sesion
+import { Usuario } from 'src/app/models/usuario'; // Interfaz
+import { FirestoreService } from 'src/app/shared/services/firestore.service'; // Nos Trae Datos
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-
-
 export class LoginComponent {
-  email : string = '';
-  password : string= '';
-  errorMessage : string = '';
+
+  // Interfaz
+  usuarios: Usuario = {
+    uid: '',
+    email: '',
+    password: '',
+    nombre: '',
+    apellido: '',
+    dni: '',
+    credencial: '',
+  };
 
   hide = true;
 
+  /////////////////////////// No Borrar /////////////////////////////////////
   //Cambiar Active para modo Responsive
   //Agregamos la clase Active
   activeSignup() {
@@ -35,22 +42,35 @@ export class LoginComponent {
     formBx?.classList.remove('active');
     body?.classList.remove('active');
   }
+  /////////////////////////// Fin No Borrar /////////////////////////////////////
 
-  constructor( private authService: AuthService, private router: Router, private firestore: AngularFireModule){}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    public firestore: FirestoreService
+  ) {}
 
-  login() {
-    this.authService.login(this.email, this.password)
-      .then(() => {
-        ////////Base de Datos/////////
-                
-        ////////Fin Base de Datos/////////
+  // Funcion asincrona Login()
+  async login() {
+    const credenciales = {
+      email: this.usuarios.email,
+      password: this.usuarios.password,
+    }
+
+    const res = await this.authService.login(credenciales.email, credenciales.password)
+      .then(res => {
+        //////// Base de Datos /////////
+        this.router.navigate(['/admin'])
+        
+        //////// Fin Base de Datos /////////
       })
-      .catch(error => {
-        this.errorMessage = error.message;
-        alert("Usuario Invalido");
+      .catch((error) => {
+        console.error(error);
+        //Usuario Invalido
+        alert('Usuario Invalido');
       });
   }
-  back(){
-    window.history.back ();
+  back() {
+    window.history.back();
   }
 }

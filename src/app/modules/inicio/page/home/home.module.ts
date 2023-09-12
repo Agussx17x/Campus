@@ -6,6 +6,9 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { HomeEstudianteComponent } from './home-estudiante/home-estudiante.component';
 import { HomeDocenteComponent } from './home-docente/home-docente.component';
+import { AvisosComponent } from './components/avisos/avisos.component';
+import { CardComponent } from './components/card/card.component';
+import { CalendaryComponent } from './components/calendary/calendary.component';
 
 
 @NgModule({
@@ -13,13 +16,17 @@ import { HomeDocenteComponent } from './home-docente/home-docente.component';
     HomeAdminComponent,
     HomeDocenteComponent,
     HomeEstudianteComponent,
+    AvisosComponent,
+    CardComponent,
+    CalendaryComponent,
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
   ],
   exports: [
     HomeAdminComponent,
+    HomeDocenteComponent,
     HomeEstudianteComponent,
   ]
 })
