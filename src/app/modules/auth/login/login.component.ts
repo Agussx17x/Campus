@@ -60,7 +60,13 @@ export class LoginComponent {
     const res = await this.authService.login(credenciales.email, credenciales.password)
       .then(res => {
         //////// Base de Datos /////////
-        this.router.navigate(['/admin'])
+        alert('Sos: '+this.usuarios.credencial);
+
+        if(credenciales.email == 'agussx17x@gmail.com'){
+          this.router.navigate(['/admin']);
+        }else{
+          this.router.navigate(['/estudiante']);
+        };
         
         //////// Fin Base de Datos /////////
       })
