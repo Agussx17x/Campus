@@ -2,7 +2,7 @@
 <div class="container" style="padding: 3rem"></div>
 <section>
   <!-- Grid -->
-  <div class="title" class="grid-container">
+  <div class="grid-container">
     <div class="title-container">
       <h1>Materias</h1>
     </div>
@@ -30,7 +30,7 @@
     <div class="section-materias">
       <!-- Aquí se colocará las materias -->
 
-      <div class="box quimica">
+      <div class="box quimica" [routerLink]="['/inicio']">
         <div class="circle">
           <svg
             version="1.1"
@@ -220,10 +220,15 @@
             </g>
           </svg>
         </div>
-        <p>Química</p>
+        <div class="info">
+          <h2>Química</h2>
+          <p><strong>Curso: </strong>6° 1°</p>
+          <p><strong>Profesor: </strong>Julio Ahre</p>
+          <p><strong>Correo: </strong>JulioAhre@gmail.com</p>
+        </div>
       </div>
 
-      <div class="box analisis">
+      <div class="box analisis" [routerLink]="['/inicio']">
         <div class="circle">
           <svg
             version="1.1"
@@ -576,7 +581,12 @@
             </g>
           </svg>
         </div>
-        <p>Analisis Matematico II</p>
+        <div class="info">
+          <h2>Analisis Matematico II</h2>
+          <p><strong>Curso: </strong>6° 1°</p>
+          <p><strong>Profesor: </strong>Martin Tetaz</p>
+          <p><strong>Correo: </strong>Martin2023@gmail.com</p>
+        </div>
       </div>
     </div>
   </div>
