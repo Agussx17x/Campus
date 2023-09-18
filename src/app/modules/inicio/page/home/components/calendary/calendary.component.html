@@ -1,16 +1,3 @@
-<section>
-  <div class="box">
-    <div class="container">
-      <div id="dycalendar"></div>
-    </div>
-  </div>
-</section>
-<script src="dyCalendar/dyCalendar.js"></script>
-<script>
-  dycalendar.draw({
-    target: "#dycalendar",
-    type: "month",
-    highlighttargetdate: true,
-    prevnextbutton: "show",
-  });
-</script>
+<mat-card class="demo-inline-calendar-card">
+  <mat-calendar [(selected)]="selected"></mat-calendar>
+</mat-card>

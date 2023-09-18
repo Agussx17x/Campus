@@ -9,6 +9,9 @@ import { HomeDocenteComponent } from './home-docente/home-docente.component';
 import { AvisosComponent } from './components/avisos/avisos.component';
 import { CardComponent } from './components/card/card.component';
 import { CalendaryComponent } from './components/calendary/calendary.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCardModule} from '@angular/material/card';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 @NgModule({
@@ -23,6 +26,9 @@ import { CalendaryComponent } from './components/calendary/calendary.component';
   imports: [
     CommonModule,
     HomeRoutingModule,
+    MatDatepickerModule,
+    MatCardModule,
+    MatNativeDateModule,
   ],
   exports: [
     HomeAdminComponent,

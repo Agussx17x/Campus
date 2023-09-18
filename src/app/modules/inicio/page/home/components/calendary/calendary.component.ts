@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './calendary.component.html',
   styleUrls: ['./calendary.component.css'],
 })
-export class CalendaryComponent {}
+export class CalendaryComponent {
+  selected: Date | null | undefined;
+}
