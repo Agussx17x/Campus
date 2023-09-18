@@ -12,7 +12,6 @@ import { CalendaryComponent } from './components/calendary/calendary.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
 import {MatNativeDateModule} from '@angular/material/core';
-import { MateriasComponent } from './components/materias/materias.component';
 import { FormMatComponent } from './components/form-mat/form-mat.component';
 
 
@@ -24,7 +23,6 @@ import { FormMatComponent } from './components/form-mat/form-mat.component';
     AvisosComponent,
     CardComponent,
     CalendaryComponent,
-    MateriasComponent,
     FormMatComponent
   ],
   imports: [
