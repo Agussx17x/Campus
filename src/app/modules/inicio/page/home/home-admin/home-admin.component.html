@@ -1,18 +1,14 @@
 <div class="contenido" style="padding: 8rem">
+  <h1>Bienvenido Administrador</h1>
+  <a class="regis" routerLink="/register">Agregar Usuarios</a>
   <div class="row">
-    <div class="col-md-9">
-      <h1>Bienvenido Administrador</h1>
+    <div class="col-md-8">
       <app-avisos></app-avisos>
       <!--!FINContenido-->
     </div>
-    <div id="barralateral" class="col-md-3">
+    <div id="barralateral" class="col-md-4">
       <!--*Barra Lateral-->
-      <div class="register">
-        <a class="regis" routerLink="/register">Agregar Usuarios</a>
-      </div>
-      <div>
-        <app-calendary></app-calendary>
-      </div>
+      <app-calendary></app-calendary>
       <!--*FINBarra Lateral-->
     </div>
   </div>
