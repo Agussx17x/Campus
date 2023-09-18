@@ -13,3 +13,4 @@ export class HomeDocenteComponent {
     this.isGridView = !this.isGridView; // Alternar entre cuadrícula y lista
   }
 }
+
