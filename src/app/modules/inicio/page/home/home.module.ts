@@ -12,6 +12,7 @@ import { CalendaryComponent } from './components/calendary/calendary.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
 import {MatNativeDateModule} from '@angular/material/core';
+import { MateriasComponent } from './components/materias/materias.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     AvisosComponent,
     CardComponent,
     CalendaryComponent,
+    MateriasComponent
   ],
   imports: [
     CommonModule,
