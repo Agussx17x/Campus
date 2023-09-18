@@ -69,6 +69,13 @@ header ul li ul li ul {
   left: 200px;
 }
 
+h4{
+  padding-left: 1rem;
+  margin: 0%;
+  margin-right: auto;
+}
+
+
 /* RESPONSIVO */
 
 @media (max-width: 900px) {

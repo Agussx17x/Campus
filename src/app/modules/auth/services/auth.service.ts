@@ -20,6 +20,10 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
+  logout(){
+    return this.afAuth.signOut()
+  }
+
 
   //Recolectar UID del usuario
   async getuid(){

@@ -35,6 +35,18 @@ const routes: Routes = [
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
+    path: '',
+    loadChildren: () =>
+      import('./modules/trabajos/trabajos.module').then(
+        (m) => m.TrabajosModule
+      ),
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
     path: '**',
     redirectTo: 'inicio', // En caso de que se escriba mal la url, redirige al inicio.
     pathMatch: 'full',
