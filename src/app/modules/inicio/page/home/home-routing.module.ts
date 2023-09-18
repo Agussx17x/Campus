@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { authGuard } from 'src/app/shared/guard/auth.guard';
 import { HomeEstudianteComponent } from './home-estudiante/home-estudiante.component';
 import { HomeDocenteComponent } from './home-docente/home-docente.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';

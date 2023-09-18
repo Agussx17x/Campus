@@ -1,1 +1,16 @@
-<img src="../../../../../../../assets/calendario-de-septiembre-2023.png" alt="Calendario">
+<section>
+  <div class="box">
+    <div class="container">
+      <div id="dycalendar"></div>
+    </div>
+  </div>
+</section>
+<script src="dyCalendar/dyCalendar.js"></script>
+<script>
+  dycalendar.draw({
+    target: "#dycalendar",
+    type: "month",
+    highlighttargetdate: true,
+    prevnextbutton: "show",
+  });
+</script>

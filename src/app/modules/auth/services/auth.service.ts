@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 // Servicio de Autentificación de Firebase
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
