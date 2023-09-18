@@ -1,0 +1,111 @@
+<!-- Button trigger modal -->
+<button
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!--Contenido-->
+        <form class="was-validated">
+          <div class="mb-3">
+            <label for="validationTextarea" class="form-label">Titulo</label>
+            <textarea
+              class="form-control"
+              id="validationTextarea"
+              placeholder="Required example textarea"
+              required
+            ></textarea>
+            <div class="invalid-feedback">Agregue un Titulo</div>
+          </div>
+
+          <div class="form-check mb-3">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="validationFormCheck1"
+              required
+            />
+            <label class="form-check-label" for="validationFormCheck1"
+              >Check this checkbox</label
+            >
+            <div class="invalid-feedback">Example invalid feedback text</div>
+          </div>
+
+          <div class="form-check">
+            <input
+              type="radio"
+              class="form-check-input"
+              id="validationFormCheck2"
+              name="radio-stacked"
+              required
+            />
+            <label class="form-check-label" for="validationFormCheck2"
+              >Toggle this radio</label
+            >
+          </div>
+          <div class="form-check mb-3">
+            <input
+              type="radio"
+              class="form-check-input"
+              id="validationFormCheck3"
+              name="radio-stacked"
+              required
+            />
+            <label class="form-check-label" for="validationFormCheck3"
+              >Or toggle this other radio</label
+            >
+            <div class="invalid-feedback">
+              Ingrese un comentario a este documento
+            </div>
+          </div>
+          <div class="mb-3">
+            <input
+              type="file"
+              class="form-control"
+              aria-label="file example"
+              required
+            />
+            <div class="invalid-feedback">
+              Example invalid form file feedback
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <button class="btn btn-primary" type="submit" disabled>
+              Submit form
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
