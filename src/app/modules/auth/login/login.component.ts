@@ -10,7 +10,6 @@ import { FirestoreService } from 'src/app/shared/services/firestore.service'; //
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-
   // Interfaz
   usuarios: Usuario = {
     uid: '',
@@ -55,28 +54,37 @@ export class LoginComponent {
     const credenciales = {
       email: this.usuarios.email,
       password: this.usuarios.password,
-    }
+    };
 
-    const res = await this.authService.login(credenciales.email, credenciales.password)
-      .then(res => {
+    const res = await this.authService
+      .login(credenciales.email, credenciales.password)
+      .then((res) => {
         //////// Base de Datos /////////
-        alert('Sos: '+this.usuarios.credencial);
+        alert('Sos: ' + this.usuarios.credencial);
 
-        if(credenciales.email == 'agussx17x@gmail.com'){
+        if (credenciales.email == 'agussx17x@gmail.com') {
           this.router.navigate(['/admin']);
-        }else{
+        } else {
           this.router.navigate(['/estudiante']);
-        };
-        
+        }
+
         //////// Fin Base de Datos /////////
       })
       .catch((error) => {
         console.error(error);
         //Usuario Invalido
-        alert('Usuario Invalido');
+        alert('Usuario Invalido');                                 
       });
   }
   back() {
     window.history.back();
+  }
+  //Funcion para CERRAR SESION
+  async salir() {
+    const res = await this.authService.logout().then((res) => {
+      alert('ha cerrado sesión con éxito!');
+      console.log(res);
+      this.router.navigate(['/inicio']);
+    });
   }
 }
