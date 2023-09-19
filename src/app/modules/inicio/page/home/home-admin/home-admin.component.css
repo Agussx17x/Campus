@@ -1,6 +1,14 @@
 .regis {
+  text-decoration: none;
   color: black;
+  display: flex;
+  align-items: center;
 }
 .register{
   margin: 2rem;
+}
+.contenido{
+  padding-left: 4rem;
+  padding-top: 10rem;
+  padding-right: 4rem;
 }
