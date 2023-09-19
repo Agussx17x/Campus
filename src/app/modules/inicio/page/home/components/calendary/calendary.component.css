@@ -6,7 +6,6 @@
 }
 .container {
   display: flex;
-  align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
@@ -14,8 +13,8 @@
   border-radius: 10px;
 }
 .demo-inline-calendar-card {
-  width: 200px;
-  height: 260px;
+  width: 260px;
+  height: 320px;
   background: transparent;
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2), -15px -15px 30px #e2e6e9;
 }

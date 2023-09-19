@@ -3,17 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 
+//Componentes
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { HomeEstudianteComponent } from './home-estudiante/home-estudiante.component';
 import { HomeDocenteComponent } from './home-docente/home-docente.component';
+//"" Compartidos
 import { AvisosComponent } from './components/avisos/avisos.component';
-import { CardComponent } from './components/card/card.component';
+import { CardComponent } from './components/card-materias/card.component';
 import { CalendaryComponent } from './components/calendary/calendary.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatCardModule} from '@angular/material/card';
-import {MatNativeDateModule} from '@angular/material/core';
 import { FormMatComponent } from './components/form-mat/form-mat.component';
 import { MateriaComponent } from './components/materia/materia.component';
+//Modulos
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon'
 
 
 @NgModule({
@@ -33,11 +37,13 @@ import { MateriaComponent } from './components/materia/materia.component';
     MatDatepickerModule,
     MatCardModule,
     MatNativeDateModule,
+    MatIconModule
   ],
   exports: [
     HomeAdminComponent,
     HomeDocenteComponent,
     HomeEstudianteComponent,
+    MatIconModule
   ]
 })
 export class HomeModule { }
