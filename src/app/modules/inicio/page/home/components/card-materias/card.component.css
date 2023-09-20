@@ -6,7 +6,7 @@ section {
   box-sizing: border-box;
 }
 
-.info{
+.info {
   padding: 1rem;
 }
 
@@ -264,4 +264,8 @@ h1 {
       }
     }
   }
+}
+
+span {
+  font-size: 5rem;
 }

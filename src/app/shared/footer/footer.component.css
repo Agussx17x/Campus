@@ -104,7 +104,7 @@ footer .container .contact .info li a {
     padding: 20px 40px 30px;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   footer .container {
     width: 100%;
     display: grid;

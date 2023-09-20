@@ -8,10 +8,11 @@
 /*Contenedor. Define lo que se ve y lo que no.*/
 .container {
   position: relative;
-  width: 50vw;
-  height: 50vh;
+  width: 60vw;
+  height: 60vh;
   overflow: hidden;
   border-radius: 20px;
+  margin: auto;
 }
 /*Ocultamos lo innecesario.*/
 .tabs input {
@@ -26,7 +27,7 @@
   transform: translateX(-50%);
   display: flex;
   gap: 10px;
-  z-index: 999;
+  z-index: 10;
 }
 /*Le damos visibilidad y diseño a los botones.*/
 .buttons label {
@@ -55,8 +56,8 @@
 }
 .content .box {
   position: relative;
-  width: 50vw;
-  height: 50vh;
+  width: 60vw;
+  height: 60vh;
   display: flex;
   justify-content: center;
   user-select: none;
@@ -81,13 +82,13 @@
   left: 0;
 }
 .tabs input:nth-child(2):checked ~ .content {
-  left: -50vw;
+  left: -60vw;
 }
 .tabs input:nth-child(3):checked ~ .content {
-  left: -100vw;
+  left: -120vw;
 }
 .tabs input:nth-child(4):checked ~ .content {
-  left: -150vw;
+  left: -180vw;
 }
 
 /*CSS Personalizado*/
@@ -102,14 +103,14 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  width: 400px;
-  height: 120px;
+  width: 600px;
+  height: 150px;
 }
 
 .contentBx .avisoCont .avisoHead {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   margin-bottom: 5px;
   gap: 10px;
@@ -156,3 +157,81 @@
   background: #51b9c0;
   border-radius: 5px;
 }
+/* Responsive */
+@media (max-width: 991px) {
+  .contentBx .avisoCont {
+    width: 350px;
+    height: 150px;
+  }
+}
+@media (max-width: 767px) {
+  .container {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .contentBx .avisoCont {
+    width: 350px;
+    height: 150px;
+  }
+  /* Interpolacion necesaria */
+  .content .box {
+    width: 70vw;
+  }
+  .tabs input:nth-child(1):checked ~ .content {
+    left: 0;
+  }
+  .tabs input:nth-child(2):checked ~ .content {
+    left: -70vw;
+  }
+  .tabs input:nth-child(3):checked ~ .content {
+    left: -140vw;
+  }
+  .tabs input:nth-child(4):checked ~ .content {
+    left: -210vw;
+  }
+  @media (max-width: 375px) {
+    .contentBx .avisoCont .avisoHead .avisoTitulo {
+      text-align: center;
+      height: 25px;
+    }
+    .contentBx .avisoCont .avisoHead .avisoBotones {
+      height: 25px;
+    }
+    .contentBx .avisoCont .avisoHead {
+      align-content: space-evenly;
+      flex-direction: column;
+      height: 70px;
+      gap: 0;
+    }
+    .contentBx .avisoCont {
+      justify-content: start;
+    }
+    .contentBx {
+      padding: 5px 15px;
+    }
+    .contentBx .avisoCont {
+      width: 180px;
+      height: 280px;
+    }
+    .content .box {
+      width: 75vw;
+    }
+    .tabs input:nth-child(1):checked ~ .content {
+      left: 0;
+    }
+    .tabs input:nth-child(2):checked ~ .content {
+      left: -75vw;
+    }
+    .tabs input:nth-child(3):checked ~ .content {
+      left: -150vw;
+    }
+    .tabs input:nth-child(4):checked ~ .content {
+      left: -225vw;
+    }
+  }
+}
+/* @media (max-width: 767px) {
+  .container {
+    width: 100%;
+  }
+} */
