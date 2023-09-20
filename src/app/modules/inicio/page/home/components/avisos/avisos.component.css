@@ -8,10 +8,11 @@
 /*Contenedor. Define lo que se ve y lo que no.*/
 .container {
   position: relative;
-  width: 50vw;
-  height: 50vh;
+  width: 60vw;
+  height: 60vh;
   overflow: hidden;
   border-radius: 20px;
+  margin: auto;
 }
 /*Ocultamos lo innecesario.*/
 .tabs input {
@@ -55,8 +56,8 @@
 }
 .content .box {
   position: relative;
-  width: 50vw;
-  height: 50vh;
+  width: 60vw;
+  height: 60vh;
   display: flex;
   justify-content: center;
   user-select: none;
@@ -81,13 +82,13 @@
   left: 0;
 }
 .tabs input:nth-child(2):checked ~ .content {
-  left: -50vw;
+  left: -60vw;
 }
 .tabs input:nth-child(3):checked ~ .content {
-  left: -100vw;
+  left: -120vw;
 }
 .tabs input:nth-child(4):checked ~ .content {
-  left: -150vw;
+  left: -180vw;
 }
 
 /*CSS Personalizado*/
@@ -102,8 +103,8 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  width: 400px;
-  height: 120px;
+  width: 600px;
+  height: 150px;
 }
 
 .contentBx .avisoCont .avisoHead {
@@ -155,4 +156,9 @@
 .contentBx .avisoCont .avisoBody::-webkit-scrollbar-thumb {
   background: #51b9c0;
   border-radius: 5px;
+}
+@media (max-width: 767px) {
+  .container {
+    width: 100%;
+  }
 }
