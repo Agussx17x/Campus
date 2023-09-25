@@ -7,12 +7,25 @@
       <section>
         <!-- Grid -->
         <div class="grid-container">
-          <div class="title-container">
-            <h1 class="materias">Materias</h1>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm custom-center">
+                <h1 class="materias">Materias</h1>
+              </div>
+              <div class="col-sm">
+                <div class="d-flex custom-center">
+                  <select class="form-select">
+                    <option value="1">Orden alfábetico</option>
+                    <option value="2">Último accedido</option>
+                    <option value="3">Fecha de entrega</option>
+                  </select>
+                  <button type="button" class="btn btn-dark d-flex align-items-right">Dark</button>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="section-materias">
             <!-- Aquí se colocará las materias -->
-
             <div class="box quimica" routerLink="/materia">
               <div class="circle">
                 <svg

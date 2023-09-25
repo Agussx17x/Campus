@@ -33,14 +33,6 @@ section {
   margin: 50px;
 }
 
-.title-container {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  align-items: center;
-  justify-content: center;
-}
-
 .box {
   grid-template-rows: 100px 100px;
 }
@@ -54,7 +46,22 @@ section {
 }
 
 .form-select {
-  width: 200px;
+  width: 175px;
+}
+
+.custom-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* Esto alinea el texto horizontalmente en el centro */
+  height: 100%; /* Asegura que la columna ocupe toda la altura disponible */
+}
+
+.col-sm{
+  display: inline-block; /* O puedes usar float: left; */
+  vertical-align: middle; /* Para alinear verticalmente los elementos */
+  margin-right: 10px; /* Añade un margen para separar los elementos si lo deseas */
 }
 
 /* Button */
