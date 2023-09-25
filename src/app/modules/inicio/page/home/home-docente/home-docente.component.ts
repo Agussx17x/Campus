@@ -6,11 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-docente.component.css'],
 })
 export class HomeDocenteComponent {
-  public isGridView = true;
-
-  // Método para cambiar la vista entre cuadrícula y lista
-  public changeButton() {
-    this.isGridView = !this.isGridView; // Alternar entre cuadrícula y lista
-  }
 }
 
