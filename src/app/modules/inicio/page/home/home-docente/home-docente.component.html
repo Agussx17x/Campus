@@ -19,7 +19,17 @@
                     <option value="2">Último accedido</option>
                     <option value="3">Fecha de entrega</option>
                   </select>
-                  <button type="button" class="btn btn-dark d-flex align-items-right">Dark</button>
+                  <button
+                    id="boton"
+                    class="btn btn-secondary"
+                    (click)="changeButton()"
+                  >
+                    <i
+                      id="cuadricula"
+                      [class.bi-grid-fill]="isGridView"
+                      [class.bi-list]="!isGridView"
+                    ></i>
+                  </button>
                 </div>
               </div>
             </div>
