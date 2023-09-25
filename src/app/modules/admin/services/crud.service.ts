@@ -27,7 +27,7 @@ export class CrudService {
       }
     });
   }
-  obtenerTrabajos(){ 
+  obtenerTrabajos(){
     return this.trabajoscollection.snapshotChanges().pipe(map(action => action.map(a =>a.payload.doc.data())))
   }     
 }
