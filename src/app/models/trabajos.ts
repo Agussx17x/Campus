@@ -2,11 +2,11 @@ export interface Trabajos {
     //Docs
     idTrabajo:string;
     titulo:string;
-    subtitulo:string;
-    docs: File;
+    docs:any;
+    descripcion: string;
+
 
     //Imagen
-    imagen:string;
-    alt:string;
-    descripcion: string; 
+    //imagen:string;
+    //alt:string;
 }

@@ -4,10 +4,11 @@ import { HomeEstudianteComponent } from './home-estudiante/home-estudiante.compo
 import { HomeDocenteComponent } from './home-docente/home-docente.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { MateriaComponent } from './components/materia/materia.component';
+import { AuthGuard } from 'src/app/modules/auth/services/auth-guard.guard';
 
 const routes: Routes = [
   {
-    path : 'admin', component: HomeAdminComponent
+    path : 'admin', component: HomeAdminComponent, canActivate: [AuthGuard],
   },
   {
     path : 'docente' , component: HomeDocenteComponent
@@ -22,6 +23,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class HomeRoutingModule { }

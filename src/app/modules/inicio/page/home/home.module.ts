@@ -17,7 +17,6 @@ import { MateriaComponent } from './components/materia/materia.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatIconModule } from '@angular/material/icon'
 
 
 @NgModule({
@@ -37,13 +36,16 @@ import { MatIconModule } from '@angular/material/icon'
     MatDatepickerModule,
     MatCardModule,
     MatNativeDateModule,
-    MatIconModule
   ],
   exports: [
     HomeAdminComponent,
     HomeDocenteComponent,
     HomeEstudianteComponent,
-    MatIconModule
-  ]
+    AvisosComponent,
+    CardComponent,
+    CalendaryComponent,
+    FormMatComponent,
+    MateriaComponent
+  ],
 })
 export class HomeModule { }
