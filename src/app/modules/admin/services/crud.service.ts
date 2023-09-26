@@ -1,9 +1,33 @@
 import { Injectable } from '@angular/core';
-
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/compat/firestore';
+import { Trabajos } from 'src/app/models/trabajos';
+import { map } from 'rxjs/operators';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CrudService {
+  private trabajoscollection: AngularFirestoreCollection<Trabajos>;
+  constructor(private database: AngularFirestore) {
+    this.trabajoscollection = database.collection('trabajos');
+  }
 
-  constructor() { }
+  crearTrabajos(trabajos: Trabajos) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const id = this.database.createId();
+        trabajos.idTrabajo = id;
+
+        const resultado = await this.trabajoscollection.doc(id).set(trabajos);
+        resolve(resultado);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+  obtenerTrabajos(){
+    return this.trabajoscollection.snapshotChanges().pipe(map(action => action.map(a =>a.payload.doc.data())))
+  }     
 }

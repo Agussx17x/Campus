@@ -9,5 +9,11 @@
     margin-right: auto;
 }
 h1{
-    margin: 0;
+    margin: 10px;
+}
+@media(max-width: 376px){
+    h1{
+        text-align: center;
+    }
+    
 }
