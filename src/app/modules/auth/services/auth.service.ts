@@ -14,12 +14,19 @@ export class AuthService {
     // retorna nuevo valor de nombre y contrasena
     return this.afAuth.createUserWithEmailAndPassword(email,password);
   }
-
+  
   // Metodo para Loguearse
   login(email:string, password:string){
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
+  
+  // Metodo para saber si estoy Logueado
+  isAuthenticated(): boolean {
+    const user = this.afAuth.currentUser;
+    return user !== null;
+  }
 
+  // Metodo para Cerrar Sesion
   logout(){
     return this.afAuth.signOut()
   }

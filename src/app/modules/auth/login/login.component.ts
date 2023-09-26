@@ -60,13 +60,9 @@ export class LoginComponent {
       .login(credenciales.email, credenciales.password)
       .then((res) => {
         //////// Base de Datos /////////
-        alert('Sos: ' + this.usuarios.credencial);
+        alert('Inicio de sesion exitoso!!')
 
-        if (credenciales.email == 'agussx17x@gmail.com') {
-          this.router.navigate(['/admin']);
-        } else {
-          this.router.navigate(['/estudiante']);
-        }
+        this.router.navigate(['/admin'])
 
         //////// Fin Base de Datos /////////
       })

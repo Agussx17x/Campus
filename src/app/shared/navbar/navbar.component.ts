@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 
 export class NavbarComponent {
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private afAuth: AuthService){}
 
   //Agregamos y quitamos la clase active par ala responsividad.
   claseActive() {
@@ -24,5 +25,8 @@ export class NavbarComponent {
     
     // Verificar si la URL es la de la página de inicio de sesión
     return currentUrl !== '/login'; // Ajusta la URL según tu enrutamiento
+  }
+  cerrarsesion(){
+    this.afAuth.logout()
   }
 }

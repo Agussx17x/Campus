@@ -1,106 +1,81 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- Button trigger modal -->
-<button
-  id="modal"
-  type="button"
-  class="btn btn-primary"
-  data-bs-toggle="modal"
-  data-bs-target="#exampleModal"
->
-  <i class="bi bi-file-earmark-plus-fill" style="font-size: 20px"></i>
-  Añadir Material
-</button>
-
-<!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir Material</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <!--Contenido-->
-        <form class="was-validated" [formGroup]="trabajo">
-          <div class="mb-3">
-            <label for="validationInput" class="form-label">Titulo</label>
-            <input
-              class="form-control"
-              id="validationInput"
-              placeholder="Material 1"
-              formControlName="titulo"
-              required
-            />
-          </div>
-
-          <div class="mb-3">
-            <label for="comeMat">Descripcion</label>
-            <textarea
-              id="comMat"
-              type="radio"
-              class="form-control"
-              name="Comentario"
-              rows="1"
-              formControlName="descripcion"
-            >
-            </textarea>
-          </div>
-          <div class="mb-3">
-            <input
-              formControlName="docs"
-              type="file"
-              class="form-control"
-              required
-            />
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Cerrar
-        </button>
-        <button type="button" class="btn btn-primary">Subir Material</button>
-      </div>
+<div class="contenido">
+  <div class="seccion1">
+    <div class="seccion-title">
+      <h1 class="titulo">Seccion 1</h1>
+      
+      <a href=""><span class="material-symbols-outlined"> more_vert </span></a>
+    </div>
+    <app-form-docs></app-form-docs>
+    <div class="tabla">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Docs</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th id="id" scope="row">1</th>
+            <td id="titulo">Tema 1 Analisis Matematico</td>
+            <td id="descripcion">Funciones Cuadraticas</td>
+            <td id="docs"><a href="">Documento</a></td>
+            <td>
+              <a href=""
+                ><span class="material-symbols-outlined"> edit </span></a
+              >
+            </td>
+            <td>
+              <a href=""
+                ><span class="material-symbols-outlined"> delete </span></a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="seccion2">
+    <div class="seccion-title">
+      <h1 class="titulo">Seccion 2</h1>
+      <a href=""><span class="material-symbols-outlined"> more_vert </span></a>
+    </div>
+    <app-form-docs></app-form-docs>
+    <div class="tabla">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Docs</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th id="id" scope="row">1</th>
+            <td id="titulo">Tema 1 Analisis Matematico</td>
+            <td id="descripcion">Funciones Cuadraticas</td>
+            <td id="docs"><a href="">Documento</a></td>
+            <td>
+              <a href=""
+                ><span class="material-symbols-outlined"> edit </span></a
+              >
+            </td>
+            <td>
+              <a href=""
+                ><span class="material-symbols-outlined"> delete </span></a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
