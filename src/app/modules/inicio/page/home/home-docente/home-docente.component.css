@@ -1,23 +1,20 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
-section {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.contenido{
+.contenido {
   padding-top: 10rem;
   padding-left: 4rem;
   padding-right: 1rem;
 }
 
+.row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.219);
+}
+
 /*! Cambios de Tomi*/
 /*! le agregue padding para que las letras tengan un poco mas de espacio dentro de la card y no esten tan pegadas con el borde*/
-.info{
+.info {
   padding: 1rem;
 }
-/*! Cambios de Tomi*/
 
 .grid-container {
   background-color: white;
@@ -43,8 +40,10 @@ section {
   margin-bottom: 50px;
   margin-top: 50px;
   font-size: 30px;
+  margin-right: 1rem;
 }
 
+/* Select */
 .form-select {
   width: 175px;
 }
@@ -58,19 +57,14 @@ section {
   height: 100%; /* Asegura que la columna ocupe toda la altura disponible */
 }
 
-.col-sm{
-  display: inline-block; /* O puedes usar float: left; */
+/* Columnas */
+.col-sm {
+  display: inline-block;
   vertical-align: middle; /* Para alinear verticalmente los elementos */
-  margin-right: 10px; /* Añade un margen para separar los elementos si lo deseas */
+  margin-right: 10px; /* Añade un margen para separar los elementos */
 }
 
 /* Button */
-.block-container {
-  position: absolute;
-  top: 180px;
-  right: 100px;
-}
-
 .bi-grid-fill {
   font-size: 20px;
 }
@@ -79,8 +73,16 @@ section {
   font-size: 20px;
 }
 
-.block-container > button {
-  cursor: pointer;
+/* Div del Select y Button */
+.d-flex {
+  display: flex;
+  justify-content: center;
+}
+
+#boton {
+  position: absolute;
+  right: 1;
+  margin-left: 250px;
 }
 
 /*CSS CARD*/
@@ -162,24 +164,20 @@ section {
 /* Responsive */
 @media (max-width: 899px) {
   .materias {
-    margin-left: 50px;
-    margin-bottom: 50px;
-    font-size: 25px;
+    font-size: 20px;
   }
-  .select-container {
-    position: absolute;
-    top: 200px;
-    right: 120px;
-  }
+
   .form-select {
     width: 135px;
     font-size: 10px;
   }
-  .block-container {
+
+  #boton {
     position: absolute;
-    top: 190px;
-    right: 70px;
+    right: 1;
+    margin-left: 220px;
   }
+
   .bi-grid-fill {
     font-size: 15px;
   }
@@ -208,56 +206,28 @@ section {
     line-height: 0;
   }
 
-  @media (max-width: 470px) {
-    .title-container {
-      text-align: center;
-      position: relative;
-      top: auto;
-      right: auto;
-      margin-top: 50px;
-      margin-right: 20px;
+  @media (max-width: 575px) {
+    .form-select {
+      margin-bottom: 10px;
     }
 
-    .materias {
-      margin-left: 50px;
-      margin-top: 50px;
-      margin-right: 20px;
-      font-size: 25px;
+    #boton {
+      margin-bottom: 15px;
     }
 
-    .select-container {
-      position: absolute;
-      top: 250px;
-      right: 160px;
-      bottom: 10px;
-      left: auto;
+    .bi-grid-fill {
+      font-size: 15px;
     }
-
-    .block-container {
-      position: absolute;
-      top: 240px;
-      right: 100px;
+    .bi-list {
+      font-size: 15px;
     }
-
-    @media (max-width: 320px) {
-      .block-container {
-        position: absolute;
-        right: 70px;
-      }
-      .bi-grid-fill {
-        font-size: 15px;
-      }
-      .bi-list {
-        font-size: 15px;
-      }
-      .circle {
-        width: 50px;
-        height: 50px;
-      }
-      .svg {
-        width: 40px;
-        height: 40px;
-      }
+    .circle {
+      width: 50px;
+      height: 50px;
+    }
+    .svg {
+      width: 40px;
+      height: 40px;
     }
   }
 }
