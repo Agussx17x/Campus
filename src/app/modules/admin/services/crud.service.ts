@@ -29,5 +29,12 @@ export class CrudService {
   }
   obtenerTrabajos(){
     return this.trabajoscollection.snapshotChanges().pipe(map(action => action.map(a =>a.payload.doc.data())))
-  }     
+  }
+
+  editTrabajo(idTrabajo: string, newData: Trabajos){
+    return this.database.collection('trabajos').doc(idTrabajo).update(newData)
+  }
+  deleteTrabajo(){
+
+  }
 }

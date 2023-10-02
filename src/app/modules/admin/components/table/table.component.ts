@@ -3,6 +3,7 @@ import { Trabajos } from 'src/app/models/trabajos';
 import { CrudService } from '../../services/crud.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { error } from 'jquery';
 
 @Component({
   selector: 'app-table',
@@ -42,5 +43,34 @@ export class TableComponent {
     this.servicioCrud.obtenerTrabajos().subscribe((trabajos) => {
       this.coleccionTrabajos = trabajos;
     });
+  }
+
+  //editar
+  mostrarEdit(trabajoSeleccionado: Trabajos){
+    this.trabajoSeleccionado = trabajoSeleccionado
+    this.trabajo.setValue({
+      titulo: trabajoSeleccionado.titulo,
+      descripcion: trabajoSeleccionado.descripcion,
+      docs: trabajoSeleccionado.docs,
+    })
+  }
+  editTrabajo(){
+    let datos : Trabajos = {
+      idTrabajo: this.trabajoSeleccionado.idTrabajo,
+      titulo:this.trabajoSeleccionado.titulo!,
+      descripcion:this.trabajoSeleccionado.descripcion!,
+      docs:this.trabajoSeleccionado.docs!,
+    }
+    this.servicioCrud.editTrabajo(this.trabajoSeleccionado.idTrabajo, datos)
+    .then((trabajos) => {
+      alert('Se editó correctamente')
+    })
+    .catch(error=>{
+      alert('No se pudo modificar \n'+ error)
+    })
+  }
+  mostrarDelete(){
+  }
+  deleteTrabajo(){
   }
 }
