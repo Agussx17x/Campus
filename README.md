@@ -1,7 +1,7 @@
 # CampusV2
 
 # Live Share
-https://prod.liveshare.vsengsaas.visualstudio.com/join?53C36FB2BC2FE54EA42E88E6C989518894E2
+https://prod.liveshare.vsengsaas.visualstudio.com/join?E0D8C32B6E514742E5BEA12EEEBE27F13C78
 
 ## Further help
 
