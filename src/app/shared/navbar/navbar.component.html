@@ -27,7 +27,12 @@
         <li>
           <a>Dropdown <b>▼</b></a>
           <ul>
-            <li><a routerLink="/register">Register</a></li>
+            <li>
+              <a (click)="cerrarsesion()"
+                ><span class="material-symbols-outlined"> person </span>
+                <h4>LogOut</h4></a
+              >
+            </li>
             <li><a mat-button routerLink="/administrador">Administrador</a></li>
             <li>
               <a>Home <b>+</b></a>
@@ -35,12 +40,6 @@
                 <li><a routerLink="admin">Admin</a></li>
                 <li><a routerLink="docente">Docentes</a></li>
                 <li><a routerLink="estudiante">Alumnos</a></li>
-                <li>
-                  <a (click)="cerrarsesion()"
-                    ><span class="material-symbols-outlined"> person </span>
-                    <h4>LogOut</h4></a
-                  >
-                </li>
               </ul>
             </li>
           </ul>
