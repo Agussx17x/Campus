@@ -34,7 +34,14 @@ export class CrudService {
   editTrabajo(idTrabajo: string, newData: Trabajos){
     return this.database.collection('trabajos').doc(idTrabajo).update(newData)
   }
-  deleteTrabajo(){
-
+  deleteTrabajo(idTrabajo: string){
+    return new Promise((resolve, reject)=> {
+      try {
+        const res = this.trabajoscollection.doc(idTrabajo).delete()
+        resolve (res)
+      } catch (error) {
+        reject(error)
+      }
+    })
   }
 }
