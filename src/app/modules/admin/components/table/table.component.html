@@ -1,10 +1,100 @@
 <div class="contenido">
-  <div class="seccion1">
+  <div class="seccion">
     <div class="seccion-title">
-      <h1 class="titulo">Seccion 1</h1>
-
+      <h1 class="titulo">Seccion 2</h1>
       <a href=""><span class="material-symbols-outlined"> more_vert </span></a>
     </div>
+    <!--<app-form-docs></app-form-docs>-->
+    <!-- Button trigger modal -->
+    <button
+      id="modal"
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      <i class="bi bi-file-earmark-plus-fill" style="font-size: 20px"></i>
+      Añadir Material
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Añadir Material
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <!--Contenido-->
+            <form class="was-validated" [formGroup]="trabajo">
+              <div class="mb-3">
+                <label for="validationInput" class="form-label">Titulo</label>
+                <input
+                  class="form-control"
+                  id="validationInput"
+                  placeholder="Material 1"
+                  formControlName="titulo"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="comeMat">Descripcion</label>
+                <textarea
+                  id="comMat"
+                  type="radio"
+                  class="form-control"
+                  name="Comentario"
+                  rows="1"
+                  formControlName="descripcion"
+                >
+                </textarea>
+              </div>
+              <div class="mb-3">
+                <input
+                  formControlName="docs"
+                  type="file"
+                  class="form-control"
+                  required
+                  (change)="uploadFile($event)"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button
+              type="button"
+              (click)="agregarTrabajo()"
+              class="btn btn-primary"
+            >
+              Subir Material
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Tabla de contenido-->
     <div class="tabla">
       <table class="table">
         <thead>
@@ -18,19 +108,26 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th id="id" scope="row">1</th>
-            <td id="titulo">Tema 1 Analisis Matematico</td>
-            <td id="descripcion">Funciones Cuadraticas</td>
-            <td id="docs"><a href="">Documento</a></td>
+          <tr *ngFor="let col of coleccionTrabajos">
+            <th id="id" scope="row">{{ col.idTrabajo }}</th>
+            <td id="titulo">{{ col.titulo }}</td>
+            <td id="descripcion">{{ col.descripcion }}</td>
+            <td id="docs">
+              <a href="">{{ col.docs }}</a>
+            </td>
             <td>
-              <a href="" data-bs-togle="modal" data-bs-target="#editarTrabajo"
+              <a (click)="mostrarEdit(col)"
                 ><span class="material-symbols-outlined"> edit </span></a
               >
             </td>
             <td>
-              <a href="" data-bs-togle="modal" data-bs-target="#editarTrabajo"
-                ><span class="material-symbols-outlined"> delete </span></a
+              <a
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal2"
+                (click)="mostrarDelete(col)"
+                ><span class="material-symbols-outlined" style="color: red">
+                  delete
+                </span></a
               >
             </td>
           </tr>
@@ -38,43 +135,52 @@
       </table>
     </div>
   </div>
-  <div class="seccion2">
-    <div class="seccion-title">
-      <h1 class="titulo">Seccion 2</h1>
-      <a href=""><span class="material-symbols-outlined"> more_vert </span></a>
-    </div>
-    <app-form-docs></app-form-docs>
-    <div class="tabla">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Titulo</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Docs</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th id="id" scope="row">1</th>
-            <td id="titulo">Tema 1 Analisis Matematico</td>
-            <td id="descripcion">Funciones Cuadraticas</td>
-            <td id="docs"><a href="">Documento</a></td>
-            <td>
-              <a href=""
-                ><span class="material-symbols-outlined"> edit </span></a
-              >
-            </td>
-            <td>
-              <a href=""
-                ><span class="material-symbols-outlined"> delete </span></a
-              >
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <div *ngFor="let col of coleccionTrabajos">
+    <!-- Modal Eliminar -->
+    <div
+      class="modal fade"
+      id="exampleModal2"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Esta seguro de Eliminar este trabajo?
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <!--!Contenido-->
+            <h4>{{ col.titulo }}</h4>
+            <p>{{ col.descripcion }}</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button
+              data-bs-dismiss="modal"
+              type="button"
+              (click)="deleteTrabajo()"
+              class="btn btn-primary"
+            >
+              Borrar
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

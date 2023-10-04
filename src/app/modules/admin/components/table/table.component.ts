@@ -3,7 +3,8 @@ import { Trabajos } from 'src/app/models/trabajos';
 import { CrudService } from '../../services/crud.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { error } from 'jquery';
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+
 
 @Component({
   selector: 'app-table',
@@ -11,15 +12,13 @@ import { error } from 'jquery';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent {
-
-  constructor(public servicioCrud: CrudService, private router: Router ) {}
-
+  constructor(public servicioCrud: CrudService, private router: Router) {}
 
   coleccionTrabajos: Trabajos[] = [];
 
   trabajoSeleccionado!: Trabajos; // Toma valores vacios
 
-  modalVisibleTrabajo: boolean = false;
+  modalVisibleTrabajo: boolean = true;
 
   //  modalVisible: boolean = false;
 
@@ -44,33 +43,70 @@ export class TableComponent {
       this.coleccionTrabajos = trabajos;
     });
   }
+  async agregarTrabajo() {
+    if (this.trabajo.valid) {
+      let nuevoTrabajo: Trabajos = {
+        idTrabajo: '',
+        titulo: this.trabajo.value.titulo!,
+        descripcion: this.trabajo.value.descripcion!,
+        docs: this.trabajo.value.docs!,
+      };
+
+      await this.servicioCrud
+        .crearTrabajos(nuevoTrabajo)
+        .then((trabajos) => {
+          alert('ha agregado un nuevo trabajo con exito');
+        })
+        .catch((error) => {
+          alert('Hubo un error al cargar un nuevo trabajo \n' + error);
+        });
+    }
+  }
 
   //editar
-  mostrarEdit(trabajoSeleccionado: Trabajos){
-    this.trabajoSeleccionado = trabajoSeleccionado
+  mostrarEdit(trabajoSeleccionado: Trabajos) {
+    this.trabajoSeleccionado = trabajoSeleccionado;
     this.trabajo.setValue({
       titulo: trabajoSeleccionado.titulo,
       descripcion: trabajoSeleccionado.descripcion,
       docs: trabajoSeleccionado.docs,
-    })
+    });
   }
-  editTrabajo(){
-    let datos : Trabajos = {
+  editTrabajo() {
+    let datos: Trabajos = {
       idTrabajo: this.trabajoSeleccionado.idTrabajo,
-      titulo:this.trabajoSeleccionado.titulo!,
-      descripcion:this.trabajoSeleccionado.descripcion!,
-      docs:this.trabajoSeleccionado.docs!,
-    }
-    this.servicioCrud.editTrabajo(this.trabajoSeleccionado.idTrabajo, datos)
-    .then((trabajos) => {
-      alert('Se editó correctamente')
-    })
-    .catch(error=>{
-      alert('No se pudo modificar \n'+ error)
-    })
+      titulo: this.trabajoSeleccionado.titulo!,
+      descripcion: this.trabajoSeleccionado.descripcion!,
+      docs: this.trabajoSeleccionado.docs!,
+    };
+    this.servicioCrud
+      .editTrabajo(this.trabajoSeleccionado.idTrabajo, datos)
+      .then((trabajos) => {
+        alert('Se editó correctamente');
+      })
+      .catch((error) => {
+        alert('No se pudo modificar \n' + error);
+      });
   }
-  mostrarDelete(){
+  mostrarDelete(trabajoSeleccionado: Trabajos) {
+    this.trabajoSeleccionado = trabajoSeleccionado;
   }
-  deleteTrabajo(){
+  deleteTrabajo() {
+    this.servicioCrud
+      .deleteTrabajo(this.trabajoSeleccionado.idTrabajo)
+      .then((respuesta) => {
+        alert('borrado con exito');
+      })
+      .catch((error) => {
+        alert('No se elimino el trabajo \n' + error);
+      });
+  }
+  uploadFile(event: any) {
+    const file = event.target.files[0];
+    const storage = getStorage();
+    const storageRef = ref(storage, 'docs/' + this.trabajoSeleccionado.idTrabajo); //Como nombre del documento, le pongo el id con el que se guardan los datos
+    uploadBytes(storageRef, file).then((snapshot) => {
+      console.log('Archivo cargado con exito!!');
+    });
   }
 }

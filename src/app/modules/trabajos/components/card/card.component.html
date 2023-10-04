@@ -1,1 +1,61 @@
-<p>card works!</p>
+<div class="row">
+  <div class="col" *ngFor="let col of coleccionTrabajos">
+    <div class="card" style="width: 18rem">
+      <img src="..." class="card-img-top" alt="..." />
+      <div class="card-body">
+        <!--Contenido-->
+        <h5 class="card-title">{{ col.titulo }}</h5>
+        <p class="card-text">
+          {{ col.descripcion }}
+        </p>
+        <a>{{ col.docs }}</a>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              (click)="mostrarVer(col)"
+            >
+              Ver Más
+            </button>
+          </li>
+          <li class="list-group-item">
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </li>
+        </ul>
+        <!-- Button trigger modal -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">...</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button type="button" class="btn btn-primary">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
