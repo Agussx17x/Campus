@@ -6,10 +6,6 @@
   padding-right: 2rem;
 }
 
-.row {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.219);
-}
-
 /*! Cambios de Tomi*/
 /*! le agregue padding para que las letras tengan un poco mas de espacio dentro de la card y no esten tan pegadas con el borde*/
 .info {

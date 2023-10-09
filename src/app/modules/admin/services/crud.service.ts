@@ -27,21 +27,23 @@ export class CrudService {
       }
     });
   }
-  obtenerTrabajos(){
-    return this.trabajoscollection.snapshotChanges().pipe(map(action => action.map(a =>a.payload.doc.data())))
+  obtenerTrabajos() {
+    return this.trabajoscollection
+      .snapshotChanges()
+      .pipe(map((action) => action.map((a) => a.payload.doc.data())));
   }
 
-  editTrabajo(idTrabajo: string, newData: Trabajos){
-    return this.database.collection('trabajos').doc(idTrabajo).update(newData)
+  editTrabajo(idTrabajo: string, newData: Trabajos) {
+    return this.database.collection('trabajos').doc(idTrabajo).update(newData);
   }
-  deleteTrabajo(idTrabajo: string){
-    return new Promise((resolve, reject)=> {
+  deleteTrabajo(idTrabajo: string) {
+    return new Promise((resolve, reject) => {
       try {
-        const res = this.trabajoscollection.doc(idTrabajo).delete()
-        resolve (res)
+        const res = this.trabajoscollection.doc(idTrabajo).delete();
+        resolve(res);
       } catch (error) {
-        reject(error)
+        reject(error);
       }
-    })
+    });
   }
 }
