@@ -1,0 +1,77 @@
+#foto{
+    width: 120px;
+}
+#datos{
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+}
+#fotoPerfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 23px;
+    width: 12rem;
+    height: 12rem;
+}
+#preferencias{
+    width: 30%;
+    
+}
+.contenido{
+    padding-top: 10rem;
+    padding-right: 4rem;
+    padding-left: 4rem;
+}
+img{
+    border-radius: 100%;
+}
+form{
+    display: grid;
+}
+mat-slide-toggle{
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px){
+    #datos{
+        margin-top: 2rem;
+        width: 50%;
+    }
+    #foto{
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #preferencias{
+        width: 40%;
+        padding-top: 4rem;
+    }
+
+}
+@media (max-width: 425px){
+    #datos{
+        width: 100%;
+    }
+    #preferencias{
+        width: 100%;
+    }
+}
+@media (max-width: 376px){
+    #preferencias{
+        padding-top: 1rem;
+    }
+    #datos{
+        margin-left: auto;
+    }
+    #fotoPerfil{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h1{
+        text-align: center;
+    }
+}

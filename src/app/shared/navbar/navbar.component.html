@@ -33,7 +33,7 @@
                 <h4>LogOut</h4></a
               >
             </li>
-            <li><a mat-button routerLink="/administrador">Administrador</a></li>
+            <li><a routerLink="/administrador">Administrador</a></li>
             <li>
               <a>Home <b>+</b></a>
               <ul>
@@ -45,7 +45,13 @@
           </ul>
         </li>
         <li>
-          <a routerLink="/login"
+          <a id="perfil" *ngIf="perfil()" routerLink="/perfil"
+            ><span class="material-symbols-outlined"> person </span>
+            <h4>Perfil</h4></a
+          >
+        </li>
+        <li>
+          <a id="login" *ngIf="login()" routerLink="/login"
             ><span class="material-symbols-outlined"> person </span>
             <h4>Login</h4></a
           >

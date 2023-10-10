@@ -26,6 +26,30 @@ export class NavbarComponent {
     // Verificar si la URL es la de la página de inicio de sesión
     return currentUrl !== '/login'; // Ajusta la URL según tu enrutamiento
   }
+
+  login(): boolean {
+    // Obtener la URL actual
+    const currentUrl = this.router.url;
+    if (currentUrl=='/admin') {
+      return currentUrl !== '/admin';
+    } else {
+      if (currentUrl=='/docente') {
+        return currentUrl !== '/docente';
+      }else{
+        if (currentUrl=='/estudiante') {
+          return currentUrl !== '/estudiante';
+        }
+      }
+    }
+    return currentUrl == '/inicio'; 
+  }
+
+  perfil(): boolean {
+    // Obtener la URL actual
+    const currentUrl = this.router.url;
+    return currentUrl !== '/inicio'
+  }
+
   cerrarsesion(){
     this.afAuth.logout()
   }

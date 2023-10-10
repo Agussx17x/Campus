@@ -17,6 +17,10 @@ import { MateriaComponent } from './components/materia/materia.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSlideToggleModule,_MatSlideToggleRequiredValidatorModule,} from '@angular/material/slide-toggle';
+
 
 
 @NgModule({
@@ -28,7 +32,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     CardComponent,
     CalendaryComponent,
     FormMatComponent,
-    MateriaComponent
+    MateriaComponent,
+    PerfilComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +41,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatCardModule,
     MatNativeDateModule,
+    MatButtonModule,
+    MatSlideToggleModule,
   ],
   exports: [
     HomeAdminComponent,
@@ -45,7 +52,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     CardComponent,
     CalendaryComponent,
     FormMatComponent,
-    MateriaComponent
+    MateriaComponent,
+    PerfilComponent,
   ],
 })
 export class HomeModule { }

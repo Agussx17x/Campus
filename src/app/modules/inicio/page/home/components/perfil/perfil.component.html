@@ -1,0 +1,40 @@
+<div class="contenido">
+  <div class="row">
+    <div id="fotoPerfil" class="col-md-3">
+      <h1>Foto de Perfil</h1>
+      <!--Espacio para la foto de perfil-->
+      <img
+        id="foto"
+        src="../../../../../../../assets/perfil.jpg"
+        alt="Foto de perfil"
+      />
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <div id="datos" class="col-md-4">
+          <h1>Datos Personales</h1>
+          <!--Espacio para los datos personales-->
+          <p><b>Nombre:</b> Tomás Agustin</p>
+          <p><b>Apellido:</b> Esponda</p>
+          <p><b>Año:</b> 6to</p>
+          <p><b>Divición:</b> 1ra</p>
+        </div>
+        <div id="preferencias" class="col-md-4">
+          <h1>Preferencias</h1>
+         <form
+            class="example-form"
+          > 
+            <mat-slide-toggle ngModel name="enableWifi"
+              >Modo Oscuro</mat-slide-toggle
+            >
+            <mat-slide-toggle ngModel name="acceptTerms"
+              >Calendario Presente</mat-slide-toggle
+            >
+
+            <button mat-raised-button type="submit">Guardar configuración</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

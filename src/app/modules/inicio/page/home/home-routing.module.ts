@@ -5,6 +5,7 @@ import { HomeDocenteComponent } from './home-docente/home-docente.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { MateriaComponent } from './components/materia/materia.component';
 import { AuthGuard } from 'src/app/modules/auth/services/auth-guard.guard';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,9 @@ const routes: Routes = [
   },
   {
     path : 'materia' , component: MateriaComponent
+  },
+  {
+    path : 'perfil' , component: PerfilComponent
   },
 ];
 
