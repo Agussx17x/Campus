@@ -1,0 +1,125 @@
+<div class="body">
+  <table>
+    <tr class="tHead">
+      <th>#</th>
+      <th>Nombre y Apellido</th>
+      <th>Credencial</th>
+      <th>Acciones</th> 
+    </tr>
+    <tr *ngFor="let col of coleccionUsuarios" class="tBody">
+      <td>Numero :D</td>
+      <td>{{ col.nombre }} {{ col.apellido }}</td>
+      <td>{{ col.credencial }}</td>
+      <td class="acciones">
+        <button
+        class="editar"
+          title="Editar"
+          data-bs-toggle="modal"
+          data-bs-target="#editarUsuario"
+          (click)="mostrarEditar(col)"
+        >
+          <span class="material-symbols-outlined"> edit </span>
+        </button>
+        <button class="eliminar" title="Eliminar" (click)="borrarUsuario(col)">
+          <span class="material-symbols-outlined"> delete </span>
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- Modal Para Editar -->
+<div
+  class="modal fade"
+  id="editarUsuario"
+  *ngFor="let col of coleccionUsuarios"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Edite el siguiente usuario.
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div [formGroup]="usuario" class="modal-body">
+        <!-- Recibe los nuevos valores. -->
+        <div class="mb-3">
+          <label class="form-label">Ingrese nombre del usuario.</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="nombre"
+            placeholder="{{ col.nombre }}"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Ingrese apellido del usuario.</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="apellido"
+            placeholder="{{ col.apellido }}"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Ingrese email del usuario.</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="email"
+            placeholder="{{ col.email }}"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Ingrese contraseña del usuario.</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="password"
+            placeholder="{{ col.password }}"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Ingrese DNI del usuario.</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="dni"
+            placeholder="{{ col.dni }}"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Ingrese credencial del usuario.</label>
+          <select class="form-control form-select" formControlName="credencial">
+            <option selected disabled>Elija una opción.</option>
+            <option value="adm">Admin</option>
+            <option value="doc">Profesor</option>
+            <option value="est">Estudiante</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="editarUsuario()"
+        >
+          Guardar Cambios
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

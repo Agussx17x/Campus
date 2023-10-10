@@ -1,13 +1,17 @@
+.lista {
+  display: flex;
+  justify-content: space-around;
+}
 .regis {
   text-decoration: none;
   color: black;
   display: flex;
   align-items: center;
 }
-.register{
+.register {
   margin: 2rem;
 }
-.contenido{
+.contenido {
   padding-left: 4rem;
   padding-top: 10rem;
   padding-right: 4rem;
