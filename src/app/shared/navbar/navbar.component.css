@@ -11,6 +11,12 @@
   display: block;
   z-index: 999;
 }
+
+.Inactive{
+  display: none;
+}
+
+
 /*Cuerpo del NavBar*/
 header {
   position: absolute;

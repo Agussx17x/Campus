@@ -7,6 +7,10 @@
   color: black;
   display: flex;
   align-items: center;
+  margin: 2rem;
+}
+#icon{
+  margin-right: 1rem;
 }
 .register {
   margin: 2rem;
@@ -16,3 +20,4 @@
   padding-top: 10rem;
   padding-right: 4rem;
 }
+

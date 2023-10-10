@@ -17,6 +17,9 @@ import { MateriaComponent } from './components/materia/materia.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSlideToggleModule,_MatSlideToggleRequiredValidatorModule,} from '@angular/material/slide-toggle';
 import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,6 +34,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CalendaryComponent,
     FormMatComponent,
     MateriaComponent,
+    PerfilComponent
     ListaUsuariosComponent,
   ],
   imports: [
@@ -39,6 +43,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDatepickerModule,
     MatCardModule,
     MatNativeDateModule,
+    MatButtonModule,
+    MatSlideToggleModule,
     FormsModule,
     ReactiveFormsModule,
   ],
@@ -50,7 +56,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CardComponent,
     CalendaryComponent,
     FormMatComponent,
-    MateriaComponent
+    MateriaComponent,
+    ListaUsuariosComponent,
+    PerfilComponent,
   ],
 })
 export class HomeModule {}

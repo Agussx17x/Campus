@@ -5,6 +5,7 @@ import { HomeDocenteComponent } from './home-docente/home-docente.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { MateriaComponent } from './components/materia/materia.component';
 import { AuthGuard } from 'src/app/modules/auth/services/auth-guard.guard';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 //Lista de usuarios
 import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
@@ -29,6 +30,9 @@ const routes: Routes = [
   {
     path: 'lista',
     component: ListaUsuariosComponent,
+  },
+  {
+    path : 'perfil' , component: PerfilComponent
   },
 ];
 
