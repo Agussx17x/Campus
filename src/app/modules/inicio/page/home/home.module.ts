@@ -20,8 +20,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSlideToggleModule,_MatSlideToggleRequiredValidatorModule,} from '@angular/material/slide-toggle';
+import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {MatSlideToggleModule,_MatSlideToggleRequiredValidatorModule,} from '@ang
     FormMatComponent,
     MateriaComponent,
     PerfilComponent
+    ListaUsuariosComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +45,8 @@ import {MatSlideToggleModule,_MatSlideToggleRequiredValidatorModule,} from '@ang
     MatNativeDateModule,
     MatButtonModule,
     MatSlideToggleModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     HomeAdminComponent,
@@ -53,7 +57,8 @@ import {MatSlideToggleModule,_MatSlideToggleRequiredValidatorModule,} from '@ang
     CalendaryComponent,
     FormMatComponent,
     MateriaComponent,
+    ListaUsuariosComponent,
     PerfilComponent,
   ],
 })
-export class HomeModule { }
+export class HomeModule {}

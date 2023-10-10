@@ -21,3 +21,6 @@
 tbody, thead{
     text-align: center;
 }
+.material-symbols-outlined{
+    cursor: pointer;
+}

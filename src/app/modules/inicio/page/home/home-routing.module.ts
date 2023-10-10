@@ -7,18 +7,29 @@ import { MateriaComponent } from './components/materia/materia.component';
 import { AuthGuard } from 'src/app/modules/auth/services/auth-guard.guard';
 import { PerfilComponent } from './components/perfil/perfil.component';
 
+//Lista de usuarios
+import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
+
 const routes: Routes = [
   {
-    path : 'admin', component: HomeAdminComponent
+    path: 'admin',
+    component: HomeAdminComponent,
   },
   {
-    path : 'docente' , component: HomeDocenteComponent
+    path: 'docente',
+    component: HomeDocenteComponent,
   },
   {
-    path : 'estudiante' , component: HomeEstudianteComponent
+    path: 'estudiante',
+    component: HomeEstudianteComponent,
   },
   {
-    path : 'materia' , component: MateriaComponent
+    path: 'materia',
+    component: MateriaComponent,
+  },
+  {
+    path: 'lista',
+    component: ListaUsuariosComponent,
   },
   {
     path : 'perfil' , component: PerfilComponent
@@ -29,4 +40,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class HomeRoutingModule { }
+export class HomeRoutingModule {}

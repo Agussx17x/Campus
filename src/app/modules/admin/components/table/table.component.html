@@ -11,16 +11,16 @@
       type="button"
       class="btn btn-primary"
       data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
+      data-bs-target="#añadirMaterial"
     >
       <i class="bi bi-file-earmark-plus-fill" style="font-size: 20px"></i>
       Añadir Material
     </button>
 
-    <!-- Modal -->
+    <!-- Modal añadir -->
     <div
       class="modal fade"
-      id="exampleModal"
+      id="añadirMaterial"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -116,14 +116,17 @@
               <a href="">{{ col.docs }}</a>
             </td>
             <td>
-              <a (click)="mostrarEdit(col)"
+              <a
+                data-bs-toggle="modal"
+                data-bs-target="#editarMaterial"
+                (click)="mostrarEdit(col)"
                 ><span class="material-symbols-outlined"> edit </span></a
               >
             </td>
             <td>
               <a
                 data-bs-toggle="modal"
-                data-bs-target="#exampleModal2"
+                data-bs-target="#eliminarMaterial"
                 (click)="mostrarDelete(col)"
                 ><span class="material-symbols-outlined" style="color: red">
                   delete
@@ -135,11 +138,12 @@
       </table>
     </div>
   </div>
+
   <div *ngFor="let col of coleccionTrabajos">
     <!-- Modal Eliminar -->
     <div
       class="modal fade"
-      id="exampleModal2"
+      id="eliminarMaterial"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -148,7 +152,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Esta seguro de Eliminar este trabajo?
+              ¿Esta seguro que desea eliminar?
             </h1>
             <button
               type="button"
@@ -168,15 +172,97 @@
               class="btn btn-secondary"
               data-bs-dismiss="modal"
             >
-              Cerrar
+              Cancelar
             </button>
             <button
               data-bs-dismiss="modal"
               type="button"
               (click)="deleteTrabajo()"
-              class="btn btn-primary"
+              class="btn btn-danger"
             >
               Borrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal editar -->
+  <div *ngFor="let col of coleccionTrabajos">
+    <div
+      class="modal fade"
+      id="editarMaterial"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Añadir Material
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <!--Contenido-->
+            <form class="was-validated" [formGroup]="trabajo">
+              <div class="mb-3">
+                <label for="validationInput" class="form-label">Titulo</label>
+                <input
+                  class="form-control"
+                  id="validationInput"
+                  placeholder="{{ col.titulo }}"
+                  formControlName="titulo"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="comeMat">Descripcion</label>
+                <textarea
+                  id="comMat"
+                  type="radio"
+                  class="form-control"
+                  name="Comentario"
+                  rows="1"
+                  formControlName="descripcion"
+                  placeholder="{{ col.descripcion }}"
+                >
+                </textarea>
+              </div>
+              <div class="mb-3">
+                <input
+                  formControlName="docs"
+                  type="file"
+                  class="form-control"
+                  required
+                  (change)="uploadFile($event)"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              (click)="editTrabajo()"
+              class="btn btn-success"
+              data-bs-dismiss="modal"
+            >
+              Guardar Cambios
             </button>
           </div>
         </div>
