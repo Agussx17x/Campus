@@ -17,7 +17,9 @@ import { MateriaComponent } from './components/materia/materia.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     CardComponent,
     CalendaryComponent,
     FormMatComponent,
-    MateriaComponent
+    MateriaComponent,
+    ListaUsuariosComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +39,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatCardModule,
     MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     HomeAdminComponent,
@@ -48,4 +53,4 @@ import { MatNativeDateModule } from '@angular/material/core';
     MateriaComponent
   ],
 })
-export class HomeModule { }
+export class HomeModule {}
