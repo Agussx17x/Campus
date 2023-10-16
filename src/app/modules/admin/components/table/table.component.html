@@ -5,7 +5,7 @@
       <a href=""><span class="material-symbols-outlined"> more_vert </span></a>
     </div>
     <!--<app-form-docs></app-form-docs>-->
-    <!-- Button trigger modal -->
+    <!-- Button Modal (CREATE) -->
     <button
       id="modal"
       type="button"
@@ -17,7 +17,7 @@
       Añadir Material
     </button>
 
-    <!-- Modal añadir -->
+    <!-- Modal (CREATE) -->
     <div
       class="modal fade"
       id="añadirMaterial"
@@ -39,10 +39,11 @@
             ></button>
           </div>
           <div class="modal-body">
-            <!--Contenido-->
+            <!-- Formulario -->
             <form class="was-validated" [formGroup]="trabajo">
+              <!-- Título -->
               <div class="mb-3">
-                <label for="validationInput" class="form-label">Titulo</label>
+                <label for="validationInput" class="form-label">Título</label>
                 <input
                   class="form-control"
                   id="validationInput"
@@ -51,9 +52,9 @@
                   required
                 />
               </div>
-
+              <!-- Descripción -->
               <div class="mb-3">
-                <label for="comeMat">Descripcion</label>
+                <label for="comeMat">Descripción</label>
                 <textarea
                   id="comMat"
                   type="radio"
@@ -64,7 +65,9 @@
                 >
                 </textarea>
               </div>
+              <!-- Archivo -->
               <div class="mb-3">
+                <label for="docs" class="form-label">Archivo</label>
                 <input
                   formControlName="docs"
                   type="file"
@@ -75,6 +78,7 @@
               </div>
             </form>
           </div>
+          <!-- Buttons (agregarTrabajo() & Cerrar)-->
           <div class="modal-footer">
             <button
               type="button"
@@ -98,6 +102,7 @@
     <div class="tabla">
       <table class="table">
         <thead>
+          <!-- Índices -->
           <tr>
             <th scope="col">#</th>
             <th scope="col">Titulo</th>
@@ -108,6 +113,7 @@
           </tr>
         </thead>
         <tbody>
+          <!-- Contenido -->
           <tr *ngFor="let col of coleccionTrabajos">
             <th id="id" scope="row">{{ col.idTrabajo }}</th>
             <td id="titulo">{{ col.titulo }}</td>
@@ -115,6 +121,7 @@
             <td id="docs">
               <a href="">{{ col.docs }}</a>
             </td>
+            <!-- Button (EDIT)-->
             <td>
               <a
                 data-bs-toggle="modal"
@@ -123,6 +130,7 @@
                 ><span class="material-symbols-outlined"> edit </span></a
               >
             </td>
+             <!-- Button (DELETE)-->
             <td>
               <a
                 data-bs-toggle="modal"
@@ -140,7 +148,7 @@
   </div>
 
   <div *ngFor="let col of coleccionTrabajos">
-    <!-- Modal Eliminar -->
+    <!-- Modal (DELETE)-->
     <div
       class="modal fade"
       id="eliminarMaterial"
@@ -150,6 +158,7 @@
     >
       <div class="modal-dialog">
         <div class="modal-content">
+          <!-- Mensaje -->
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
               ¿Esta seguro que desea eliminar?
@@ -161,11 +170,12 @@
               aria-label="Close"
             ></button>
           </div>
+          <!-- Título y descripción -->
           <div class="modal-body">
-            <!--!Contenido-->
             <h4>{{ col.titulo }}</h4>
             <p>{{ col.descripcion }}</p>
           </div>
+          <!-- Buttons (deleteTrabajo() & Cancelar) -->
           <div class="modal-footer">
             <button
               type="button"
@@ -188,7 +198,7 @@
     </div>
   </div>
 
-  <!-- Modal editar -->
+  <!-- Modal (EDIT) -->
   <div *ngFor="let col of coleccionTrabajos">
     <div
       class="modal fade"
@@ -199,6 +209,7 @@
     >
       <div class="modal-dialog">
         <div class="modal-content">
+          <!-- Button (EDIT)-->
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
               Añadir Material
@@ -211,8 +222,9 @@
             ></button>
           </div>
           <div class="modal-body">
-            <!--Contenido-->
+            <!-- Formulario -->
             <form class="was-validated" [formGroup]="trabajo">
+              <!-- Título -->
               <div class="mb-3">
                 <label for="validationInput" class="form-label">Titulo</label>
                 <input
@@ -223,7 +235,7 @@
                   required
                 />
               </div>
-
+              <!-- Descripción -->
               <div class="mb-3">
                 <label for="comeMat">Descripcion</label>
                 <textarea
@@ -237,7 +249,9 @@
                 >
                 </textarea>
               </div>
+              <!-- Archivo -->
               <div class="mb-3">
+                <label for="docs" class="form-label">Archivo</label>
                 <input
                   formControlName="docs"
                   type="file"
@@ -245,9 +259,18 @@
                   required
                   (change)="uploadFile($event)"
                 />
+                <div class="form-text text-muted">
+                  <span class="form-text text-muted"
+                    >Archivo actual: {{ trabajoSeleccionado.docs }}</span
+                  >
+                  <span *ngIf="!trabajoSeleccionado?.docs">
+                    Archivo actual: Ninguno
+                  </span>
+                </div>
               </div>
             </form>
           </div>
+          <!-- Buttons (editTrabajo() & Cancelar) -->
           <div class="modal-footer">
             <button
               type="button"

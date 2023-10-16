@@ -42,6 +42,8 @@ export class TableComponent {
       this.coleccionTrabajos = trabajos;
     });
   }
+
+  // Esta función añade un nuevo trabajo.
   async agregarTrabajo() {
     if (this.trabajo.valid) {
       let nuevoTrabajo: Trabajos = {
@@ -59,10 +61,11 @@ export class TableComponent {
         .catch((error) => {
           alert('Hubo un error al cargar un nuevo trabajo \n' + error);
         });
+      this.trabajo.reset();
     }
   }
 
-  //editar
+  // Esta función muestra los valores en los inputs.
   mostrarEdit(trabajoSeleccionado: Trabajos) {
     this.trabajoSeleccionado = trabajoSeleccionado;
     this.trabajo.setValue({
@@ -71,6 +74,8 @@ export class TableComponent {
       docs: trabajoSeleccionado.docs,
     });
   }
+
+  // Esta función edita o actualiza un trabajo existente.
   editTrabajo() {
     let datos: Trabajos = {
       idTrabajo: this.trabajoSeleccionado.idTrabajo,
@@ -78,6 +83,9 @@ export class TableComponent {
       descripcion: this.trabajo.value.descripcion!,
       docs: this.trabajo.value.docs!,
     };
+  
+    this.trabajo.reset();
+  
     this.servicioCrud
       .editTrabajo(this.trabajoSeleccionado.idTrabajo, datos)
       .then((trabajos) => {
@@ -87,9 +95,13 @@ export class TableComponent {
         alert('No se pudo modificar \n' + error);
       });
   }
+
+  // Esta función muestra el delete en el modal.
   mostrarDelete(trabajoSeleccionado: Trabajos) {
     this.trabajoSeleccionado = trabajoSeleccionado;
   }
+
+  // Esta función elimina un trabajo creado.
   deleteTrabajo() {
     this.servicioCrud
       .deleteTrabajo(this.trabajoSeleccionado.idTrabajo)
@@ -100,6 +112,8 @@ export class TableComponent {
         alert('No se elimino el trabajo \n' + error);
       });
   }
+
+  //Esta función sube un archivo o imagenes a la base.
   uploadFile(event: any) {
     const file = event.target.files[0];
     const storage = getStorage();
