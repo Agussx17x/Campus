@@ -1,26 +1,45 @@
-#modal{
-    margin: 2rem;   
+#modal {
+  margin: 2rem;
 }
-.contenido{
-    margin-top: 10rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
+
+.contenido {
+  margin-top: 10rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
-.tabla{
-    margin-top: 2rem;
+
+.tabla {
+  margin-top: 2rem;
 }
-.titulo{
-    margin: 0;
+
+.titulo {
+  margin: 0;
 }
-.seccion-title{
-    display: flex;
-    align-items: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+
+.seccion-title {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
-tbody, thead{
-    text-align: center;
+
+tbody,
+thead {
+  text-align: center;
 }
-.material-symbols-outlined{
-    cursor: pointer;
+
+.material-symbols-outlined {
+  cursor: pointer;
+}
+
+.add {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  margin: 2rem;
+}
+
+#icon {
+  margin-right: 1rem;
 }

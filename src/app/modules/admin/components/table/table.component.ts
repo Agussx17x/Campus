@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Trabajos } from 'src/app/models/trabajos';
 import { CrudService } from '../../services/crud.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -11,7 +11,10 @@ import { getStorage, ref, uploadBytes } from 'firebase/storage';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent {
+
   constructor(public servicioCrud: CrudService, private router: Router) {}
+
+  section: any;
 
   coleccionTrabajos: Trabajos[] = [];
 
@@ -83,9 +86,9 @@ export class TableComponent {
       descripcion: this.trabajo.value.descripcion!,
       docs: this.trabajo.value.docs!,
     };
-  
+
     this.trabajo.reset();
-  
+
     this.servicioCrud
       .editTrabajo(this.trabajoSeleccionado.idTrabajo, datos)
       .then((trabajos) => {
@@ -113,7 +116,7 @@ export class TableComponent {
       });
   }
 
-  //Esta función sube un archivo o imagenes a la base.
+  // Esta función sube un archivo o imagenes a la base.
   uploadFile(event: any) {
     const file = event.target.files[0];
     const storage = getStorage();
@@ -124,5 +127,10 @@ export class TableComponent {
     uploadBytes(storageRef, file).then((snapshot) => {
       console.log('Archivo cargado con exito!!');
     });
+  }
+
+  // Esta función añade nuevas secciones
+  addSection() {
+    
   }
 }

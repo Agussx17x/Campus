@@ -1,7 +1,8 @@
+<!-- Contenido Sección -->
 <div class="contenido">
-  <div class="seccion">
+  <div class="section" id="añadirSeccion">
     <div class="seccion-title">
-      <h1 class="titulo">Seccion 2</h1>
+      <h1 class="titulo">Sección 1</h1>
       <a href=""><span class="material-symbols-outlined"> more_vert </span></a>
     </div>
     <!--<app-form-docs></app-form-docs>-->
@@ -130,7 +131,7 @@
                 ><span class="material-symbols-outlined"> edit </span></a
               >
             </td>
-             <!-- Button (DELETE)-->
+            <!-- Button (DELETE)-->
             <td>
               <a
                 data-bs-toggle="modal"
@@ -145,151 +146,159 @@
         </tbody>
       </table>
     </div>
-  </div>
 
-  <div *ngFor="let col of coleccionTrabajos">
-    <!-- Modal (DELETE)-->
-    <div
-      class="modal fade"
-      id="eliminarMaterial"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <!-- Mensaje -->
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              ¿Esta seguro que desea eliminar?
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <!-- Título y descripción -->
-          <div class="modal-body">
-            <h4>{{ col.titulo }}</h4>
-            <p>{{ col.descripcion }}</p>
-          </div>
-          <!-- Buttons (deleteTrabajo() & Cancelar) -->
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancelar
-            </button>
-            <button
-              data-bs-dismiss="modal"
-              type="button"
-              (click)="deleteTrabajo()"
-              class="btn btn-danger"
-            >
-              Borrar
-            </button>
+    <div *ngFor="let col of coleccionTrabajos">
+      <!-- Modal (DELETE)-->
+      <div
+        class="modal fade"
+        id="eliminarMaterial"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Mensaje -->
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                ¿Esta seguro que desea eliminar?
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <!-- Título y descripción -->
+            <div class="modal-body">
+              <h4>{{ col.titulo }}</h4>
+              <p>{{ col.descripcion }}</p>
+            </div>
+            <!-- Buttons (deleteTrabajo() & Cancelar) -->
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                data-bs-dismiss="modal"
+                type="button"
+                (click)="deleteTrabajo()"
+                class="btn btn-danger"
+              >
+                Borrar
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Modal (EDIT) -->
-  <div *ngFor="let col of coleccionTrabajos">
-    <div
-      class="modal fade"
-      id="editarMaterial"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <!-- Button (EDIT)-->
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Añadir Material
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <!-- Formulario -->
-            <form class="was-validated" [formGroup]="trabajo">
-              <!-- Título -->
-              <div class="mb-3">
-                <label for="validationInput" class="form-label">Titulo</label>
-                <input
-                  class="form-control"
-                  id="validationInput"
-                  placeholder="{{ col.titulo }}"
-                  formControlName="titulo"
-                  required
-                />
-              </div>
-              <!-- Descripción -->
-              <div class="mb-3">
-                <label for="comeMat">Descripcion</label>
-                <textarea
-                  id="comMat"
-                  type="radio"
-                  class="form-control"
-                  name="Comentario"
-                  rows="1"
-                  formControlName="descripcion"
-                  placeholder="{{ col.descripcion }}"
-                >
-                </textarea>
-              </div>
-              <!-- Archivo -->
-              <div class="mb-3">
-                <label for="docs" class="form-label">Archivo</label>
-                <input
-                  formControlName="docs"
-                  type="file"
-                  class="form-control"
-                  required
-                  (change)="uploadFile($event)"
-                />
-                <div class="form-text text-muted">
-                  <span class="form-text text-muted"
-                    >Archivo actual: {{ trabajoSeleccionado.docs }}</span
-                  >
-                  <span *ngIf="!trabajoSeleccionado?.docs">
-                    Archivo actual: Ninguno
-                  </span>
+    <!-- Modal (EDIT) -->
+    <div *ngFor="let col of coleccionTrabajos">
+      <div
+        class="modal fade"
+        id="editarMaterial"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Button (EDIT)-->
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Añadir Material
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <!-- Formulario -->
+              <form class="was-validated" [formGroup]="trabajo">
+                <!-- Título -->
+                <div class="mb-3">
+                  <label for="validationInput" class="form-label">Titulo</label>
+                  <input
+                    class="form-control"
+                    id="validationInput"
+                    placeholder="{{ col.titulo }}"
+                    formControlName="titulo"
+                    required
+                  />
                 </div>
-              </div>
-            </form>
-          </div>
-          <!-- Buttons (editTrabajo() & Cancelar) -->
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancelar
-            </button>
-            <button
-              type="button"
-              (click)="editTrabajo()"
-              class="btn btn-success"
-              data-bs-dismiss="modal"
-            >
-              Guardar Cambios
-            </button>
+                <!-- Descripción -->
+                <div class="mb-3">
+                  <label for="comeMat">Descripcion</label>
+                  <textarea
+                    id="comMat"
+                    type="radio"
+                    class="form-control"
+                    name="Comentario"
+                    rows="1"
+                    formControlName="descripcion"
+                    placeholder="{{ col.descripcion }}"
+                  >
+                  </textarea>
+                </div>
+                <!-- Archivo -->
+                <div class="mb-3">
+                  <label for="docs" class="form-label">Archivo</label>
+                  <input
+                    formControlName="docs"
+                    type="file"
+                    class="form-control"
+                    required
+                    (change)="uploadFile($event)"
+                  />
+                  <div class="form-text text-muted">
+                    <span class="form-text text-muted"
+                      >Archivo actual: {{ trabajoSeleccionado.docs }}</span
+                    >
+                    <span *ngIf="!trabajoSeleccionado?.docs">
+                      Archivo actual: Ninguno
+                    </span>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- Buttons (editTrabajo() & Cancelar) -->
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                (click)="editTrabajo()"
+                class="btn btn-success"
+                data-bs-dismiss="modal"
+              >
+                Guardar Cambios
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Añadir sección -->
+<div class="section-below">
+  <button class="add">
+    <span id="icon" class="material-symbols-outlined"> add_circle </span>Agregar
+    Sección
+  </button>
 </div>
