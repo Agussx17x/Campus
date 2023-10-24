@@ -64,7 +64,7 @@ export class CalendaryComponent implements OnInit {
     const monthYear = this.dateSelect.format('MM-YYYY');
     const parse = `${day.value}-${monthYear}`;
     const objectDate = moment(parse);
-    this.dateValue = objectDate;
+    this.dateValue = objectDate; 
 
     console.log("Dia Seleccionado: "+parse)
 
