@@ -1,17 +1,28 @@
 <div class="contenido">
+  <ul>
+    <tr class="lista">
+      <td routerLink="/register">
+        <a class="regis">
+          <span class="material-symbols-outlined"> person_add </span>
+          Agregar Usuario</a
+        >
+      </td>
+      <td routerLink="/lista">
+        <a class="regis">
+          <span class="material-symbols-outlined"> contract </span>
+          Lista de Usuarios
+        </a>
+      </td>
+    </tr>
+  </ul>
   <div class="row">
     <div class="col-md-8">
-      <!--!Contenido-->
-      <a class="regis" routerLink="/register"
-        ><span id="icon" class="material-symbols-outlined"> person_add </span
-        >Agregar Usuario</a
-      >
+      <!-- Contenido -->
       <app-avisos></app-avisos>
       <!--!FINContenido-->
     </div>
     <div id="barralateral" class="col-md-4">
       <!--*Barra Lateral-->
-      <a class="regis" routerLink="/lista">Lista de Usuarios</a>
       <app-calendary></app-calendary>
       <!--*FINBarra Lateral-->
     </div>
