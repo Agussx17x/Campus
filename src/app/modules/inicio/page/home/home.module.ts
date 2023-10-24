@@ -20,6 +20,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule,_MatSlideToggleRequiredValidatorModule } from '@angular/material/slide-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalComponent } from './components/modal/modal.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MateriaComponent,
     PerfilComponent,
     ListaUsuariosComponent,
+    ModalComponent,
   ],
   imports: [
     CommonModule,
@@ -57,6 +59,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MateriaComponent,
     ListaUsuariosComponent,
     PerfilComponent,
+    ModalComponent
   ],
 })
 export class HomeModule {}

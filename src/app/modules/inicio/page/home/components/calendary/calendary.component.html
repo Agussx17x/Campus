@@ -1,5 +1,26 @@
-<div class="container">
-  <mat-card class="demo-inline-calendar-card">
-    <mat-calendar [(selected)]="selected"></mat-calendar>
-  </mat-card>
+<div class="wrapper-calendar">
+  <div class="header-calendar">
+    <div>
+      <button (click)="changeMonth(-1)" class="btn-prev">
+        <span class="material-symbols-outlined"> arrow_back </span>
+      </button>
+    </div>
+    <h1 class="name-month">{{ dateSelect | date : "MMMM, yyyy" }}</h1>
+    <div>
+      <button (click)="changeMonth(1)" class="btn-next">
+        <span class="material-symbols-outlined"> arrow_forward </span>
+      </button>
+    </div>
+  </div>
+  <ol>
+    <li *ngFor="let day of week" class="day-name"></li>
+    <li
+      [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
+      *ngFor="let day of monthSelect; let first = first"
+    >
+      <button id="{{ day.value }}" (click)="clickDay(day)" class="btn-day" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <span>{{ day?.value }}</span>
+      </button>
+    </li>
+  </ol>
 </div>
