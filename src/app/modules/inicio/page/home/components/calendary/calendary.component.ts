@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-calendary',
@@ -7,7 +8,7 @@ import * as moment from 'moment';
   styleUrls: ['./calendary.component.css'],
 })
 export class CalendaryComponent implements OnInit {
-  @Output() dayClicked = new EventEmitter<number>();
+  @Output() dayClicked = new EventEmitter<string>();
 
   week: any = [
     'Lunes',
@@ -22,8 +23,9 @@ export class CalendaryComponent implements OnInit {
   monthSelect!: any[];
   dateSelect: any;
   dateValue: any;
+  id: any;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.getDaysFromDate(moment().month() + 2, moment().year());
@@ -63,11 +65,23 @@ export class CalendaryComponent implements OnInit {
   clickDay(day: any) {
     const monthYear = this.dateSelect.format('MM-YYYY');
     const parse = `${day.value}-${monthYear}`;
+    const date = `${day.value}${monthYear}`;
     const objectDate = moment(parse);
-    this.dateValue = objectDate; 
+    this.dateValue = objectDate;
 
-    console.log("Dia Seleccionado: "+parse)
+    console.log('Dia Seleccionado: ' + date);
 
-    this.dayClicked.emit(parseInt(parse));
+    this.dayClicked.emit(parse);
+  }
+
+  getPopoverContent() {
+    if (this.router.url === '/estudiante') {
+      return 'Contenido para estudiante';
+    } else {
+      return 'Contenido por defecto';
+    }
+  }
+  getId(day:any){
+    this.id = day
   }
 }

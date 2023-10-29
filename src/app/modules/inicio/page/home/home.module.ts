@@ -20,7 +20,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule,_MatSlideToggleRequiredValidatorModule } from '@angular/material/slide-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ModalComponent } from './components/modal/modal.component';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 
 
 @NgModule({
@@ -35,7 +35,6 @@ import { ModalComponent } from './components/modal/modal.component';
     MateriaComponent,
     PerfilComponent,
     ListaUsuariosComponent,
-    ModalComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +46,7 @@ import { ModalComponent } from './components/modal/modal.component';
     MatSlideToggleModule,
     FormsModule,
     ReactiveFormsModule,
+    PopoverModule,
   ],
   exports: [
     HomeAdminComponent,
@@ -59,7 +59,7 @@ import { ModalComponent } from './components/modal/modal.component';
     MateriaComponent,
     ListaUsuariosComponent,
     PerfilComponent,
-    ModalComponent
+    PopoverModule
   ],
 })
 export class HomeModule {}
