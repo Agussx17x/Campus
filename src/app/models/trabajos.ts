@@ -1,9 +1,10 @@
 export interface Trabajos {
     //Docs
-    idTrabajo:string;
+    idTrabajo:number | any;
     titulo:string;
     docs:any;
     descripcion: string;
+    fecha: string | any;
 
 
     //Imagen

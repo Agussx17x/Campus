@@ -45,7 +45,8 @@ export class TableComponent {
   async agregarTrabajo() {
     if (this.trabajo.valid) {
       let nuevoTrabajo: Trabajos = {
-        idTrabajo: '',
+        idTrabajo: 0,
+        fecha:'',
         titulo: this.trabajo.value.titulo!,
         descripcion: this.trabajo.value.descripcion!,
         docs: this.trabajo.value.docs!,
@@ -73,7 +74,8 @@ export class TableComponent {
   }
   editTrabajo() {
     let datos: Trabajos = {
-      idTrabajo: this.trabajoSeleccionado.idTrabajo,
+      idTrabajo: 0,
+      fecha:'',
       titulo: this.trabajo.value.titulo!,
       descripcion: this.trabajo.value.descripcion!,
       docs: this.trabajo.value.docs!,
