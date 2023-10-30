@@ -5,7 +5,6 @@ export interface Trabajos {
     docs:any;
     descripcion: string;
 
-
     //Imagen
     //imagen:string;
     //alt:string;

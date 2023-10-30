@@ -32,9 +32,8 @@ thead {
   cursor: pointer;
 }
 
-.add {
+#addstyle {
   text-decoration: none;
-  color: black;
   display: flex;
   align-items: center;
   margin: 2rem;

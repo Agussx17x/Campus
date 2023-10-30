@@ -1,8 +1,10 @@
 <!-- Contenido Sección -->
 <div class="contenido">
-  <div class="section" id="añadirSeccion">
+  <!-- Agregamos una directiva ngFor cada vez que se agregue una nueva sección-->
+  <div class="section" *ngFor="let s of secciones">
     <div class="seccion-title">
-      <h1 class="titulo">Sección 1</h1>
+      <h1 class="titulo">{{ s.titulo }}</h1>
+      <h4>{{ s.descripcion }}</h4>
       <a href=""><span class="material-symbols-outlined"> more_vert </span></a>
     </div>
     <!--<app-form-docs></app-form-docs>-->
@@ -260,12 +262,16 @@
                     (change)="uploadFile($event)"
                   />
                   <div class="form-text text-muted">
-                    <span class="form-text text-muted"
-                      >Archivo actual: {{ trabajoSeleccionado.docs }}</span
+                    <!-- Esta estructura en los span esta definida de esta forma para evitar las advertencias -->
+                    <!-- *ngIf="trabajoSeleccionado" asegura que trabajoSeleccionado no sea nulo al acceder a docs -->
+                    <span
+                      class="form-text text-muted"
+                      *ngIf="trabajoSeleccionado"
+                      >{{ "Archivo actual: " + trabajoSeleccionado.docs }}</span
                     >
-                    <span *ngIf="!trabajoSeleccionado?.docs">
-                      Archivo actual: Ninguno
-                    </span>
+                    <span *ngIf="!trabajoSeleccionado?.docs"
+                      >Archivo actual: Ninguno</span
+                    >
                   </div>
                 </div>
               </form>
@@ -295,10 +301,80 @@
   </div>
 </div>
 
-<!-- Añadir sección -->
-<div class="section-below">
-  <button class="add">
-    <span id="icon" class="material-symbols-outlined"> add_circle </span>Agregar
-    Sección
-  </button>
+<!-- Botón para agregar sección -->
+<button
+  id="addstyle"
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+>
+  <span id="icon" class="material-symbols-outlined"> add_circle </span> Agregar
+  Sección
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Agregar una nueva sección
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulario -->
+        <form class="was-validated" [formGroup]="seccion">
+          <!-- Título de la sección -->
+          <div class="mb-3">
+            <label for="validationInput" class="form-label">Título</label>
+            <input
+              class="form-control"
+              id="validationInput"
+              placeholder="Título de la sección"
+              formControlName="titulo"
+              required
+            />
+          </div>
+          <!-- Descripción de la sección (OPCIONAL)-->
+          <div class="mb-3">
+            <label for="comeMat">Descripción</label>
+            <textarea
+              id="comMat"
+              type="radio"
+              class="form-control"
+              name="Comentario"
+              rows="1"
+              formControlName="descripcion"
+            >
+            </textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="agregarSeccion()"
+        >
+          Guardar cambios
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
