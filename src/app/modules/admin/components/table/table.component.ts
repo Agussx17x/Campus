@@ -1,8 +1,8 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { Trabajos } from 'src/app/models/trabajos';
 import { CrudService } from '../../services/crud.service';
+import { SeccionesService } from '../../services/secciones.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
 
 @Component({
@@ -11,10 +11,10 @@ import { getStorage, ref, uploadBytes } from 'firebase/storage';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent {
-
-  constructor(public servicioCrud: CrudService, private router: Router) {}
-
-  section: any;
+  constructor(
+    public servicioCrud: CrudService,
+    private seccionesService: SeccionesService
+  ) {}
 
   coleccionTrabajos: Trabajos[] = [];
 
@@ -22,10 +22,13 @@ export class TableComponent {
 
   modalVisibleTrabajo: boolean = true;
 
+  secciones: any[] = [];
+
   //  modalVisible: boolean = false;
 
   //  eliminarVisible: boolean = false;
 
+  // FormGroup de trabajos
   trabajo = new FormGroup({
     //Docs
     titulo: new FormControl('', Validators.required),
@@ -40,9 +43,21 @@ export class TableComponent {
     */
   });
 
+  // FormGroup de secciones
+  seccion = new FormGroup({
+    titulo: new FormControl('', Validators.required),
+    descripcion: new FormControl(''),
+  });
+
   ngOnInit(): void {
+    // Cargar los trabajos desde Firebase
     this.servicioCrud.obtenerTrabajos().subscribe((trabajos) => {
       this.coleccionTrabajos = trabajos;
+    });
+
+    // Cargar las secciones desde Firebase
+    this.seccionesService.obtenerSecciones().subscribe((secciones) => {
+      this.secciones = secciones;
     });
   }
 
@@ -60,6 +75,7 @@ export class TableComponent {
         .crearTrabajos(nuevoTrabajo)
         .then((trabajos) => {
           alert('ha agregado un nuevo trabajo con exito');
+          
         })
         .catch((error) => {
           alert('Hubo un error al cargar un nuevo trabajo \n' + error);
@@ -129,8 +145,22 @@ export class TableComponent {
     });
   }
 
-  // Esta función añade nuevas secciones
-  addSection() {
-    
+  // Esta función agrega una nueva sección.
+  agregarSeccion() {
+    // Comprueba si el formulario de sección es válido.
+    if (this.seccion.valid) {
+      // Obtiene los valores del formulario y los almacena en un objeto nuevaSeccion.
+      const nuevaSeccion = {
+        titulo: this.seccion.get('titulo')?.value,
+        descripcion: this.seccion.get('descripcion')?.value,
+      };
+
+      // Agregar la nueva sección a Firebase
+      this.seccionesService.agregarSeccion(nuevaSeccion).then((resultado) => {
+        // Muestra un mensaje de éxito después de agregar la sección.
+        alert('Sección agregada con éxito');
+        this.seccion.reset(); // Limpia el formulario después de agregar la sección.
+      });
+    }
   }
 }

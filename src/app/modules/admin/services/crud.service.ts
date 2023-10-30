@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class CrudService {
   private trabajoscollection: AngularFirestoreCollection<Trabajos>;
+
   constructor(private database: AngularFirestore) {
     this.trabajoscollection = database.collection('trabajos');
   }
