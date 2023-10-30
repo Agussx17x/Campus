@@ -1,11 +1,14 @@
+<!-- Contenido Sección -->
 <div class="contenido">
-  <div class="seccion">
+  <!-- Agregamos una directiva ngFor cada vez que se agregue una nueva sección-->
+  <div class="section" *ngFor="let s of secciones">
     <div class="seccion-title">
-      <h1 class="titulo">Seccion 2</h1>
+      <h1 class="titulo">{{ s.titulo }}</h1>
+      <h4>{{ s.descripcion }}</h4>
       <a href=""><span class="material-symbols-outlined"> more_vert </span></a>
     </div>
     <!--<app-form-docs></app-form-docs>-->
-    <!-- Button trigger modal -->
+    <!-- Button Modal (CREATE) -->
     <button
       id="modal"
       type="button"
@@ -17,7 +20,7 @@
       Añadir Material
     </button>
 
-    <!-- Modal añadir -->
+    <!-- Modal (CREATE) -->
     <div
       class="modal fade"
       id="añadirMaterial"
@@ -39,10 +42,11 @@
             ></button>
           </div>
           <div class="modal-body">
-            <!--Contenido-->
+            <!-- Formulario -->
             <form class="was-validated" [formGroup]="trabajo">
+              <!-- Título -->
               <div class="mb-3">
-                <label for="validationInput" class="form-label">Titulo</label>
+                <label for="validationInput" class="form-label">Título</label>
                 <input
                   class="form-control"
                   id="validationInput"
@@ -51,9 +55,9 @@
                   required
                 />
               </div>
-
+              <!-- Descripción -->
               <div class="mb-3">
-                <label for="comeMat">Descripcion</label>
+                <label for="comeMat">Descripción</label>
                 <textarea
                   id="comMat"
                   type="radio"
@@ -65,7 +69,9 @@
                 >
                 </textarea>
               </div>
+              <!-- Archivo -->
               <div class="mb-3">
+                <label for="docs" class="form-label">Archivo</label>
                 <input
                   formControlName="docs"
                   type="file"
@@ -76,6 +82,7 @@
               </div>
             </form>
           </div>
+          <!-- Buttons (agregarTrabajo() & Cerrar)-->
           <div class="modal-footer">
             <button
               type="button"
@@ -99,6 +106,7 @@
     <div class="tabla">
       <table class="table">
         <thead>
+          <!-- Índices -->
           <tr>
             <th scope="col">#</th>
             <th scope="col">Titulo</th>
@@ -109,6 +117,7 @@
           </tr>
         </thead>
         <tbody>
+          <!-- Contenido -->
           <tr *ngFor="let col of coleccionTrabajos">
             <th id="id" scope="row">{{ col.idTrabajo }}</th>
             <td id="titulo">{{ col.titulo }}</td>
@@ -116,6 +125,7 @@
             <td id="docs">
               <a href="">{{ col.docs }}</a>
             </td>
+            <!-- Button (EDIT)-->
             <td>
               <a
                 data-bs-toggle="modal"
@@ -124,6 +134,7 @@
                 ><span class="material-symbols-outlined"> edit </span></a
               >
             </td>
+            <!-- Button (DELETE)-->
             <td>
               <a
                 data-bs-toggle="modal"
@@ -138,135 +149,232 @@
         </tbody>
       </table>
     </div>
-  </div>
 
-  <div *ngFor="let col of coleccionTrabajos">
-    <!-- Modal Eliminar -->
-    <div
-      class="modal fade"
-      id="eliminarMaterial"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              ¿Esta seguro que desea eliminar?
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+    <div *ngFor="let col of coleccionTrabajos">
+      <!-- Modal (DELETE)-->
+      <div
+        class="modal fade"
+        id="eliminarMaterial"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Mensaje -->
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                ¿Esta seguro que desea eliminar?
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <!-- Título y descripción -->
+            <div class="modal-body">
+              <h4>{{ col.titulo }}</h4>
+              <p>{{ col.descripcion }}</p>
+            </div>
+            <!-- Buttons (deleteTrabajo() & Cancelar) -->
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                data-bs-dismiss="modal"
+                type="button"
+                (click)="deleteTrabajo()"
+                class="btn btn-danger"
+              >
+                Borrar
+              </button>
+            </div>
           </div>
-          <div class="modal-body">
-            <!--!Contenido-->
-            <h4>{{ col.titulo }}</h4>
-            <p>{{ col.descripcion }}</p>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancelar
-            </button>
-            <button
-              data-bs-dismiss="modal"
-              type="button"
-              (click)="deleteTrabajo()"
-              class="btn btn-danger"
-            >
-              Borrar
-            </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal (EDIT) -->
+    <div *ngFor="let col of coleccionTrabajos">
+      <div
+        class="modal fade"
+        id="editarMaterial"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Button (EDIT)-->
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Añadir Material
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <!-- Formulario -->
+              <form class="was-validated" [formGroup]="trabajo">
+                <!-- Título -->
+                <div class="mb-3">
+                  <label for="validationInput" class="form-label">Titulo</label>
+                  <input
+                    class="form-control"
+                    id="validationInput"
+                    placeholder="{{ col.titulo }}"
+                    formControlName="titulo"
+                    required
+                  />
+                </div>
+                <!-- Descripción -->
+                <div class="mb-3">
+                  <label for="comeMat">Descripcion</label>
+                  <textarea
+                    id="comMat"
+                    type="radio"
+                    class="form-control"
+                    name="Comentario"
+                    rows="1"
+                    formControlName="descripcion"
+                    placeholder="{{ col.descripcion }}"
+                  >
+                  </textarea>
+                </div>
+                <!-- Archivo -->
+                <div class="mb-3">
+                  <label for="docs" class="form-label">Archivo</label>
+                  <input
+                    formControlName="docs"
+                    type="file"
+                    class="form-control"
+                    required
+                    (change)="uploadFile($event)"
+                  />
+                  <div class="form-text text-muted">
+                    <!-- Esta estructura en los span esta definida de esta forma para evitar las advertencias -->
+                    <!-- *ngIf="trabajoSeleccionado" asegura que trabajoSeleccionado no sea nulo al acceder a docs -->
+                    <span
+                      class="form-text text-muted"
+                      *ngIf="trabajoSeleccionado"
+                      >{{ "Archivo actual: " + trabajoSeleccionado.docs }}</span
+                    >
+                    <span *ngIf="!trabajoSeleccionado?.docs"
+                      >Archivo actual: Ninguno</span
+                    >
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- Buttons (editTrabajo() & Cancelar) -->
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                (click)="editTrabajo()"
+                class="btn btn-success"
+                data-bs-dismiss="modal"
+              >
+                Guardar Cambios
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Modal editar -->
-  <div *ngFor="let col of coleccionTrabajos">
-    <div
-      class="modal fade"
-      id="editarMaterial"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Añadir Material
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <!--Contenido-->
-            <form class="was-validated" [formGroup]="trabajo">
-              <div class="mb-3">
-                <label for="validationInput" class="form-label">Titulo</label>
-                <input
-                  class="form-control"
-                  id="validationInput"
-                  placeholder="{{ col.titulo }}"
-                  formControlName="titulo"
-                  required
-                />
-              </div>
+<!-- Botón para agregar sección -->
+<button
+  id="addstyle"
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+>
+  <span id="icon" class="material-symbols-outlined"> add_circle </span> Agregar
+  Sección
+</button>
 
-              <div class="mb-3">
-                <label for="comeMat">Descripcion</label>
-                <textarea
-                  id="comMat"
-                  type="radio"
-                  class="form-control"
-                  name="Comentario"
-                  rows="1"
-                  formControlName="descripcion"
-                  placeholder="{{ col.descripcion }}"
-                >
-                </textarea>
-              </div>
-              <div class="mb-3">
-                <input
-                  formControlName="docs"
-                  type="file"
-                  class="form-control"
-                  required
-                  (change)="uploadFile($event)"
-                />
-              </div>
-            </form>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Agregar una nueva sección
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulario -->
+        <form class="was-validated" [formGroup]="seccion">
+          <!-- Título de la sección -->
+          <div class="mb-3">
+            <label for="validationInput" class="form-label">Título</label>
+            <input
+              class="form-control"
+              id="validationInput"
+              placeholder="Título de la sección"
+              formControlName="titulo"
+              required
+            />
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
+          <!-- Descripción de la sección (OPCIONAL)-->
+          <div class="mb-3">
+            <label for="comeMat">Descripción</label>
+            <textarea
+              id="comMat"
+              type="radio"
+              class="form-control"
+              name="Comentario"
+              rows="1"
+              formControlName="descripcion"
             >
-              Cancelar
-            </button>
-            <button
-              type="button"
-              (click)="editTrabajo()"
-              class="btn btn-success"
-              data-bs-dismiss="modal"
-            >
-              Guardar Cambios
-            </button>
+            </textarea>
           </div>
-        </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="agregarSeccion()"
+        >
+          Guardar cambios
+        </button>
       </div>
     </div>
   </div>

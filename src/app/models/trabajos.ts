@@ -6,7 +6,6 @@ export interface Trabajos {
     descripcion: string;
     fecha: string | any;
 
-
     //Imagen
     //imagen:string;
     //alt:string;
