@@ -9,35 +9,32 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 
 //Lista de usuarios
 import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 
 const routes: Routes = [
-  {
-    path: 'admin',
-    component: HomeAdminComponent,
-  },
+  { path: 'admin', component: HomeAdminComponent, canActivate: [AuthGuard] },
   {
     path: 'docente',
     component: HomeDocenteComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'estudiante',
     component: HomeEstudianteComponent,
+    canActivate: [AuthGuard],
   },
-  {
-    path: 'materia',
-    component: MateriaComponent,
-  },
+  { path: 'materia', component: MateriaComponent, canActivate: [AuthGuard] },
   {
     path: 'lista',
     component: ListaUsuariosComponent,
+    canActivate: [AuthGuard],
   },
-  {
-    path : 'perfil' , component: PerfilComponent
-  },
+  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  providers:[AuthGuard, AuthService]
 })
 export class HomeRoutingModule {}

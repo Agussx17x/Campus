@@ -3,9 +3,9 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs'; // Importamos un observable para manejar datos asincronicos y eventos.
+import { Observable, map } from 'rxjs'; // Importamos un observable para manejar datos asincronicos y eventos.
 
-@Injectable({
+@Injectable({  
   providedIn: 'root',
 })
 export class SeccionesService {
@@ -21,8 +21,13 @@ export class SeccionesService {
   }
 
   // Método para obtener todas las secciones.
-  obtenerSecciones(): Observable<any[]> {
+  /*obtenerSecciones(): Observable<any[]> {
     // Devuelve un Observable que representa los datos de todas las secciones en Firebase Firestore.
     return this.seccionesCollection.valueChanges();
+  }*/
+  obtenerSecciones() {
+    return this.seccionesCollection
+      .snapshotChanges()
+      .pipe(map((action) => action.map((a) => a.payload.doc.data())));
   }
 }

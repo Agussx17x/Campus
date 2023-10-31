@@ -3,6 +3,10 @@ import { Router } from '@angular/router'; // Rutas
 import { AuthService } from '../services/auth.service'; // Funcion Iniciar Sesion
 import { Usuario } from 'src/app/models/usuario'; // Interfaz
 import { FirestoreService } from 'src/app/shared/services/firestore.service'; // Nos Trae Datos
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+
 
 @Component({
   selector: 'app-login',
@@ -10,6 +14,8 @@ import { FirestoreService } from 'src/app/shared/services/firestore.service'; //
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+
+  email!:string;
   // Interfaz
   usuarios: Usuario = {
     uid: '',
@@ -46,7 +52,9 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    public firestore: FirestoreService
+    public firestoreService: FirestoreService,
+    private afAuth: AngularFireAuth,
+    private firestore: AngularFirestore
   ) {}
 
   // Funcion asincrona Login()
@@ -60,20 +68,38 @@ export class LoginComponent {
       .login(credenciales.email, credenciales.password)
       .then((res) => {
         //////// Base de Datos /////////
-        alert('Inicio de sesion exitoso!!')
-
-        this.router.navigate(['/admin'])
-
+        this.afAuth.authState.subscribe(user => {
+          if (user) {
+            // Usuario está logueado
+            this.firestore.collection('usuarios').doc(user.uid).valueChanges().subscribe((data: any) => {
+              // Aquí obtienes las credenciales del usuario
+              const credentials = data.credencial;
+              
+              // Rediriges al usuario basado en sus credenciales
+              if (credentials === 'est') {
+                this.router.navigate(['/estudiante']);
+              } else {
+                if (credentials === 'doc') {
+                  this.router.navigate(['/docente'])
+                } else {
+                  this.router.navigate(['/admin'])
+                }
+              }
+            });
+          } else {
+            // Usuario no está logueado
+            this.router.navigate(['/login']);
+          }
+        });
         //////// Fin Base de Datos /////////
       })
       .catch((error) => {
         console.error(error);
-        //Usuario Invalido
-        alert('Usuario Invalido');                                 
+        //Usuario Invalido                          
       });
   }
   back() {
-    window.history.back();
+    this.router.navigate(['/inicio']);
   }
   //Funcion para CERRAR SESION
   async salir() {
@@ -82,5 +108,23 @@ export class LoginComponent {
       console.log(res);
       this.router.navigate(['/inicio']);
     });
+
+  }
+  resetPassword(): void {
+    const auth = getAuth();
+    sendPasswordResetEmail(auth, this.email)
+      .then(() => {
+        // Correo electrónico de restablecimiento de contraseña enviado.
+        // Aquí puedes mostrar un mensaje al usuario para informarle.
+        alert('Se envio un correo para restablecer tu contraseña del campus!!');
+        //Una vez que le das a aceptar a la alerta, se recarga la pagina haciendo que vuelvas a inicio sesion.
+        location.reload()
+      })
+      .catch((error) => {
+        // Ocurrió un error. Aquí puedes manejar el error.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert('Disculpa, este correo no esta registrado en el campus :(. si crees que esto es un error, te invitamos a escribir al correo de nuestra institución')
+      });
   }
 }

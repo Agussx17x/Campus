@@ -46,10 +46,9 @@
         </form>
       </div>
       <div class="form signupForm">
-        <form>
+        <form (submit)="resetPassword()">
           <h3>Recuperar</h3>
-          <input type="text" placeholder="Usuario" />
-          <input type="text" placeholder="Correo Electrónico" />
+          <input [(ngModel)]="email" name="email" id="email" type="text" placeholder="Correo Electrónico" required/>
           <input type="submit" value="Recuperar" />
         </form>
       </div>

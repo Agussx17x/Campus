@@ -1,13 +1,13 @@
 <div class="contenido">
   <ul>
     <tr class="lista">
-      <td routerLink="/register">
+      <td class="td" routerLink="/register">
         <a class="regis">
           <span class="material-symbols-outlined"> person_add </span>
           Agregar Usuario</a
         >
       </td>
-      <td routerLink="/lista">
+      <td class="td" routerLink="/lista">
         <a class="regis">
           <span class="material-symbols-outlined"> contract </span>
           Lista de Usuarios
@@ -67,16 +67,21 @@
                     name="Comentario"
                     rows="1"
                     formControlName="descripcion"
+                    required
                   >
                   </textarea>
                 </div>
                 <div class="mb-3">
+                  <label for="comeMat">Archivo</label>
                   <input
                     formControlName="docs"
                     type="file"
                     class="form-control"
                     required
                   />
+                </div>
+                <div class="mb-3">
+                  <label for="comeMat">Fecha de Entrega</label>
                   <input type="date" class="form-control" formControlName="fecha" required>
                 </div>
               </form>
