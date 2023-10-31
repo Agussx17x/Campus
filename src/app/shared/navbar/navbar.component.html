@@ -24,34 +24,20 @@
             <h4>Nosotros</h4></a
           >
         </li>
-        <li>
-          <a>Dropdown <b>▼</b></a>
-          <ul>
-            <li>
-              <a (click)="cerrarsesion()"
-                ><span class="material-symbols-outlined"> person </span>
-                <h4>LogOut</h4></a
-              >
-            </li>
-            <li><a routerLink="/administrador">Administrador</a></li>
-            <li>
-              <a>Home <b>+</b></a>
-              <ul>
-                <li><a routerLink="admin">Admin</a></li>
-                <li><a routerLink="docente">Docentes</a></li>
-                <li><a routerLink="estudiante">Alumnos</a></li>
-              </ul>
-            </li>
-          </ul>
+        <li *ngIf="logout()">
+          <a (click)="cerrarsesion()"
+            ><span class="material-symbols-outlined"> person </span>
+            <h4>LogOut</h4></a
+          >
         </li>
-        <li>
-          <a id="perfil" *ngIf="perfil()" routerLink="/perfil"
+        <li *ngIf="perfil()">
+          <a id="perfil" routerLink="/perfil"
             ><span class="material-symbols-outlined"> person </span>
             <h4>Perfil</h4></a
           >
         </li>
-        <li>
-          <a id="login" *ngIf="login()" routerLink="/login"
+        <li *ngIf="login()">
+          <a id="login" routerLink="/login"
             ><span class="material-symbols-outlined"> person </span>
             <h4>Login</h4></a
           >

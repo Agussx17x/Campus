@@ -9,8 +9,11 @@ ul {
 }
 .contenido {
   padding-left: 4rem;
-  padding-top: 8rem;
+  padding-top: 10rem;
   padding-right: 4rem;
+}
+.td{
+  margin-left: 1rem;
 }
 td {
   padding: 20px;
