@@ -300,81 +300,83 @@
       </div>
     </div>
   </div>
-</div>
+  <!-- Botón para agregar sección -->
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  >
+    <span id="icon" class="material-symbols-outlined"> add_circle </span>
+    Agregar Sección
+  </button>
 
-<!-- Botón para agregar sección -->
-<button
-  id="addstyle"
-  type="button"
-  class="btn btn-primary"
-  data-bs-toggle="modal"
-  data-bs-target="#exampleModal"
->
-  <span id="icon" class="material-symbols-outlined"> add_circle </span> Agregar
-  Sección
-</button>
-
-<!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">
-          Agregar una nueva sección
-        </h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <!-- Formulario -->
-        <form class="was-validated" [formGroup]="seccion">
-          <!-- Título de la sección -->
-          <div class="mb-3">
-            <label for="validationInput" class="form-label">Título</label>
-            <input
-              class="form-control"
-              id="validationInput"
-              placeholder="Título de la sección"
-              formControlName="titulo"
-              required
-            />
-          </div>
-          <!-- Descripción de la sección (OPCIONAL)-->
-          <div class="mb-3">
-            <label for="comeMat">Descripción</label>
-            <textarea
-              id="comMat"
-              type="radio"
-              class="form-control"
-              name="Comentario"
-              rows="1"
-              formControlName="descripcion"
-            >
-            </textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Cerrar
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="agregarSeccion()"
-        >
-          Guardar cambios
-        </button>
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Agregar una nueva sección
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulario -->
+          <form class="was-validated" [formGroup]="seccion">
+            <!-- Título de la sección -->
+            <div class="mb-3">
+              <label for="validationInput" class="form-label">Título</label>
+              <input
+                class="form-control"
+                id="validationInput"
+                placeholder="Título de la sección"
+                formControlName="titulo"
+                required
+              />
+            </div>
+            <!-- Descripción de la sección (OPCIONAL)-->
+            <div class="mb-3">
+              <label for="comeMat">Descripción</label>
+              <textarea
+                id="comMat"
+                type="radio"
+                class="form-control"
+                name="Comentario"
+                rows="1"
+                formControlName="descripcion"
+              >
+              </textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cerrar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="agregarSeccion()"
+          >
+            Guardar cambios
+          </button>
+        </div>
       </div>
     </div>
   </div>
