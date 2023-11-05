@@ -2,6 +2,10 @@
   outline: none !important
 }
 
+.contenido{
+  display: flex;
+}
+
 .wrapper-calendar{
   margin:1rem;
   padding: .5rem;
@@ -9,6 +13,8 @@
   box-shadow: 0 0 10px #e4e4e4;
   height: 23rem;
   margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .name-month{

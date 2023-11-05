@@ -8,9 +8,9 @@ ul {
   padding-bottom: 10px;
 }
 .contenido {
-  padding-left: 4rem;
+  padding-left: 2rem;
   padding-top: 10rem;
-  padding-right: 4rem;
+  padding-right: 2rem;
 }
 .td{
   margin-left: 1rem;
@@ -37,3 +37,8 @@ td:hover a {
   transition: 0.5s;
   color: #fff;
 }
+#barralateral{
+  display: flex;
+  justify-content: center;
+}
+

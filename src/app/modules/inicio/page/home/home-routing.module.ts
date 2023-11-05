@@ -12,24 +12,24 @@ import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuari
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
 
 const routes: Routes = [
-  { path: 'admin', component: HomeAdminComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: HomeAdminComponent, canActivate: [AuthGuard], data: { role: 'adm' } },
   {
     path: 'docente',
     component: HomeDocenteComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard], data: { role: 'doc' },
   },
   {
     path: 'estudiante',
     component: HomeEstudianteComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard], data: { role: 'est' },
   },
   { path: 'materia', component: MateriaComponent, canActivate: [AuthGuard] },
   {
     path: 'lista',
     component: ListaUsuariosComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard], data: { role: 'adm' }
   },
-  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
+  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard], data: { role: 'doc'}||{ role: 'est'}},
 ];
 
 @NgModule({

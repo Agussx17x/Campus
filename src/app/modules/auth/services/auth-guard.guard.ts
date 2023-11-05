@@ -1,22 +1,38 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take, switchMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { FirestoreService } from './firestore.service'; // Asegúrate de tener un servicio para manejar Firestore
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private firestoreService: FirestoreService, private router: Router, private afAuth: AngularFireAuth) {}
 
-  canActivate(): Observable<boolean> {
-    return this.authService.token.pipe(
-      map(token => {
-        if (!token) {
+  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
+    return this.afAuth.authState.pipe(
+      take(1),
+      switchMap(user => {
+        if (!user) {
           this.router.navigate(['/login']);
-          return false;
+          return new Observable<boolean>(observer => observer.next(false));
+        } else {
+          // Aquí obtienes las credenciales del usuario desde Firestore
+          return this.firestoreService.obtenerUsuario(user.uid).pipe(
+            map(usuario => {
+              const credentials = usuario.credencial;
+              
+              // Verificas si el usuario tiene el rol necesario para acceder a la ruta
+              if (route.data['role'] && route.data['role'] !== credentials) {
+                this.router.navigate(['/']);
+                return false;
+              }
+              return true;
+            })
+          );
         }
-        return true;
       })
     );
   }
