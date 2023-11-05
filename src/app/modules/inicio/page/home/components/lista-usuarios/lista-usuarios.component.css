@@ -10,16 +10,22 @@
   justify-content: center;
 }
 table {
-  width: 100%;
   border-radius: 20px;
   background: #e2e6e9;
 }
+td, th{
+  padding: 0.5rem;
+}
+
+.nomapell{
+  width: 14rem
+}
+
 table .tHead {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 table .tHead th {
-  height: 50px;
-  width: calc(100% / 4);
+
   text-align: center;
 }
 table .tBody td {
@@ -46,6 +52,20 @@ table .tBody .acciones .eliminar {
   background: #e12a2a;
 }
 
+#edit, #delete{
+  display: flex;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+}
+
 table .tBody .acciones button:hover {
   box-shadow: inset 10px 10px 30px rgba(0, 0, 0, 0.2);
+}
+#acciones, #accionesth{
+  width: 7rem;
 }

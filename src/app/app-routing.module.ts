@@ -42,11 +42,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: '',
-    loadChildren: () =>
-      import('./modules/admin/admin.module').then((m) => m.AdminModule),
-  },
-  {
     path: '**',
     redirectTo: 'inicio', // En caso de que se escriba mal la url, redirige al inicio.
     pathMatch: 'full',

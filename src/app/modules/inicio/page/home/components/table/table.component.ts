@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CrudService } from '../../services/crud.service';
 import { Seccion } from 'src/app/models/seccion';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -10,7 +11,7 @@ import { Seccion } from 'src/app/models/seccion';
 
 
 export class TableComponent {
-  constructor(private crudService: CrudService) {}
+  constructor(private crudService: CrudService, private router : Router) {}
   secciones: Seccion[] = [];
 
   nuevaSeccion = { titulo: '', descripcion: '' };
@@ -61,5 +62,10 @@ export class TableComponent {
       };
       this.obtenerMateriales(idSeccion);
     });
+  }
+  botones() {
+    // Obtener la URL actual
+    const currentUrl = this.router.url;
+    return currentUrl !== '/estudiante/materia'
   }
 }

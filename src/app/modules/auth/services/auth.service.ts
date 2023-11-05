@@ -7,8 +7,26 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
+  private inactivityTimer: any;
+
   // Referenciamos Auth de Firebase
   constructor(private afAuth: AngularFireAuth, private router: Router) {}
+
+  //Temporizador de inactividad
+  iniciarTemporizadorInactividad() {
+    // Establece el tiempo de inactividad en 15 minutos
+    const tiempoInactividad = 2 * 60 * 1000;
+
+    // Limpia el temporizador de inactividad existente
+    if (this.inactivityTimer) clearTimeout(this.inactivityTimer);
+
+    // Inicia un nuevo temporizador de inactividad
+    this.inactivityTimer = setTimeout(() => {
+      this.logout();
+      this.router.navigate(['/login']);
+    }, tiempoInactividad);
+  }
+
 
   // Metodo para registrarse
   registrar(email: string, password: string) {

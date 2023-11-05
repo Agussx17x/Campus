@@ -76,15 +76,18 @@ export class ListaUsuariosComponent {
 
   // Función para eliminar Usuario.
   borrarUsuario(usuarioSeleccionado: Usuario) {
-    this.usuarioSeleccionado = usuarioSeleccionado;
-    this.listaService
-      .eliminarUsuario(this.usuarioSeleccionado.uid)
-      .then((respuesta) => {
-        alert('Se elimino el usuario.');
-      })
-      .catch((error) => {
-        alert('No se pudo eliminar el usuario \n' + error);
-      });
+    const confirmacion = confirm('Desea borrar el usuario? '+ usuarioSeleccionado.dni);
+    if (confirmacion) {
+      this.usuarioSeleccionado = usuarioSeleccionado;
+      this.listaService
+        .eliminarUsuario(this.usuarioSeleccionado.uid)
+        .then((respuesta) => {
+          alert('Se elimino el usuario.');
+        })
+        .catch((error) => {
+          alert('No se pudo eliminar el usuario \n' + error);
+        });
+    }
   }
 
   // Función para filtrar usuarios basados en el valor de búsqueda.
@@ -93,7 +96,7 @@ export class ListaUsuariosComponent {
     // Aquí se filtran los usuarios de la colección completa.
     this.usuariosFiltrados = this.coleccionUsuarios.filter((usuario) => {
       return (
-        usuario.dni.toLowerCase().includes(termino)||// Filtrar por dni
+        usuario.dni.toLowerCase().includes(termino) || // Filtrar por dni
         usuario.nombre.toLowerCase().includes(termino) || // Filtra por nombre.
         usuario.credencial.toLowerCase().includes(termino) || // Filtra por credencial.
         usuario.uid.toLowerCase().includes(termino) // Filtra por ID.
