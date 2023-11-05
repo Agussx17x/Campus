@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Trabajos } from 'src/app/models/trabajos';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CrudService } from 'src/app/modules/admin/services/crud.service';
+import { CrudService } from 'src/app/modules/inicio/page/home/services/crud.service';
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { Router } from '@angular/router';
 

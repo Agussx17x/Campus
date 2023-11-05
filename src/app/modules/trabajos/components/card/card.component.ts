@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Trabajos } from 'src/app/models/trabajos';
-import { CrudService } from 'src/app/modules/admin/services/crud.service';
+import { CrudService } from 'src/app/modules/inicio/page/home/services/crud.service';
 
 @Component({
   selector: 'app-card',
