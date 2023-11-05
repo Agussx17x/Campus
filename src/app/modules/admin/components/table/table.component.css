@@ -1,44 +1,13 @@
-#modal {
-  margin: 2rem;
+.contenido{
+  padding-top: 10rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
-
-.contenido {
-  margin-top: 10rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
-}
-
-.tabla {
-  margin-top: 2rem;
-}
-
-.titulo {
-  margin: 0;
-}
-
-.seccion-title {
-  display: flex;
-  align-items: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-tbody,
-thead {
+label, input{
+  display: block;
   text-align: center;
 }
-
-.material-symbols-outlined {
-  cursor: pointer;
-}
-
-#addstyle {
-  text-decoration: none;
+.add{
   display: flex;
-  align-items: center;
-  margin: 2rem;
-}
-
-#icon {
-  margin-right: 1rem;
+  justify-content: center;
 }

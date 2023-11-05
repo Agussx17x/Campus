@@ -3,48 +3,57 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
-import { Trabajos } from 'src/app/models/trabajos';
 import { map } from 'rxjs/operators';
+import { Seccion } from 'src/app/models/seccion';
 @Injectable({
   providedIn: 'root',
 })
 export class CrudService {
-  private trabajoscollection: AngularFirestoreCollection<Trabajos>;
+
+  seccionesCollection: AngularFirestoreCollection<Seccion>;
 
   constructor(private database: AngularFirestore) {
-    this.trabajoscollection = database.collection('trabajos');
+    this.seccionesCollection = database.collection('secciones');
   }
 
-  crearTrabajos(trabajos: Trabajos) {
+  crearSeccion(seccion:any) {
     return new Promise(async (resolve, reject) => {
       try {
         const id = this.database.createId();
-        trabajos.idTrabajo = id;
-
-        const resultado = await this.trabajoscollection.doc(id).set(trabajos);
+        seccion.idSeccion = id;
+  
+        const resultado = await this.seccionesCollection.doc(id).set(seccion);
         resolve(resultado);
       } catch (error) {
         reject(error);
       }
     });
   }
-  obtenerTrabajos() {
-    return this.trabajoscollection
-      .snapshotChanges()
-      .pipe(map((action) => action.map((a) => a.payload.doc.data())));
-  }
-
-  editTrabajo(idTrabajo: string, newData: Trabajos) {
-    return this.database.collection('trabajos').doc(idTrabajo).update(newData);
-  }
-  deleteTrabajo(idTrabajo: string) {
-    return new Promise((resolve, reject) => {
+  
+  crearMaterial(idSeccion:any, material:any) {
+    return new Promise(async (resolve, reject) => {
       try {
-        const res = this.trabajoscollection.doc(idTrabajo).delete();
-        resolve(res);
+        const id = this.database.createId();
+        material.idMaterial = id;
+  
+        const resultado = await this.seccionesCollection.doc(idSeccion).collection('materiales').doc(id).set(material);
+        resolve(resultado);
       } catch (error) {
         reject(error);
       }
     });
   }
+  
+  obtenerSecciones() {
+    return this.seccionesCollection
+      .snapshotChanges()
+      .pipe(map((action) => action.map((a) => a.payload.doc.data())));
+  }
+  
+  obtenerMateriales(idSeccion:any) {
+    return this.seccionesCollection.doc(idSeccion).collection('materiales')
+      .snapshotChanges()
+      .pipe(map((action) => action.map((a) => a.payload.doc.data())));
+  }
+  
 }

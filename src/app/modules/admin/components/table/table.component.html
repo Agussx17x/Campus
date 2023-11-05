@@ -1,31 +1,100 @@
-<!-- Contenido Sección -->
 <div class="contenido">
-  <!-- Agregamos una directiva ngFor cada vez que se agregue una nueva sección-->
-  <div class="section" *ngFor="let s of secciones">
-    <div class="seccion-title">
-      <h1 class="titulo">{{ s.titulo }}</h1>
-      <h4>{{ s.descripcion }}</h4>
-      <a href=""><span class="material-symbols-outlined"> more_vert </span></a>
-    </div>
-    <!--<app-form-docs></app-form-docs>-->
-    <!-- Button Modal (CREATE) -->
-    <button
-      id="modal"
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#añadirMaterial"
-    >
-      <i class="bi bi-file-earmark-plus-fill" style="font-size: 20px"></i>
-      Añadir Material
-    </button>
+  <!-- Button trigger modal -->
+  <button
+    style="display: flex"
+    type="button"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  >
+    <span style="margin-right: 1rem" class="material-symbols-outlined">
+      add
+    </span>
+    Agregar Sección
+  </button>
 
-    <!-- Modal (CREATE) -->
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Agregar Sección
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="crearSeccion()">
+            <label class="form-label">
+              Título de la sección:
+              <input
+                class="form-control"
+                [(ngModel)]="nuevaSeccion.titulo"
+                name="titulo"
+                required
+              />
+            </label>
+            <label class="form-label">
+              Descripción de la sección:
+              <input
+                class="form-control"
+                [(ngModel)]="nuevaSeccion.descripcion"
+                name="descripcion"
+              />
+            </label>
+            <button class="btn btn-primary" type="submit">Crear sección</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista de secciones -->
+  <div *ngFor="let seccion of secciones">
+    <h2>{{ seccion.titulo }}</h2>
+    <p>{{ seccion.descripcion }}</p>
+
+    <!-- Button trigger modal -->
+    <div class="row">
+      <button
+        style="border-radius: 100%; width: 40px; height: 40px; margin-bottom: 1rem;"
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        [attr.data-bs-target]="'#' + seccion.titulo.split(' ').join('_')"
+      >
+        <span class="material-symbols-outlined add"> add </span>
+      </button>
+      <button
+        style="border-radius: 100%; width: 40px; height: 40px; margin-bottom: 1rem;"
+        class="btn btn-primary add"
+        type="button"
+        data-bs-toggle="collapse"
+        [attr.data-bs-target]="'#' + seccion.titulo.split(' ').join('_')"
+        aria-expanded="false"
+        [attr.aria-controls]="seccion.titulo.split(' ').join('_')"
+      >
+        <span class="material-symbols-outlined"> list_alt </span>
+      </button>
+    </div>
+
+    <!-- Modal -->
     <div
       class="modal fade"
-      id="añadirMaterial"
+      id="{{ seccion.titulo.split(' ').join('_') }}"
       tabindex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="exampleModalLabel2"
       aria-hidden="true"
     >
       <div class="modal-dialog">
@@ -42,340 +111,79 @@
             ></button>
           </div>
           <div class="modal-body">
-            <!-- Formulario -->
-            <form class="was-validated" [formGroup]="trabajo">
-              <!-- Título -->
-              <div class="mb-3">
-                <label for="validationInput" class="form-label">Título</label>
+            <!-- Formulario para crear un nuevo material en esta sección -->
+            <form (ngSubmit)="crearMaterial(seccion.idSeccion)">
+              <label class="form-control">
+                Título del material:
                 <input
                   class="form-control"
-                  id="validationInput"
-                  placeholder="Material 1"
-                  formControlName="titulo"
-                  required
+                  [(ngModel)]="nuevoMaterial.titulo"
+                  name="titulo"
                 />
-              </div>
-              <!-- Descripción -->
-              <div class="mb-3">
-                <label for="comeMat">Descripción</label>
-                <textarea
-                  id="comMat"
-                  type="radio"
-                  class="form-control"
-                  name="Comentario"
-                  rows="1"
-                  formControlName="descripcion"
-                  required
-                >
-                </textarea>
-              </div>
-              <!-- Archivo -->
-              <div class="mb-3">
-                <label for="docs" class="form-label">Archivo</label>
+              </label>
+              <label class="form-control">
+                Descripción breve del material:
                 <input
-                  formControlName="docs"
-                  type="file"
                   class="form-control"
-                  required
-                  (change)="uploadFile($event)"
+                  [(ngModel)]="nuevoMaterial.descripcion"
+                  name="descripcion"
+                  maxlength="100"
                 />
-              </div>
+              </label>
+              <label class="form-control">
+                Fecha de entrega:
+                <input
+                  class="form-control"
+                  [(ngModel)]="nuevoMaterial.fechaEntrega"
+                  name="fechaEntrega"
+                  type="date"
+                />
+              </label>
+              <label class="form-control">
+                URL para descargar el material:
+                <input
+                  class="form-control"
+                  [(ngModel)]="nuevoMaterial.urlDescarga"
+                  name="urlDescarga"
+                  type="url"
+                />
+              </label>
+              <button class="btn btn-primary" type="submit">
+                Crear material
+              </button>
             </form>
           </div>
-          <!-- Buttons (agregarTrabajo() & Cerrar)-->
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cerrar
-            </button>
-            <button
-              type="button"
-              (click)="agregarTrabajo()"
-              class="btn btn-primary"
-            >
-              Subir Material
-            </button>
-          </div>
         </div>
       </div>
     </div>
-    <!--Tabla de contenido-->
-    <div class="tabla">
-      <table class="table">
-        <thead>
-          <!-- Índices -->
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Titulo</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Docs</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Contenido -->
-          <tr *ngFor="let col of coleccionTrabajos">
-            <th id="id" scope="row">{{ col.idTrabajo }}</th>
-            <td id="titulo">{{ col.titulo }}</td>
-            <td id="descripcion">{{ col.descripcion }}</td>
-            <td id="docs">
-              <a href="">{{ col.docs }}</a>
-            </td>
-            <!-- Button (EDIT)-->
-            <td>
-              <a
-                data-bs-toggle="modal"
-                data-bs-target="#editarMaterial"
-                (click)="mostrarEdit(col)"
-                ><span class="material-symbols-outlined"> edit </span></a
-              >
-            </td>
-            <!-- Button (DELETE)-->
-            <td>
-              <a
-                data-bs-toggle="modal"
-                data-bs-target="#eliminarMaterial"
-                (click)="mostrarDelete(col)"
-                ><span class="material-symbols-outlined" style="color: red">
-                  delete
-                </span></a
-              >
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div *ngFor="let col of coleccionTrabajos">
-      <!-- Modal (DELETE)-->
+    <div class="material">
       <div
-        class="modal fade"
-        id="eliminarMaterial"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
+        class="collapse multi-collapse"
+        id="{{ seccion.titulo.split(' ').join('_') }}"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <!-- Mensaje -->
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
-                ¿Esta seguro que desea eliminar?
-              </h1>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <!-- Título y descripción -->
-            <div class="modal-body">
-              <h4>{{ col.titulo }}</h4>
-              <p>{{ col.descripcion }}</p>
-            </div>
-            <!-- Buttons (deleteTrabajo() & Cancelar) -->
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
+        <div class="card card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Fecha de entrega</th>
+                <th scope="col">Descarga material</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let material of materialesPorSeccion[seccion.idSeccion]"
               >
-                Cancelar
-              </button>
-              <button
-                data-bs-dismiss="modal"
-                type="button"
-                (click)="deleteTrabajo()"
-                class="btn btn-danger"
-              >
-                Borrar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal (EDIT) -->
-    <div *ngFor="let col of coleccionTrabajos">
-      <div
-        class="modal fade"
-        id="editarMaterial"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <!-- Button (EDIT)-->
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
-                Añadir Material
-              </h1>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <!-- Formulario -->
-              <form class="was-validated" [formGroup]="trabajo">
-                <!-- Título -->
-                <div class="mb-3">
-                  <label for="validationInput" class="form-label">Titulo</label>
-                  <input
-                    class="form-control"
-                    id="validationInput"
-                    placeholder="{{ col.titulo }}"
-                    formControlName="titulo"
-                    required
-                  />
-                </div>
-                <!-- Descripción -->
-                <div class="mb-3">
-                  <label for="comeMat">Descripcion</label>
-                  <textarea
-                    id="comMat"
-                    type="radio"
-                    class="form-control"
-                    name="Comentario"
-                    rows="1"
-                    formControlName="descripcion"
-                    placeholder="{{ col.descripcion }}"
-                  >
-                  </textarea>
-                </div>
-                <!-- Archivo -->
-                <div class="mb-3">
-                  <label for="docs" class="form-label">Archivo</label>
-                  <input
-                    formControlName="docs"
-                    type="file"
-                    class="form-control"
-                    required
-                    (change)="uploadFile($event)"
-                  />
-                  <div class="form-text text-muted">
-                    <!-- Esta estructura en los span esta definida de esta forma para evitar las advertencias -->
-                    <!-- *ngIf="trabajoSeleccionado" asegura que trabajoSeleccionado no sea nulo al acceder a docs -->
-                    <span
-                      class="form-text text-muted"
-                      *ngIf="trabajoSeleccionado"
-                      >{{ "Archivo actual: " + trabajoSeleccionado.docs }}</span
-                    >
-                    <span *ngIf="!trabajoSeleccionado?.docs"
-                      >Archivo actual: Ninguno</span
-                    >
-                  </div>
-                </div>
-              </form>
-            </div>
-            <!-- Buttons (editTrabajo() & Cancelar) -->
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Cancelar
-              </button>
-              <button
-                type="button"
-                (click)="editTrabajo()"
-                class="btn btn-success"
-                data-bs-dismiss="modal"
-              >
-                Guardar Cambios
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Botón para agregar sección -->
-  <button
-    type="button"
-    class="btn btn-primary"
-    data-bs-toggle="modal"
-    data-bs-target="#exampleModal"
-  >
-    <span id="icon" class="material-symbols-outlined"> add_circle </span>
-    Agregar Sección
-  </button>
-
-  <!-- Modal -->
-  <div
-    class="modal fade"
-    id="exampleModal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">
-            Agregar una nueva sección
-          </h1>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <!-- Formulario -->
-          <form class="was-validated" [formGroup]="seccion">
-            <!-- Título de la sección -->
-            <div class="mb-3">
-              <label for="validationInput" class="form-label">Título</label>
-              <input
-                class="form-control"
-                id="validationInput"
-                placeholder="Título de la sección"
-                formControlName="titulo"
-                required
-              />
-            </div>
-            <!-- Descripción de la sección (OPCIONAL)-->
-            <div class="mb-3">
-              <label for="comeMat">Descripción</label>
-              <textarea
-                id="comMat"
-                type="radio"
-                class="form-control"
-                name="Comentario"
-                rows="1"
-                formControlName="descripcion"
-              >
-              </textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Cerrar
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-            (click)="agregarSeccion()"
-          >
-            Guardar cambios
-          </button>
+                <th scope="row">#</th>
+                <td>{{ material.titulo }}</td>
+                <td>{{ material.descripcion }}</td>
+                <td>{{ material.fechaEntrega }}</td>
+                <td>{{ material.urlDescarga }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
