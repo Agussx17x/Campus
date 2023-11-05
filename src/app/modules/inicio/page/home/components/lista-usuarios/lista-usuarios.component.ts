@@ -93,6 +93,7 @@ export class ListaUsuariosComponent {
     // Aquí se filtran los usuarios de la colección completa.
     this.usuariosFiltrados = this.coleccionUsuarios.filter((usuario) => {
       return (
+        usuario.dni.toLowerCase().includes(termino)||// Filtrar por dni
         usuario.nombre.toLowerCase().includes(termino) || // Filtra por nombre.
         usuario.credencial.toLowerCase().includes(termino) || // Filtra por credencial.
         usuario.uid.toLowerCase().includes(termino) // Filtra por ID.

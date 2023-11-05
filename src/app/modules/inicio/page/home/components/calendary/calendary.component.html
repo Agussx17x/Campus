@@ -1,36 +1,38 @@
-<div class="wrapper-calendar">
-  <div class="header-calendar">
-    <div>
-      <button (click)="changeMonth(-1)" class="btn-prev">
-        <span class="material-symbols-outlined"> arrow_back </span>
-      </button>
+<div class="contenido">
+  <div class="wrapper-calendar">
+    <div class="header-calendar">
+      <div>
+        <button (click)="changeMonth(-1)" class="btn-prev">
+          <span class="material-symbols-outlined"> arrow_back </span>
+        </button>
+      </div>
+      <h1 class="name-month">{{ dateSelect | date : "MMMM, yyyy" }}</h1>
+      <div>
+        <button (click)="changeMonth(1)" class="btn-next">
+          <span class="material-symbols-outlined"> arrow_forward </span>
+        </button>
+      </div>
     </div>
-    <h1 class="name-month">{{ dateSelect | date : "MMMM, yyyy" }}</h1>
-    <div>
-      <button (click)="changeMonth(1)" class="btn-next">
-        <span class="material-symbols-outlined"> arrow_forward </span>
-      </button>
-    </div>
-  </div>
-  <ol>
-    <li *ngFor="let day of week" class="day-name"></li>
-    <li
-      [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
-      *ngFor="let day of monthSelect; let first = first"
-    >
-      <button
-        id="{{ id }}"
-        (click)="clickDay(day)"
-        class="btn-day"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-        [popover]="getPopoverContent()"
-        triggers="mouseenter:mouseleave"
-        placement="top"
-        container="body"
+    <ol>
+      <li *ngFor="let day of week" class="day-name"></li>
+      <li
+        [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
+        *ngFor="let day of monthSelect; let first = first"
       >
-        <span (change)="getId(day?.value)">{{ day?.value }}</span>
-      </button>
-    </li>
-  </ol>
+        <button
+          id="{{ id }}"
+          (click)="clickDay(day)"
+          class="btn-day"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          [popover]="getPopoverContent()"
+          triggers="mouseenter:mouseleave"
+          placement="top"
+          container="body"
+        >
+          <span (change)="getId(day?.value)">{{ day?.value }}</span>
+        </button>
+      </li>
+    </ol>
+  </div>
 </div>

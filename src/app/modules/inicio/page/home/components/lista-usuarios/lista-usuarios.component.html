@@ -1,7 +1,15 @@
 <div class="body">
   <table>
     <tr class="tHead">
-      <th>#</th>
+      <th>
+        <input style="width: 12rem; margin-left: auto; margin-right: auto;"
+          [(ngModel)]="buscarusers"
+          class="form-control"
+          type="text"
+          placeholder="Ingrese Busqueda"
+          (input)="filtrarUsuarios()"
+        />
+      </th>
       <th>Nombre y Apellido</th>
       <th>Credencial</th>
       <th>Acciones</th>
@@ -9,20 +17,9 @@
     <!-- Buscador de Usuarios -->
     <!--ngModel Enlaza el valor del input con la variable "buscarusers" en el componente -->
     <!-- filtrarUsuarios llama a la función "filtrarUsuarios" cuando se escribe en el input -->
-    <div class="row">
-      <div class="col-lg-5">
-        <input
-          [(ngModel)]="buscarusers"
-          class="form-control"
-          type="text"
-          placeholder="Ingrese Busqueda"
-          (input)="filtrarUsuarios()"
-        />
-      </div>
-    </div>
     <!-- Iteración sobre usuariosFiltrados y muestra los usuarios coincidentes -->
     <tr *ngFor="let col of usuariosFiltrados; let indice = index" class="tBody">
-      <td>Numero :D</td>
+      <td>{{ col.dni }}</td>
       <td>{{ col.nombre }} {{ col.apellido }}</td>
       <td>{{ col.credencial }}</td>
       <td class="acciones">
