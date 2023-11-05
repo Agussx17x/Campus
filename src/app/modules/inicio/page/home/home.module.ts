@@ -22,6 +22,7 @@ import { MatSlideToggleModule,_MatSlideToggleRequiredValidatorModule } from '@an
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TableComponent } from './components/table/table.component';
+import { NgxPaginationModule } from "ngx-pagination";
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { TableComponent } from './components/table/table.component';
     FormsModule,
     ReactiveFormsModule,
     PopoverModule,
+    NgxPaginationModule
   ],
   exports: [
     HomeAdminComponent,
