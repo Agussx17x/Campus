@@ -9,7 +9,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./lista-usuarios.component.css'],
 })
 export class ListaUsuariosComponent {
+  // Variable para almacenar el valor de búsqueda.
+  buscarusers: string = '';
+
+  // Colección de usuarios sin filtrar.
   coleccionUsuarios: Usuario[] = [];
+
+  // Colección de usuarios filtrados.
+  usuariosFiltrados: Usuario[] = [];
 
   usuarioSeleccionado!: Usuario;
 
@@ -26,8 +33,9 @@ export class ListaUsuariosComponent {
 
   // Obtenemos la coleccion de usuarios del servicio, la asignamos a usuario y lo guardamos en la coleccion de usuarios local.
   ngOnInit(): void {
-    this.listaService.obtenerUsuarios().subscribe((usuario) => {
-      this.coleccionUsuarios = usuario;
+    this.listaService.obtenerUsuarios().subscribe((usuarios) => {
+      this.coleccionUsuarios = usuarios; // Inicializamos la colección de usuarios sin filtrar.
+      this.usuariosFiltrados = usuarios; // Inicializamos la colección de usuarios filtrados.
     });
   }
 
@@ -68,14 +76,31 @@ export class ListaUsuariosComponent {
 
   // Función para eliminar Usuario.
   borrarUsuario(usuarioSeleccionado: Usuario) {
-    this.usuarioSeleccionado = usuarioSeleccionado;
-    this.listaService
-      .eliminarUsuario(this.usuarioSeleccionado.uid)
-      .then((respuesta) => {
-        alert('Se elimino el usuario.');
-      })
-      .catch((error) => {
-        alert('No se pudo eliminar el usuario \n' + error);
-      });
+    const confirmacion = confirm('Desea borrar el usuario? '+ usuarioSeleccionado.dni);
+    if (confirmacion) {
+      this.usuarioSeleccionado = usuarioSeleccionado;
+      this.listaService
+        .eliminarUsuario(this.usuarioSeleccionado.uid)
+        .then((respuesta) => {
+          alert('Se elimino el usuario.');
+        })
+        .catch((error) => {
+          alert('No se pudo eliminar el usuario \n' + error);
+        });
+    }
+  }
+
+  // Función para filtrar usuarios basados en el valor de búsqueda.
+  filtrarUsuarios() {
+    const termino = this.buscarusers.toLowerCase(); // Toma el valor ingresado y lo convierte a minúsculas.
+    // Aquí se filtran los usuarios de la colección completa.
+    this.usuariosFiltrados = this.coleccionUsuarios.filter((usuario) => {
+      return (
+        usuario.dni.toLowerCase().includes(termino) || // Filtrar por dni
+        usuario.nombre.toLowerCase().includes(termino) || // Filtra por nombre.
+        usuario.credencial.toLowerCase().includes(termino) || // Filtra por credencial.
+        usuario.uid.toLowerCase().includes(termino) // Filtra por ID.
+      );
+    });
   }
 }

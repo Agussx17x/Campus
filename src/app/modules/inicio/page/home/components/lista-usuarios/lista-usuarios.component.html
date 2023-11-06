@@ -1,18 +1,31 @@
 <div class="body">
   <table>
     <tr class="tHead">
-      <th>#</th>
-      <th>Nombre y Apellido</th>
+      <th>
+        <input style="width: 12rem; margin-left: auto; margin-right: auto;"
+          [(ngModel)]="buscarusers"
+          class="form-control"
+          type="text"
+          placeholder="Ingrese Busqueda"
+          (input)="filtrarUsuarios()"
+        />
+      </th>
+      <th class="nomapell">Nombre y Apellido</th>
       <th>Credencial</th>
-      <th>Acciones</th> 
+      <th id="accionesth" >Acciones</th>
     </tr>
-    <tr *ngFor="let col of coleccionUsuarios" class="tBody">
-      <td>Numero :D</td>
-      <td>{{ col.nombre }} {{ col.apellido }}</td>
+    <!-- Buscador de Usuarios 
+    ngModel Enlaza el valor del input con la variable "buscarusers" en el componente
+    filtrarUsuarios llama a la función "filtrarUsuarios" cuando se escribe en el input
+    Iteración sobre usuariosFiltrados y muestra los usuarios coincidentes -->
+    <tr *ngFor="let col of usuariosFiltrados; let indice = index" class="tBody">
+      <td>{{ col.dni }}</td>
+      <td class="nomapell">{{ col.nombre }} {{ col.apellido }}</td>
       <td>{{ col.credencial }}</td>
-      <td class="acciones">
+      <td id="acciones" class="acciones">
         <button
-        class="editar"
+        id="edit"
+          class="editar"
           title="Editar"
           data-bs-toggle="modal"
           data-bs-target="#editarUsuario"
@@ -20,7 +33,7 @@
         >
           <span class="material-symbols-outlined"> edit </span>
         </button>
-        <button class="eliminar" title="Eliminar" (click)="borrarUsuario(col)">
+        <button id="delete" class="eliminar" title="Eliminar" (click)="borrarUsuario(col)">
           <span class="material-symbols-outlined"> delete </span>
         </button>
       </td>

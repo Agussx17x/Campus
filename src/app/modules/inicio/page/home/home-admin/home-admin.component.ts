@@ -1,17 +1,35 @@
 import { Component } from '@angular/core';
+import { Trabajos } from 'src/app/models/trabajos';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CrudService } from 'src/app/modules/inicio/page/home/services/crud.service';
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-admin',
   templateUrl: './home-admin.component.html',
-  styleUrls: ['./home-admin.component.css']
+  styleUrls: ['./home-admin.component.css'],
 })
 export class HomeAdminComponent {
+  coleccionTrabajos: Trabajos[] = [];
 
-  //le agrega a la clase carrousel el intervalo 0  $(".carousel").carousel({
-  //  interval: 0
-  //});
-  //clase btn-nex $(".btn-next")//llama la funcion al hacer click .click(function () {
-  //ejecuta $(".carousel").carousel("next");
-  //});
-  
+  trabajo = new FormGroup({
+    //Docs
+    titulo: new FormControl('', Validators.required),
+    docs: new FormControl('', Validators.required),
+    descripcion: new FormControl('', Validators.required),
+    fecha: new FormControl('', Validators.required),
+  });
+
+  constructor(public servicioCrud: CrudService, private router: Router) {}
+
+  ngOnInit(): void {
+    
+  }
+
+  selectDay!: string;
+
+  openModal(day: string) {
+    this.selectDay = day;
+  }
 }

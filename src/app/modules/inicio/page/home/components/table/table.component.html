@@ -1,0 +1,197 @@
+<!-- Button trigger modal -->
+<button
+  style="display: flex"
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+>
+  <span style="margin-right: 1rem" class="material-symbols-outlined">
+    add
+  </span>
+  Agregar Sección
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Sección</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="crearSeccion()">
+          <label class="form-label">
+            Título de la sección:
+            <input
+              class="form-control"
+              [(ngModel)]="nuevaSeccion.titulo"
+              name="titulo"
+              required
+            />
+          </label>
+          <label class="form-label">
+            Descripción de la sección:
+            <input
+              class="form-control"
+              [(ngModel)]="nuevaSeccion.descripcion"
+              name="descripcion"
+            />
+          </label>
+          <button class="btn btn-primary" type="submit">Crear sección</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lista de secciones -->
+<div *ngFor="let seccion of secciones">
+  <h2>{{ seccion.titulo }}</h2>
+  <p>{{ seccion.descripcion }}</p>
+
+  <!-- Button trigger modal -->
+  <div class="row" *ngIf="botones()">
+    <button
+      style="
+        border-radius: 100%;
+        width: 40px;
+        height: 40px;
+        margin-bottom: 1rem;
+      "
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      [attr.data-bs-target]="'#' + seccion.titulo.split(' ').join('_')"
+    >
+      <span class="material-symbols-outlined add"> add </span>
+    </button>
+    <button
+      style="
+        border-radius: 100%;
+        width: 40px;
+        height: 40px;
+        margin-bottom: 1rem;
+      "
+      class="btn btn-primary add"
+      type="button"
+      data-bs-toggle="collapse"
+      [attr.data-bs-target]="'#' + seccion.titulo.split(' ').join('_')"
+      aria-expanded="false"
+      [attr.aria-controls]="seccion.titulo.split(' ').join('_')"
+    >
+      <span class="material-symbols-outlined"> list_alt </span>
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="{{ seccion.titulo.split(' ').join('_') }}"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel2"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Añadir Material
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulario para crear un nuevo material en esta sección -->
+          <form (ngSubmit)="crearMaterial(seccion.idSeccion)">
+            <label class="form-control">
+              Título del material:
+              <input
+                class="form-control"
+                [(ngModel)]="nuevoMaterial.titulo"
+                name="titulo"
+              />
+            </label>
+            <label class="form-control">
+              Descripción breve del material:
+              <input
+                class="form-control"
+                [(ngModel)]="nuevoMaterial.descripcion"
+                name="descripcion"
+                maxlength="100"
+              />
+            </label>
+            <label class="form-control">
+              Fecha de entrega:
+              <input
+                class="form-control"
+                [(ngModel)]="nuevoMaterial.fechaEntrega"
+                name="fechaEntrega"
+                type="date"
+              />
+            </label>
+            <label class="form-control">
+              URL para descargar el material:
+              <input
+                class="form-control"
+                [(ngModel)]="nuevoMaterial.urlDescarga"
+                name="urlDescarga"
+                type="url"
+              />
+            </label>
+            <button class="btn btn-primary" type="submit">
+              Crear material
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="material">
+    <div
+      class="collapse multi-collapse"
+      id="{{ seccion.titulo.split(' ').join('_') }}"
+    >
+      <div class="card card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Fecha de entrega</th>
+              <th scope="col">Descarga material</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let material of materialesPorSeccion[seccion.idSeccion]"
+            >
+              <th scope="row">#</th>
+              <td>{{ material.titulo }}</td>
+              <td>{{ material.descripcion }}</td>
+              <td>{{ material.fechaEntrega }}</td>
+              <td>{{ material.urlDescarga }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

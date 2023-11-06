@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Trabajos } from 'src/app/models/trabajos';
-import { CrudService } from 'src/app/modules/admin/services/crud.service';
+import { CrudService } from 'src/app/modules/inicio/page/home/services/crud.service';
 
 @Component({
   selector: 'app-card',
@@ -17,10 +17,7 @@ export class CardComponent {
   ){}
 
   ngOnInit(): void{
-    // Del servicio crud llamamos a obtener trabajo y los guardamos en la colección 
-    this.servicioCrud.obtenerTrabajos().subscribe(trabajo =>{
-      this.coleccionTrabajos = trabajo
-    })
+    
   }
   // Solo va a visualizar la informacion del trabajo
   mostrarVer(info: Trabajos){

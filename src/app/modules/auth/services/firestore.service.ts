@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
 
-  constructor( firestore : AngularFirestoreCollection ) { }
+  constructor(private firestore: AngularFirestore) { }
 
-  async getCredencial (){
-
+  obtenerUsuario(uid: string): Observable<any> {
+    return this.firestore.collection('usuarios').doc(uid).valueChanges().pipe(
+      map(usuario => {
+        // Aquí puedes transformar los datos del usuario si es necesario
+        return usuario;
+      })
+    );
   }
 }
