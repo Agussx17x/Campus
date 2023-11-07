@@ -12,7 +12,7 @@ ul {
   padding-top: 10rem;
   padding-right: 2rem;
 }
-.td{
+.td {
   margin-left: 1rem;
 }
 td {
@@ -37,8 +37,7 @@ td:hover a {
   transition: 0.5s;
   color: #fff;
 }
-#barralateral{
+#barralateral {
   display: flex;
   justify-content: center;
 }
-

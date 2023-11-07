@@ -2,7 +2,8 @@
   <table>
     <tr class="tHead">
       <th>
-        <input style="width: 12rem; margin-left: auto; margin-right: auto;"
+        <input
+          style="width: 12rem; margin-left: auto; margin-right: auto"
           [(ngModel)]="buscarusers"
           class="form-control"
           type="text"
@@ -12,19 +13,29 @@
       </th>
       <th class="nomapell">Nombre y Apellido</th>
       <th>Credencial</th>
-      <th id="accionesth" >Acciones</th>
+      <th id="accionesth">Acciones</th>
     </tr>
-    <!-- Buscador de Usuarios 
-    ngModel Enlaza el valor del input con la variable "buscarusers" en el componente
-    filtrarUsuarios llama a la función "filtrarUsuarios" cuando se escribe en el input
-    Iteración sobre usuariosFiltrados y muestra los usuarios coincidentes -->
-    <tr *ngFor="let col of usuariosFiltrados; let indice = index" class="tBody">
+    <!-- 
+    Buscador de Usuarios:
+    ngModel Enlaza el valor del input con la variable "buscarusers" en el componente.
+    filtrarUsuarios llama a la función "filtrarUsuarios" cuando se escribe en el input.
+    Iteración sobre usuariosFiltrados y muestra los usuarios coincidentes.
+    paginate es un pipe donde te permite especificar cuántos elementos se mostrarán por página y la página actual.
+    -->
+    <tr
+      *ngFor="
+        let col of usuariosFiltrados
+          | paginate : { itemsPerPage: 4, currentPage: pag };
+        let indice = index
+      "
+      class="tBody"
+    >
       <td>{{ col.dni }}</td>
       <td class="nomapell">{{ col.nombre }} {{ col.apellido }}</td>
       <td>{{ col.credencial }}</td>
       <td id="acciones" class="acciones">
         <button
-        id="edit"
+          id="edit"
           class="editar"
           title="Editar"
           data-bs-toggle="modal"
@@ -33,105 +44,124 @@
         >
           <span class="material-symbols-outlined"> edit </span>
         </button>
-        <button id="delete" class="eliminar" title="Eliminar" (click)="borrarUsuario(col)">
+        <button
+          id="delete"
+          class="eliminar"
+          title="Eliminar"
+          (click)="borrarUsuario(col)"
+        >
           <span class="material-symbols-outlined"> delete </span>
         </button>
       </td>
     </tr>
+    <!-- Pagination -->
+    <div class="row">
+      <pagination-controls
+        id="DEFAULT_PAGINATION_ID"
+        (pageChange)="pag = $event"
+      ></pagination-controls>
+    </div>
   </table>
-</div>
 
-<!-- Modal Para Editar -->
-<div
-  class="modal fade"
-  id="editarUsuario"
-  *ngFor="let col of coleccionUsuarios"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">
-          Edite el siguiente usuario.
-        </h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div [formGroup]="usuario" class="modal-body">
-        <!-- Recibe los nuevos valores. -->
-        <div class="mb-3">
-          <label class="form-label">Ingrese nombre del usuario.</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="nombre"
-            placeholder="{{ col.nombre }}"
-          />
+  <!-- Modal Para Editar -->
+  <div
+    class="modal fade"
+    id="editarUsuario"
+    *ngFor="let col of coleccionUsuarios"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Edite el siguiente usuario.
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
-        <div class="mb-3">
-          <label class="form-label">Ingrese apellido del usuario.</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="apellido"
-            placeholder="{{ col.apellido }}"
-          />
+        <div [formGroup]="usuario" class="modal-body">
+          <!-- Recibe los nuevos valores. -->
+          <div class="mb-3">
+            <label class="form-label">Ingrese nombre del usuario.</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="nombre"
+              placeholder="{{ col.nombre }}"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Ingrese apellido del usuario.</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="apellido"
+              placeholder="{{ col.apellido }}"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Ingrese email del usuario.</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="email"
+              placeholder="{{ col.email }}"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Ingrese contraseña del usuario.</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="password"
+              placeholder="{{ col.password }}"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Ingrese DNI del usuario.</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="dni"
+              placeholder="{{ col.dni }}"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Ingrese credencial del usuario.</label>
+            <select
+              class="form-control form-select"
+              formControlName="credencial"
+            >
+              <option selected disabled>Elija una opción.</option>
+              <option value="adm">Admin</option>
+              <option value="doc">Profesor</option>
+              <option value="est">Estudiante</option>
+            </select>
+          </div>
         </div>
-        <div class="mb-3">
-          <label class="form-label">Ingrese email del usuario.</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="email"
-            placeholder="{{ col.email }}"
-          />
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cerrar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            (click)="editarUsuario()"
+          >
+            Guardar Cambios
+          </button>
         </div>
-        <div class="mb-3">
-          <label class="form-label">Ingrese contraseña del usuario.</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="password"
-            placeholder="{{ col.password }}"
-          />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Ingrese DNI del usuario.</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="dni"
-            placeholder="{{ col.dni }}"
-          />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Ingrese credencial del usuario.</label>
-          <select class="form-control form-select" formControlName="credencial">
-            <option selected disabled>Elija una opción.</option>
-            <option value="adm">Admin</option>
-            <option value="doc">Profesor</option>
-            <option value="est">Estudiante</option>
-          </select>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Cerrar
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-bs-dismiss="modal"
-          (click)="editarUsuario()"
-        >
-          Guardar Cambios
-        </button>
       </div>
     </div>
   </div>
