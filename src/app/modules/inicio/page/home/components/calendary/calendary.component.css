@@ -31,6 +31,10 @@
   background-color: aliceblue;
 }
 
+.blue {
+  background-color: blue;
+}
+
 div {
     text-align: center;
     width: 400px;

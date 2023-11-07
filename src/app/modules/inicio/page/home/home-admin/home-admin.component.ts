@@ -28,8 +28,4 @@ export class HomeAdminComponent {
   }
 
   selectDay!: string;
-
-  openModal(day: string) {
-    this.selectDay = day;
-  }
 }
