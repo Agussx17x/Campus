@@ -13,6 +13,12 @@
           Lista de Usuarios
         </a>
       </td>
+      <td class="td" data-bs-toggle="modal" data-bs-target="#modalAlert">
+        <a class="add">
+          <span class="material-symbols-outlined"> add_alert </span>
+          Agregar Aviso
+        </a>
+      </td>
     </tr>
   </ul>
   <div class="row">
@@ -27,6 +33,7 @@
       <!--*FINBarra Lateral-->
     </div>
   </div>
+  <!-- Calendario -->
   <div
     class="modal fade"
     id="exampleModal"
@@ -104,6 +111,55 @@
             Close
           </button>
           <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Avisos -->
+  <div
+    class="modal fade"
+    id="modalAlert"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Agregar un nuevo aviso
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <!-- Inputs -->
+        <div class="modal-body">
+          <form>
+            <!-- Título -->
+            <label class="form-control">
+              Título:
+              <input class="form-control" name="titulo" required />
+            </label>
+            <!-- Descripción -->
+            <label class="form-control">
+              Descripción breve del material:
+              <textarea class="form-control" name="descripcion" maxlength="100"></textarea>
+            </label>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button type="button" class="btn btn-primary">Subir</button>
         </div>
       </div>
     </div>

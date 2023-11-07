@@ -18,6 +18,9 @@ export class ListaUsuariosComponent {
   // Colección de usuarios filtrados.
   usuariosFiltrados: Usuario[] = [];
 
+  // Representa la página actual del conteo
+  pag: number = 1;
+
   usuarioSeleccionado!: Usuario;
 
   usuario = new FormGroup({
@@ -76,7 +79,9 @@ export class ListaUsuariosComponent {
 
   // Función para eliminar Usuario.
   borrarUsuario(usuarioSeleccionado: Usuario) {
-    const confirmacion = confirm('Desea borrar el usuario? '+ usuarioSeleccionado.dni);
+    const confirmacion = confirm(
+      'Desea borrar el usuario? ' + usuarioSeleccionado.dni
+    );
     if (confirmacion) {
       this.usuarioSeleccionado = usuarioSeleccionado;
       this.listaService
