@@ -8,14 +8,12 @@ import { Router } from '@angular/router';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
-
-
 export class TableComponent {
-  constructor(private crudService: CrudService, private router : Router) {}
+  constructor(private crudService: CrudService, private router: Router) {}
   secciones: Seccion[] = [];
 
   nuevaSeccion = { titulo: '', descripcion: '' };
-  
+
   nuevoMaterial = {
     titulo: '',
     descripcion: '',
@@ -24,7 +22,6 @@ export class TableComponent {
   };
 
   materialesPorSeccion: any = {};
-
 
   ngOnInit() {
     this.obtenerSecciones();
@@ -46,13 +43,13 @@ export class TableComponent {
     });
   }
 
-  obtenerMateriales(idSeccion:any) {
-    this.crudService.obtenerMateriales(idSeccion).subscribe(materiales => {
+  obtenerMateriales(idSeccion: any) {
+    this.crudService.obtenerMateriales(idSeccion).subscribe((materiales) => {
       this.materialesPorSeccion[idSeccion] = materiales;
     });
   }
 
-  crearMaterial(idSeccion:any) {
+  crearMaterial(idSeccion: any) {
     this.crudService.crearMaterial(idSeccion, this.nuevoMaterial).then(() => {
       this.nuevoMaterial = {
         titulo: '',
@@ -63,9 +60,10 @@ export class TableComponent {
       this.obtenerMateriales(idSeccion);
     });
   }
+
   botones() {
     // Obtener la URL actual
     const currentUrl = this.router.url;
-    return currentUrl !== '/estudiante/materia'
+    return currentUrl !== '/estudiante/materia';
   }
 }

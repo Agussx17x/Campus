@@ -5,17 +5,26 @@
     <input id="photography" type="radio" name="slider" />
     <input id="enter" type="radio" name="slider" />
     <div class="buttons">
-      <label for="web"></label>
-      <label for="graphics"></label>
-      <label for="photography"></label>
-      <label for="enter"></label>
+      <!-- 
+        let i = index establece una variable i que representa el índice del elemento actual en la colección.
+        [for]="'aviso-' + i" está utilizando una interpolación para asignar un atributo for único a cada etiqueta <label>.
+        class="button-label" agrega una clase CSS llamada "button-label" a cada etiqueta <label>.
+      -->
+      <label
+        *ngFor="let aviso of coleccionAvisos; let i = index"
+        [for]="'aviso-' + i"
+        class="button-label"
+        (click)="changeSlide(i)"
+      ></label>
     </div>
     <div class="content">
-      <div class="box web">
+      <div class="box web" *ngFor="let aviso of coleccionAvisos">
         <div class="contentBx">
           <div class="avisoCont">
             <div class="avisoHead">
-              <div class="avisoTitulo">Exámen Próximo</div>
+              <div class="avisoTitulo" [title]="aviso.titulo">
+                {{ aviso.titulo }}
+              </div>
               <div class="avisoBotones">
                 <div class="btn btnLeido" title="Marcar Como Leído">
                   <svg
@@ -48,146 +57,7 @@
               </div>
             </div>
             <div class="avisoBody">
-              El dia 30/02/93 se llevará a cabo el exámen de cuidado de piedras
-              mascota. Los temas serán: Nutricion de las piedras. Higiene y
-              salúd. Felicidad de las piedras. Hábitat natural. El exámen será
-              de forma oral y tendrán 3min 22seg para realizar su presentación
-              del tema, dar al menos 24 argumentos de porque las piedras mascota
-              son la mejor opción en una carrera y posteriormente defender su
-              exposición.
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="box graphics">
-        <div class="contentBx">
-          <div class="avisoCont">
-            <div class="avisoHead">
-              <div class="avisoTitulo">Clases Suspendidas</div>
-              <div class="avisoBotones">
-                <div class="btn btnLeido" title="Marcar Como Leído">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="26"
-                    fill="currentColor"
-                    class="bi bi-check2"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
-                    />
-                  </svg>
-                </div>
-                <div class="btn btnBorrar" title="Eliminar">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="26"
-                    height="26"
-                    fill="currentColor"
-                    class="bi bi-x"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="avisoBody">
-              El día 17/02 se suspenden las clases por la fecha patria en la que
-              se conmemora el ascenso a la gloria de el ex presidente de la
-              República Argentina Chadberto.
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="box photography">
-        <div class="contentBx">
-          <div class="avisoCont">
-            <div class="avisoHead">
-              <div class="avisoTitulo">Falta de Papel</div>
-              <div class="avisoBotones">
-                <div class="btn btnLeido" title="Marcar Como Leído">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="26"
-                    fill="currentColor"
-                    class="bi bi-check2"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
-                    />
-                  </svg>
-                </div>
-                <div class="btn btnBorrar" title="Eliminar">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="26"
-                    height="26"
-                    fill="currentColor"
-                    class="bi bi-x"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="avisoBody">
-              A todos los estudiantes se les pide informar de la falta de papel
-              higienico en los baños y se les recuerda que las cortinas no son
-              un sustituto viable.
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="box enter">
-        <div class="contentBx">
-          <div class="avisoCont">
-            <div class="avisoHead">
-              <div class="avisoTitulo">Alerta de Tornado</div>
-              <div class="avisoBotones">
-                <div class="btn btnLeido" title="Marcar Como Leído">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="26"
-                    fill="currentColor"
-                    class="bi bi-check2"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
-                    />
-                  </svg>
-                </div>
-                <div class="btn btnBorrar" title="Eliminar">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="26"
-                    height="26"
-                    fill="currentColor"
-                    class="bi bi-x"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="avisoBody">
-              Debido al inminente tornado proveniente del sur-oeste asiatico se
-              suspenden las clases debido a la posibilidad de ser golpeado por
-              un chino volador. Esto es de extremo peligro debido a las
-              enfermedades que esa especie infra evolucionada puede transportar.
+              {{ aviso.descripcion }}
             </div>
           </div>
         </div>

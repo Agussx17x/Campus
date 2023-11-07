@@ -55,5 +55,4 @@ export class CrudService {
       .snapshotChanges()
       .pipe(map((action) => action.map((a) => a.payload.doc.data())));
   }
-  
 }

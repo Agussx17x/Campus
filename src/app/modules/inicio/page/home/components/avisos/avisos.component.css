@@ -38,6 +38,7 @@
   border-radius: 20px;
   cursor: pointer;
   transition: 0.5s;
+  margin: 0 5px; /* Agrega margen horizontal entre los puntos */
 }
 /*Le damos interacción a los botones.*/
 .tabs input:nth-child(1):checked ~ .buttons label:nth-child(1),
@@ -61,7 +62,8 @@
   display: flex;
   justify-content: center;
   user-select: none;
-  padding: 40px;
+  padding: 40px; /* Ajusta el espacio interno (padding) aquí */
+  margin: 0; /* Ajusta el espacio externo (margin) aquí */
 }
 /*Diseño del fondo de cada slide.*/
 .content .box {
@@ -235,3 +237,17 @@
     width: 100%;
   }
 } */
+
+/* CSS by Franco */
+.avisoTitulo {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.avisoTitulo:hover {
+  overflow: visible;
+  white-space: normal;
+}
