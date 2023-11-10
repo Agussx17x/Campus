@@ -14,20 +14,44 @@
     </div>
     <div class="formBx" id="formBx">
       <div class="form signinForm">
-        <form>
+        <!-- Formulario -->
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
           <h3>Iniciar Sesión</h3>
+          <!-- Correo Eléctronico -->
           <input
+            formControlName="email"
+            placeholder="Correo Electrónico"
             type="text"
-            [(ngModel)]="usuarios.email"
-            name="email"
-            placeholder="Usuario"
           />
+          <!-- Advertencia de Correo Eléctronico -->
+          <div
+            class="adv"
+            *ngIf="
+              loginForm.controls.email.invalid &&
+              loginForm.controls.email.touched
+            "
+          >
+            <small class="text-danger"
+              >Por favor, introduce un correo electrónico válido.</small
+            >
+          </div>
+          <!-- Contraseña -->
           <input
-            type="password"
-            [(ngModel)]="usuarios.password"
-            name="password"
+            formControlName="password"
             placeholder="Contraseña"
+            type="password"
           />
+          <!-- Advertencia de Contraseña -->
+          <div
+            class="adv"
+            *ngIf="
+              loginForm.controls.password.invalid &&
+              loginForm.controls.password.touched
+            "
+          >
+            <small class="text-danger">La contraseña es requerida.</small>
+          </div>
+
           <div class="row">
             <input
               class="col"
@@ -48,7 +72,14 @@
       <div class="form signupForm">
         <form (submit)="resetPassword()">
           <h3>Recuperar</h3>
-          <input [(ngModel)]="email" name="email" id="email" type="text" placeholder="Correo Electrónico" required/>
+          <input
+            [(ngModel)]="email"
+            name="email"
+            id="email"
+            type="text"
+            placeholder="Correo Electrónico"
+            required
+          />
           <input type="submit" value="Recuperar" />
         </form>
       </div>

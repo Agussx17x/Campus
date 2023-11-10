@@ -15,7 +15,7 @@
   background: #03a9f4;
   transition: 0.5s;
 }
-#volver{
+#volver {
   background-color: #fff;
   color: #03a9f4;
 }
@@ -136,6 +136,11 @@
 }
 .formBx .form form .forgot {
   color: #333;
+}
+.adv {
+  position: relative;
+  margin-bottom: 15px;
+  bottom: 10px;
 }
 /*RESPONSIVE*/
 @media (max-width: 991px) {
