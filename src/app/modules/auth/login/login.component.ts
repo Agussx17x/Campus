@@ -5,7 +5,12 @@ import { Usuario } from 'src/app/models/usuario'; // Interfaz
 import { FirestoreService } from 'src/app/shared/services/firestore.service'; // Nos Trae Datos
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
+import {
+  getAuth,
+  fetchSignInMethodsForEmail,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from 'firebase/auth';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
@@ -35,6 +40,11 @@ export class LoginComponent {
     password: new FormControl('', Validators.required),
   });
 
+  // Variable para controlar si se muestra el mensaje de advertencia.
+  emailDoesNotExist: boolean = false;
+  wrongPassword: boolean = false;
+  passwordVisible = false;
+
   /////////////////////////// No Borrar /////////////////////////////////////
   //Cambiar Active para modo Responsive
   //Agregamos la clase Active
@@ -53,6 +63,7 @@ export class LoginComponent {
     formBx?.classList.remove('active');
     body?.classList.remove('active');
   }
+
   /////////////////////////// Fin No Borrar /////////////////////////////////////
 
   constructor(
@@ -65,7 +76,9 @@ export class LoginComponent {
 
   // Esta función te permite logearte
   async login() {
-    // Obtenemos los valores de los campos de correo electrónico y contraseña.
+    // Obtenemos la instancia de autenticación de Firebase.
+    const auth = getAuth();
+    // Obtenemos el correo electrónico y la contraseña del formulario.
     const email = this.loginForm.controls.email.value ?? '';
     const password = this.loginForm.controls.password.value ?? '';
 
@@ -73,7 +86,11 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       try {
         // Intentamos iniciar sesión con las credenciales proporcionadas.
-        const res = await this.authService.login(email, password);
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
 
         // Si el inicio de sesión es exitoso, navegamos a la página correspondiente.
         this.afAuth.authState.subscribe((user) => {
@@ -95,19 +112,21 @@ export class LoginComponent {
                 }
               });
           } else {
-            // Usuario no está logueado
+            // Si el usuario no está logueado, navegamos a la página de inicio de sesión.
             this.router.navigate(['/login']);
           }
         });
       } catch (error) {
-        // Si ocurre un error durante el inicio de sesión, lo registramos en la consola.
-        console.error(error);
+        // Si ocurre un error durante el inicio de sesión, lo manejamos aquí.
+        const errorCode = (error as any).code;
+        if (errorCode === 'auth/user-not-found') {
+          // El correo electrónico no está registrado
+          this.emailDoesNotExist = true;
+        } else if (errorCode === 'auth/wrong-password') {
+          // La contraseña es incorrecta
+          this.wrongPassword = true;
+        }
       }
-    } else {
-      // Manejar el caso en el que el correo electrónico o contraseña no sea una cadena válida.
-      alert(
-        'Correo electrónico o contraseña incorrectos. Por favor, intenta de nuevo'
-      );
     }
   }
 
@@ -123,23 +142,35 @@ export class LoginComponent {
       this.router.navigate(['/inicio']);
     });
   }
-  resetPassword(): void {
+
+  // Esta función permite cambiar tu contraseña.
+  async resetPassword(): Promise<void> {
+    // Obtenemos la instancia de autenticación de Firebase.
     const auth = getAuth();
-    sendPasswordResetEmail(auth, this.email)
-      .then(() => {
-        // Correo electrónico de restablecimiento de contraseña enviado.
-        // Aquí puedes mostrar un mensaje al usuario para informarle.
-        alert('Se envio un correo para restablecer tu contraseña del campus!!');
-        //Una vez que le das a aceptar a la alerta, se recarga la pagina haciendo que vuelvas a inicio sesion.
-        location.reload();
-      })
-      .catch((error) => {
-        // Ocurrió un error. Aquí puedes manejar el error.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(
-          'Disculpa, este correo no esta registrado en el campus :(. si crees que esto es un error, te invitamos a escribir al correo de nuestra institución'
-        );
-      });
+    try {
+      // Intentamos obtener los métodos de inicio de sesión para el correo electrónico ingresado.
+      const signInMethods = await fetchSignInMethodsForEmail(auth, this.email);
+      // Si la lista de métodos de inicio de sesión no está vacía, significa que el correo electrónico está registrado.
+      if (signInMethods.length > 0) {
+        // El correo electrónico está registrado, enviamos el correo de restablecimiento.
+        try {
+          // Intentamos enviar el correo de restablecimiento de contraseña.
+          await sendPasswordResetEmail(auth, this.email);
+          alert(
+            'Se envio un correo para restablecer tu contraseña del campus!!'
+          );
+          location.reload();
+        } catch (error) {
+          alert(
+            'Hubo un error al intentar enviar el correo de restablecimiento.'
+          );
+        }
+      } else {
+        // El correo electrónico no está registrado, mostramos el mensaje de advertencia
+        this.emailDoesNotExist = true;
+      }
+    } catch (error) {
+      alert('Hubo un error al verificar el correo electrónico.');
+    }
   }
 }
