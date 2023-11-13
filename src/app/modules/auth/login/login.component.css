@@ -15,7 +15,7 @@
   background: #03a9f4;
   transition: 0.5s;
 }
-#volver{
+#volver {
   background-color: #fff;
   color: #03a9f4;
 }
@@ -136,6 +136,33 @@
 }
 .formBx .form form .forgot {
   color: #333;
+}
+.adv {
+  position: relative;
+  margin-bottom: 5px;
+  bottom: 10px;
+}
+.input-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.input-wrapper button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding-left: 0px;
+  width: 40px; /* Ancho del botón */
+  height: 40px;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input-wrapper button.mat-button:hover {
+  background-color: transparent !important;
 }
 /*RESPONSIVE*/
 @media (max-width: 991px) {

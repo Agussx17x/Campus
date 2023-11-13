@@ -5,8 +5,13 @@ import { Usuario } from 'src/app/models/usuario'; // Interfaz
 import { FirestoreService } from 'src/app/shared/services/firestore.service'; // Nos Trae Datos
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
-
+import {
+  getAuth,
+  fetchSignInMethodsForEmail,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from 'firebase/auth';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +19,8 @@ import { getAuth, sendPasswordResetEmail } from "firebase/auth";
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  email!: string;
 
-  email!:string;
   // Interfaz
   usuarios: Usuario = {
     uid: '',
@@ -28,6 +33,17 @@ export class LoginComponent {
   };
 
   hide = true;
+
+  // FormGroup del Login
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
+  });
+
+  // Variable para controlar si se muestra el mensaje de advertencia.
+  emailDoesNotExist: boolean = false;
+  wrongPassword: boolean = false;
+  passwordVisible = false;
 
   /////////////////////////// No Borrar /////////////////////////////////////
   //Cambiar Active para modo Responsive
@@ -47,6 +63,7 @@ export class LoginComponent {
     formBx?.classList.remove('active');
     body?.classList.remove('active');
   }
+
   /////////////////////////// Fin No Borrar /////////////////////////////////////
 
   constructor(
@@ -57,50 +74,66 @@ export class LoginComponent {
     private firestore: AngularFirestore
   ) {}
 
-  // Funcion asincrona Login()
+  // Esta función te permite logearte
   async login() {
-    const credenciales = {
-      email: this.usuarios.email,
-      password: this.usuarios.password,
-    };
+    // Obtenemos la instancia de autenticación de Firebase.
+    const auth = getAuth();
+    // Obtenemos el correo electrónico y la contraseña del formulario.
+    const email = this.loginForm.controls.email.value ?? '';
+    const password = this.loginForm.controls.password.value ?? '';
 
-    const res = await this.authService
-      .login(credenciales.email, credenciales.password)
-      .then((res) => {
-        //////// Base de Datos /////////
-        this.afAuth.authState.subscribe(user => {
+    // Verificamos si el formulario es válido.
+    if (this.loginForm.valid) {
+      try {
+        // Intentamos iniciar sesión con las credenciales proporcionadas.
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        // Si el inicio de sesión es exitoso, navegamos a la página correspondiente.
+        this.afAuth.authState.subscribe((user) => {
           if (user) {
-            // Usuario está logueado
-            this.firestore.collection('usuarios').doc(user.uid).valueChanges().subscribe((data: any) => {
-              // Aquí obtienes las credenciales del usuario
-              const credentials = data.credencial;
-              
-              // Rediriges al usuario basado en sus credenciales
-              if (credentials === 'est') {
-                this.router.navigate(['/estudiante']);
-              } else {
-                if (credentials === 'doc') {
-                  this.router.navigate(['/docente'])
+            this.firestore
+              .collection('usuarios')
+              .doc(user.uid)
+              .valueChanges()
+              .subscribe((data: any) => {
+                const credentials = data.credencial;
+                if (credentials === 'est') {
+                  this.router.navigate(['/estudiante']);
                 } else {
-                  this.router.navigate(['/admin'])
+                  if (credentials === 'doc') {
+                    this.router.navigate(['/docente']);
+                  } else {
+                    this.router.navigate(['/admin']);
+                  }
                 }
-              }
-            });
+              });
           } else {
-            // Usuario no está logueado
+            // Si el usuario no está logueado, navegamos a la página de inicio de sesión.
             this.router.navigate(['/login']);
           }
         });
-        //////// Fin Base de Datos /////////
-      })
-      .catch((error) => {
-        console.error(error);
-        //Usuario Invalido                          
-      });
+      } catch (error) {
+        // Si ocurre un error durante el inicio de sesión, lo manejamos aquí.
+        const errorCode = (error as any).code;
+        if (errorCode === 'auth/user-not-found') {
+          // El correo electrónico no está registrado
+          this.emailDoesNotExist = true;
+        } else if (errorCode === 'auth/wrong-password') {
+          // La contraseña es incorrecta
+          this.wrongPassword = true;
+        }
+      }
+    }
   }
+
   back() {
     this.router.navigate(['/inicio']);
   }
+
   //Funcion para CERRAR SESION
   async salir() {
     const res = await this.authService.logout().then((res) => {
@@ -108,23 +141,36 @@ export class LoginComponent {
       console.log(res);
       this.router.navigate(['/inicio']);
     });
-
   }
-  resetPassword(): void {
+
+  // Esta función permite cambiar tu contraseña.
+  async resetPassword(): Promise<void> {
+    // Obtenemos la instancia de autenticación de Firebase.
     const auth = getAuth();
-    sendPasswordResetEmail(auth, this.email)
-      .then(() => {
-        // Correo electrónico de restablecimiento de contraseña enviado.
-        // Aquí puedes mostrar un mensaje al usuario para informarle.
-        alert('Se envio un correo para restablecer tu contraseña del campus!!');
-        //Una vez que le das a aceptar a la alerta, se recarga la pagina haciendo que vuelvas a inicio sesion.
-        location.reload()
-      })
-      .catch((error) => {
-        // Ocurrió un error. Aquí puedes manejar el error.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert('Disculpa, este correo no esta registrado en el campus :(. si crees que esto es un error, te invitamos a escribir al correo de nuestra institución')
-      });
+    try {
+      // Intentamos obtener los métodos de inicio de sesión para el correo electrónico ingresado.
+      const signInMethods = await fetchSignInMethodsForEmail(auth, this.email);
+      // Si la lista de métodos de inicio de sesión no está vacía, significa que el correo electrónico está registrado.
+      if (signInMethods.length > 0) {
+        // El correo electrónico está registrado, enviamos el correo de restablecimiento.
+        try {
+          // Intentamos enviar el correo de restablecimiento de contraseña.
+          await sendPasswordResetEmail(auth, this.email);
+          alert(
+            'Se envio un correo para restablecer tu contraseña del campus!!'
+          );
+          location.reload();
+        } catch (error) {
+          alert(
+            'Hubo un error al intentar enviar el correo de restablecimiento.'
+          );
+        }
+      } else {
+        // El correo electrónico no está registrado, mostramos el mensaje de advertencia
+        this.emailDoesNotExist = true;
+      }
+    } catch (error) {
+      alert('Hubo un error al verificar el correo electrónico.');
+    }
   }
 }
