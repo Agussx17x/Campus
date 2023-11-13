@@ -13,19 +13,19 @@ table {
   border-radius: 20px;
   background: #e2e6e9;
 }
-td, th{
+td,
+th {
   padding: 0.5rem;
 }
 
-.nomapell{
-  width: 14rem
+.nomapell {
+  width: 14rem;
 }
 
 table .tHead {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 table .tHead th {
-
   text-align: center;
 }
 table .tBody td {
@@ -52,7 +52,8 @@ table .tBody .acciones .eliminar {
   background: #e12a2a;
 }
 
-#edit, #delete{
+#edit,
+#delete {
   display: flex;
   padding: 0.5rem;
   align-items: center;
@@ -66,6 +67,21 @@ table .tBody .acciones .eliminar {
 table .tBody .acciones button:hover {
   box-shadow: inset 10px 10px 30px rgba(0, 0, 0, 0.2);
 }
-#acciones, #accionesth{
+#acciones,
+#accionesth {
   width: 7rem;
+}
+/*CSS de icono de busqueda*/
+.search-container {
+  position: relative;
+}
+
+.search-container input[type="text"] {
+  padding-left: 30px;
+}
+
+.search-container .fa-search {
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
