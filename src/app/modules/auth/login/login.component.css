@@ -142,27 +142,24 @@
   margin-bottom: 5px;
   bottom: 10px;
 }
+/*OJO*/
 .input-wrapper {
   position: relative;
   display: inline-block;
 }
-
 .input-wrapper button {
   position: absolute;
   right: 0;
-  top: 0;
+  top: 1px;
   bottom: 0;
-  padding-left: 0px;
-  width: 40px; /* Ancho del botón */
+  padding: 0;
+  width: 40px;
   height: 40px;
   border: none;
   background: none;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.input-wrapper button.mat-button:hover {
-  background-color: transparent !important;
 }
 /*RESPONSIVE*/
 @media (max-width: 991px) {
