@@ -10,8 +10,13 @@
             type="text"
             placeholder="Ingrese Busqueda"
             (input)="filtrarUsuarios()"
+            id="miInput"
           />
-          <i class="fa fa-search"></i>
+          <i
+            id="miIcono"
+            class="fa fa-search"
+            [ngClass]="{ 'hide-icon': buscarusers }"
+          ></i>
         </div>
       </th>
       <th class="nomapell">Nombre y Apellido</th>
