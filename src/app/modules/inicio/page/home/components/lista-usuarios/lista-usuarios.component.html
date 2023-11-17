@@ -2,14 +2,22 @@
   <table>
     <tr class="tHead">
       <th>
-        <input
-          style="width: 12rem; margin-left: auto; margin-right: auto"
-          [(ngModel)]="buscarusers"
-          class="form-control"
-          type="text"
-          placeholder="Ingrese Busqueda"
-          (input)="filtrarUsuarios()"
-        />
+        <div class="search-container">
+          <input
+            style="width: 12rem; margin-left: auto; margin-right: auto"
+            [(ngModel)]="buscarusers"
+            class="form-control"
+            type="text"
+            placeholder="Ingrese Busqueda"
+            (input)="filtrarUsuarios()"
+            id="miInput"
+          />
+          <i
+            id="miIcono"
+            class="fa fa-search"
+            [ngClass]="{ 'hide-icon': buscarusers }"
+          ></i>
+        </div>
       </th>
       <th class="nomapell">Nombre y Apellido</th>
       <th>Credencial</th>
