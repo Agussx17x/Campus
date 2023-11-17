@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CrudService } from '../../services/crud.service';
 import { Seccion } from 'src/app/models/seccion';
 import { Router } from '@angular/router';
@@ -9,7 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent {
-  constructor(private crudService: CrudService, private router: Router) {}
+
+  @ViewChild('fileInput') fileInput!: ElementRef;
+
+  private file!: File;
+
+  constructor( private crudService: CrudService, private router: Router) {}
+
   secciones: Seccion[] = [];
 
   nuevaSeccion = { titulo: '', descripcion: '' };
@@ -49,7 +55,16 @@ export class TableComponent {
     });
   }
 
-  crearMaterial(idSeccion: any) {
+
+  onFileSelected(event:any) {
+    this.file = event.target.files[0];
+  }
+
+  async crearMaterial(idSeccion: any) {
+    if (this.file) {
+      const url = await this.crudService.uploadFile(this.file);
+      this.nuevoMaterial.urlDescarga = url;
+    }
     this.crudService.crearMaterial(idSeccion, this.nuevoMaterial).then(() => {
       this.nuevoMaterial = {
         titulo: '',
@@ -60,6 +75,8 @@ export class TableComponent {
       this.obtenerMateriales(idSeccion);
     });
   }
+  
+  
 
   botones() {
     // Obtener la URL actual

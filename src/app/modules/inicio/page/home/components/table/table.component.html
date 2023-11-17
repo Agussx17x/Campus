@@ -147,13 +147,16 @@
               />
             </label>
             <label class="form-control">
-              URL para descargar el material:
+              Seleccionar material:
               <input
-                class="form-control"
-                [(ngModel)]="nuevoMaterial.urlDescarga"
-                name="urlDescarga"
-                type="url"
+                type="file"
+                #fileInput
+                style="display: none"
+                (change)="onFileSelected($event)"
               />
+              <button type="button" (click)="fileInput.click()">
+                Seleccionar archivo
+              </button>
             </label>
             <button class="btn btn-primary" type="submit">
               Crear material
@@ -187,7 +190,7 @@
               <td>{{ material.titulo }}</td>
               <td>{{ material.descripcion }}</td>
               <td>{{ material.fechaEntrega }}</td>
-              <td>{{ material.urlDescarga }}</td>
+              <td><a [href]="material.urlDescarga" download>Descargar Archivo</a></td>
             </tr>
           </tbody>
         </table>

@@ -3,7 +3,8 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
-import { map } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { finalize, map } from 'rxjs/operators';
 import { Seccion } from 'src/app/models/seccion';
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class CrudService {
 
   seccionesCollection: AngularFirestoreCollection<Seccion>;
 
-  constructor(private database: AngularFirestore) {
+  constructor(private database: AngularFirestore, private storage: AngularFireStorage ) {
     this.seccionesCollection = database.collection('secciones');
   }
 
@@ -54,5 +55,37 @@ export class CrudService {
     return this.seccionesCollection.doc(idSeccion).collection('materiales')
       .snapshotChanges()
       .pipe(map((action) => action.map((a) => a.payload.doc.data())));
+  }
+
+  //Subir Material
+
+  uploadFile(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const filePath = `materiales/${file.name}`;
+      const fileRef = this.storage.ref(filePath);
+      const task = this.storage.upload(filePath, file);
+  
+      // Observa el progreso de la subida
+      task.snapshotChanges().pipe(
+        finalize(async () => {
+          // Subida completada
+          const url = await fileRef.getDownloadURL().toPromise();
+          console.log(`${file.name} subido correctamente`);
+          console.log(`URL de descarga: ${url}`);
+          resolve(url);
+        })
+      ).subscribe();
+    });
+  }
+  
+
+  async listFiles() {
+    const ref = this.storage.ref('materiales');
+    const res = await ref.listAll().toPromise();
+    for (let item of res!.items) {
+      const url = await item.getDownloadURL();
+      console.log(`Nombre del archivo: ${item.name}`);
+      console.log(`URL de descarga: ${url}`);
+    }
   }
 }

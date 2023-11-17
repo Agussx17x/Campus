@@ -15,7 +15,7 @@ export class AuthService {
   //Temporizador de inactividad
   iniciarTemporizadorInactividad() {
     // Establece el tiempo de inactividad en 15 minutos
-    const tiempoInactividad = 2 * 60 * 1000;
+    const tiempoInactividad = 15 * 60 * 1000;
 
     // Limpia el temporizador de inactividad existente
     if (this.inactivityTimer) clearTimeout(this.inactivityTimer);

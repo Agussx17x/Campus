@@ -63,12 +63,16 @@
       </td>
     </tr>
     <!-- Pagination -->
-    <div class="row">
-      <pagination-controls
-        id="DEFAULT_PAGINATION_ID"
-        (pageChange)="pag = $event"
-      ></pagination-controls>
-    </div>
+    <tr class="paginacion">
+      <td colspan="2">
+        <pagination-controls
+          id="DEFAULT_PAGINATION_ID"
+          (pageChange)="pag = $event"
+          previousLabel="Anterior"
+          nextLabel="Siguiente"
+        ></pagination-controls>
+      </td>
+    </tr>
   </table>
 
   <!-- Modal Para Editar -->
