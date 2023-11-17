@@ -7,7 +7,7 @@ const routes: Routes = [
   // Rutas de Modulos
   {
     path: '',
-    redirectTo: 'inicio', // En caso de que se escriba mal la url, redirige al inicio.
+    redirectTo: '/inicio', // En caso de que se escriba mal la url, redirige al inicio.
     pathMatch: 'full',
   },
   {
@@ -35,15 +35,8 @@ const routes: Routes = [
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: '',
-    loadChildren: () =>
-      import('./modules/trabajos/trabajos.module').then(
-        (m) => m.TrabajosModule
-      ),
-  },
-  {
     path: '**',
-    redirectTo: 'inicio', // En caso de que se escriba mal la url, redirige al inicio.
+    redirectTo: '/inicio', // En caso de que se escriba mal la url, redirige al inicio.
     pathMatch: 'full',
   },
 ];

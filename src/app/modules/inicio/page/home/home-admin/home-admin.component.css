@@ -30,11 +30,11 @@ a {
   text-align: center;
 }
 td:hover {
-  transition: 0.5s;
+  transition: 1s;
   background: #43a5f6;
 }
 td:hover a {
-  transition: 0.5s;
+  transition: 0.9s;
   color: #fff;
 }
 #barralateral {

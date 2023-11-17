@@ -1,14 +1,17 @@
 .contenido{
-    padding-top: 10rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-top: 7rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 .tarjeta{
     margin-bottom: 1rem;
-    padding: 0.5rem;
+    padding: 20px;
     font-size: medium;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #2073b8;
-    color: white;
+    background-color: white;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+   
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2), -15px -15px 30px #e2e6e9;
 
 }

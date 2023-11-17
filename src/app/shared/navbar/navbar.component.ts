@@ -48,8 +48,8 @@ export class NavbarComponent {
     if (currentUrl == '/admin') {
       return currentUrl !== '/admin';
     } else {
-      if (currentUrl == '/inicio') {
-        return currentUrl !== '/inicio';
+      if (currentUrl == '/estudiante') {
+        return currentUrl == '/estudiante';
       }
     }
     return currentUrl == '/docente';

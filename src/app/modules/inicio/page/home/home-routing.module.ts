@@ -23,13 +23,13 @@ const routes: Routes = [
     component: HomeEstudianteComponent,
     canActivate: [AuthGuard], data: { role: 'est' },
   },
-  { path: 'materia', component: MateriaComponent, canActivate: [AuthGuard] },
+  { path: 'materia', component: MateriaComponent, canActivate: [AuthGuard], data: { role: 'est' }||{ role: 'doc' } },
   {
     path: 'lista',
     component: ListaUsuariosComponent,
     canActivate: [AuthGuard], data: { role: 'adm' }
   },
-  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard], data: { role: 'doc'}||{ role: 'est'}},
+  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard], data: { role: ['est' && 'doc'] } },
 ];
 
 @NgModule({

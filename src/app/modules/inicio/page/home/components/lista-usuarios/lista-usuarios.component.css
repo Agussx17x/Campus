@@ -10,8 +10,9 @@
   justify-content: center;
 }
 table {
-  border-radius: 20px;
+  border-radius: 10px;
   background: #e2e6e9;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2), -15px -15px 30px #e2e6e9;
 }
 td, th{
   padding: 0.5rem;
@@ -46,7 +47,7 @@ table .tBody .acciones button {
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
 }
 table .tBody .acciones .editar {
-  background: #8fcece;
+  background: #43a5f6;
 }
 table .tBody .acciones .eliminar {
   background: #e12a2a;
@@ -67,5 +68,6 @@ table .tBody .acciones button:hover {
   box-shadow: inset 10px 10px 30px rgba(0, 0, 0, 0.2);
 }
 #acciones, #accionesth{
-  width: 7rem;
+  
+  width: 8rem;
 }
