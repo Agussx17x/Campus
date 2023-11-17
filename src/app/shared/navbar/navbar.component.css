@@ -7,15 +7,14 @@
   font-family: "Poppins", sans-serif;
 }
 
-.navbar{
+.navbar {
   display: block;
   z-index: 999;
 }
 
-.Inactive{
+.Inactive {
   display: none;
 }
-
 
 /*Cuerpo del NavBar*/
 header {
@@ -23,7 +22,7 @@ header {
   width: 100%;
   min-height: 60px;
   background: #43a5f6;
-  padding: 0 100px;
+  padding: 0 0 0 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -74,16 +73,16 @@ header ul li ul li ul {
   top: 0;
   left: 200px;
 }
-
-h4{
+h4 {
   padding-left: 1rem;
   margin: 0%;
   margin-right: auto;
 }
+.logout {
+  cursor: pointer;
+}
 
-
-/* RESPONSIVO */
-
+/* RESPONSIVE */
 @media (max-width: 900px) {
   header {
     padding: 10px 20px;
@@ -147,9 +146,10 @@ h4{
   header.active .menuToggle::after {
     transform: rotate(-45deg);
   }
-  header.active{ /* Se abre el header en mobile, y desaparece el logo mientras esta abierto */
-    & img{
-      display:none;
+  header.active {
+    /* Se abre el header en mobile, y desaparece el logo mientras esta abierto */
+    & img {
+      display: none;
     }
   }
 }

@@ -12,19 +12,19 @@
     <nav>
       <!--Lista de botones-->
       <ul>
-        <li>
+        <li *ngIf="showInicio()">
           <a routerLink="/inicio"
             ><span class="material-symbols-outlined"> home </span>
             <h4>inicio</h4></a
           >
         </li>
-        <li>
+        <li *ngIf="showNosotros()">
           <a routerLink="/nosotros"
             ><span class="material-symbols-outlined"> info </span>
             <h4>Nosotros</h4></a
           >
         </li>
-        <li *ngIf="logout()">
+        <li class="logout" *ngIf="logout()">
           <a (click)="cerrarsesion()"
             ><span class="material-symbols-outlined"> person </span>
             <h4>LogOut</h4></a
