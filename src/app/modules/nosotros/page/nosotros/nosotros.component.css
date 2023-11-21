@@ -1,17 +1,30 @@
-.contenido{
-    padding-top: 7rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
+.contenido {
+  padding-top: 7rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-bottom: 7rem;
 }
-.tarjeta{
-    margin-bottom: 1rem;
-    padding: 20px;
-    font-size: medium;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
-    color: rgb(0, 0, 0);
-    border-radius: 10px;
-   
-    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2), -15px -15px 30px #e2e6e9;
 
+h1 {
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  font-size: 1.625rem;
+  font-weight: 600;
+  line-height: 1.38;
+}
+
+p {
+  font-size: 1.125rem;
+  line-height: 1.78;
+}
+
+img {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  z-index: 10;
+  border-radius: 2px;
+  width: 750px;
+  height: 450px;
 }
