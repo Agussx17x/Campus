@@ -6,6 +6,8 @@ import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { Router } from '@angular/router';
 import { Avisos } from 'src/app/models/avisos';
 import { AvisosService } from '../services/avisos.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { ListaUsuariosService } from '../services/lista-usuarios.service';
 
 @Component({
   selector: 'app-home-admin',
@@ -30,16 +32,50 @@ export class HomeAdminComponent {
     descripcion: new FormControl('', Validators.required),
   });
 
+  nombre: string = '';
+  apellido: string = '';
+
+  tipoCredencial: string = '';
+  // Mapeo de credenciales abreviadas a formas completas.
+  credencialesMapping: { [key: string]: string } = {
+    adm: 'Administrador',
+    doc: 'Docente',
+    est: 'Estudiante',
+  };
+
   constructor(
     private crudService: CrudService,
     private avisosService: AvisosService,
-    private router: Router
+    private router: Router,
+    private listaUsuariosService: ListaUsuariosService,
+    private afAuth: AngularFireAuth
   ) {}
 
   ngOnInit(): void {
     // Luego, obtén la lista de avisos al inicializar el componente
     this.avisosService.obtenerAvisos().subscribe((avisos) => {
       this.coleccionAvisos = avisos;
+    });
+    // Mostrar usuario.
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        const uidUsuarioLogueado = user.uid;
+
+        this.listaUsuariosService.obtenerUsuarios().subscribe((usuarios) => {
+          const usuarioLogueado = usuarios.find(
+            (u) => u.uid === uidUsuarioLogueado
+          );
+
+          if (usuarioLogueado) {
+            this.nombre = usuarioLogueado.nombre;
+            this.apellido = usuarioLogueado.apellido;
+            // Traduce la credencial abreviada.
+            this.tipoCredencial =
+              this.credencialesMapping[usuarioLogueado.credencial] ||
+              'Usuario sin tipo';
+          }
+        });
+      }
     });
   }
 

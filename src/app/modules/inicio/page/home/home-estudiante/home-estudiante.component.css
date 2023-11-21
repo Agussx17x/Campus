@@ -1,10 +1,10 @@
-.contenido{
-    padding-top: 10rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+.contenido {
+  padding-top: 10rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
-#barralateral{
-    display: flex;
-    justify-content: center;
-  }
+#barralateral {
+  display: flex;
+  justify-content: center;
+}

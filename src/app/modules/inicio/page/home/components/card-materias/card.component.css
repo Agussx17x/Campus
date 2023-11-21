@@ -99,6 +99,8 @@
   height: auto;
   background: #fff;
   margin: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   display: flex;
   justify-content: left;
   flex-direction: row;
@@ -161,6 +163,16 @@
   --box-shadow-color: rgba(97, 218, 255, 0.48);
 }
 
+span {
+  font-size: 5rem;
+}
+
+.list-content {
+  display: flex;
+  align-items: center; /* Esto alinea los elementos verticalmente en el centro */
+  justify-content: space-between; /* Esto separa los elementos */
+}
+
 /* Responsive */
 @media (max-width: 899px) {
   .materias {
@@ -173,9 +185,8 @@
   }
 
   #boton {
-    position: absolute;
-    right: 1;
-    margin-left: 220px;
+    position: relative;
+    margin-left: 0px;
   }
 
   .bi-grid-fill {
@@ -211,10 +222,6 @@
       margin-bottom: 10px;
     }
 
-    #boton {
-      margin-bottom: 15px;
-    }
-
     .bi-grid-fill {
       font-size: 15px;
     }
@@ -228,9 +235,6 @@
   }
 }
 
-span {
-  font-size: 5rem;
-}
 /*@media (max-width: 470px) {
   .title-container {
     text-align: center;

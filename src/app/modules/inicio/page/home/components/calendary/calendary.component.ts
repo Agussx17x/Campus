@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class CalendaryComponent implements OnInit {
   @Output() dayClicked = new EventEmitter<string>();
 
+  // Array con los nombres de los días de la semana.
   week: any = [
     'Lunes',
     'Martes',
@@ -20,17 +21,29 @@ export class CalendaryComponent implements OnInit {
     'Domingo',
   ];
 
+  // Array que contendrá los días del mes seleccionado.
   monthSelect!: any[];
+  // Fecha actual seleccionada.
   dateSelect: any;
+  // Fecha seleccionada cuando se hace clic en un día.
   dateValue: any;
+  // Valor del día seleccionado.
   id: any;
+  // Día actual.
+  public today: any = moment().startOf('day');
+  currentDay!: number;
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
+    // Obtén el día actual
+    this.currentDay = moment().utc().date();
+
+    // Obtiene los días del mes actual.
     this.getDaysFromDate(moment().month() + 2, moment().year());
   }
 
+  // Método para obtener los días de un mes y año específicos.
   getDaysFromDate(month: number, year: number) {
     const startDate = moment.utc(`${year}/${month}/01`);
     const endDate = startDate.clone().endOf('month');
@@ -52,6 +65,7 @@ export class CalendaryComponent implements OnInit {
     this.monthSelect = arrayDays;
   }
 
+  // Método para cambiar el mes actual.
   changeMonth(flag: number) {
     if (flag < 0) {
       const prevDate = this.dateSelect.clone().subtract(1, 'month');
@@ -62,6 +76,7 @@ export class CalendaryComponent implements OnInit {
     }
   }
 
+  // Método que se ejecuta cuando se hace click en un día.
   clickDay(day: any) {
     const monthYear = this.dateSelect.format('MM-YYYY');
     const parse = `${day.value}-${monthYear}`;
@@ -74,6 +89,7 @@ export class CalendaryComponent implements OnInit {
     this.dayClicked.emit(parse);
   }
 
+  // Método para obtener el contenido del popover.
   getPopoverContent() {
     if (this.router.url === '/estudiante') {
       return 'Contenido para estudiante';
@@ -81,7 +97,12 @@ export class CalendaryComponent implements OnInit {
       return 'Contenido por defecto';
     }
   }
-  getId(day:any){
-    this.id = day
+
+  getId(day: any) {
+    this.id = day;
+  }
+
+  isCurrentDay(day: any): boolean {
+    return day.value === this.today.date();
   }
 }

@@ -8,12 +8,17 @@
             <h1 class="materias">Materias</h1>
           </div>
           <div class="col-sm">
+            <!-- Select Materias -->
             <div class="d-flex custom-center">
-              <select class="form-select">
-                <option value="1">Orden alfábetico</option>
-                <option value="2">Último accedido</option>
-                <option value="3">Fecha de entrega</option>
+              <select
+                class="form-select"
+                [(ngModel)]="selectedOption"
+                (change)="onOrderChange()"
+              >
+                <option value="1">Orden alfábetico (A-Z)</option>
+                <option value="2">Orden alfábetico (Z-A)</option>
               </select>
+              <!-- Botón de cambio de estilos -->
               <button
                 id="boton"
                 class="btn btn-secondary"
@@ -21,29 +26,41 @@
               >
                 <i
                   id="cuadricula"
-                  [class.bi-grid-fill]="isGridView"
-                  [class.bi-list]="!isGridView"
+                  [class.bi-list]="isGridView"
+                  [class.bi-grid-fill]="!isGridView"
                 ></i>
               </button>
             </div>
           </div>
         </div>
       </div>
-      <div class="section-materias">
-        <div class="box analisis" routerLink="/materia">
-          <div class="circle">
-            <span class="material-symbols-outlined"> function </span>
+      <!-- Materias -->
+      <div class="section-materias" [ngStyle]="gridStyle">
+        <div
+          *ngFor="let materia of materias"
+          class="box {{ materia.tipo }}"
+          routerLink="/materia"
+        >
+          <!-- Modo cuadrícula -->
+          <div *ngIf="isGridView">
+            <div class="fill-content circle">
+              <span class="material-symbols-outlined">
+                {{ materia.icon }}
+              </span>
+            </div>
           </div>
-          <div class="info">
-            <h2>Analisis Matemático I</h2>
-          </div>
-        </div>
-        <div class="box quimica" routerLink="/materia">
-          <div class="circle">
-            <span class="material-symbols-outlined"> co2 </span>
-          </div>
-          <div class="info">
-            <h2>Química</h2>
+          <!-- Modo lista -->
+          <div *ngIf="!isGridView" class="list-box {{ materia.tipo }}">
+            <div class="list-content">
+              <div class="circle">
+                <span class="material-symbols-outlined">
+                  {{ materia.icon }}
+                </span>
+              </div>
+              <div class="info">
+                <h2>{{ materia.nombre }}</h2>
+              </div>
+            </div>
           </div>
         </div>
       </div>
