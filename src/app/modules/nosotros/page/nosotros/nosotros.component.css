@@ -1,17 +1,120 @@
-.contenido{
-    padding-top: 7rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.tarjeta{
-    margin-bottom: 1rem;
-    padding: 20px;
-    font-size: medium;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
-    color: rgb(0, 0, 0);
-    border-radius: 10px;
-   
-    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2), -15px -15px 30px #e2e6e9;
 
+.contenido {
+  padding-top: 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-box {
+  width: 50px;
+  height: 400px;
+  margin: 10px;
+  border-radius: 50px;
+  background: url("../../../../../assets/gerardo.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transition: width 0.5s;
+}
+
+.img-box:nth-child(2) {
+  background: url("../../../../../assets/tomas.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.img-box:nth-child(3) {
+  background: url("../../../../../assets/nacho.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.img-box:nth-child(4) {
+  background: url("../../../../../assets/bruno.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+.img-box:nth-child(5) {
+  background: url("../../../../../assets/franco.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+.img-box h3 {
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+  opacity: 0;
+  transition: bottom 0.5s, opacity 0.5s;
+}
+
+.img-box:hover {
+  width: 300px;
+  cursor: pointer;
+}
+
+.img-box:hover h3 {
+  opacity: 1;
+  bottom: 25px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  margin: 150px auto;
+  width: 70%;
+}
+
+.text-box {
+  font-size: 1.125rem;
+  line-height: 1.78;
+  text-align: justify;
+  text-indent: 20px;
+}
+
+.text-box h2 {
+  font-size: 42px;
+}
+
+.text-box p {
+  font-size: 16px;
+}
+
+img {
+  max-width: 420px;
+  float: left;
+  border: 5px solid #fff;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  img {
+    max-width: 100%;
+  }
+  .text-box h2 {
+    font-size: 100%;
+  }
+
+  .text-box p {
+    font-size: 100%;
+  }
 }
