@@ -63,11 +63,13 @@
       </p>
     </div>
     <div class="gallery">
-      <div class="img-box"><h3>Zellotti Gerardo</h3></div>
-      <div class="img-box"><h3>Esponda Tomás</h3></div>
-      <div class="img-box"><h3>Cappellini Ignacio</h3></div>
-      <div class="img-box"><h3>Acuña Bruno</h3></div>
-      <div class="img-box"><h3>Bravo Franco</h3></div>
+      <div
+        *ngFor="let image of images"
+        class="img-box"
+        [style.background-image]="'url(' + image.url + ')'"
+      >
+        <h3>{{ image.name }}</h3>
+      </div>
     </div>
   </div>
 </div>
