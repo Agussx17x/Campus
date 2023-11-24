@@ -4,7 +4,7 @@ export interface Trabajos {
     titulo:string;
     docs:any;
     descripcion: string;
-    fecha: string | any;
+    fechaEntrega: string | any;
 
     //Imagen
     //imagen:string;
