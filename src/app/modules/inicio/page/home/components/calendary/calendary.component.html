@@ -21,15 +21,12 @@
       >
         <button
           id="{{ id }}"
-          (click)="clickDay(day)"
           class="btn-day"
           [ngStyle]="{
             'background-color': isCurrentDay(day) ? 'rgb(38, 0, 255)' : 'aliceblue',
             'color': isCurrentDay(day) ? 'white' : 'none'
           }"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-          [popover]="getPopoverContent()"
+          [popover]="getPopoverContent(day)"
           triggers="mouseenter:mouseleave"
           placement="top"
           container="body"
