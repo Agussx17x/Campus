@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Usuario } from 'src/app/models/usuario';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit {
   hide = true;
 
   usuarios: Usuario = {
@@ -18,18 +18,18 @@ export class RegisterComponent implements OnInit{
     password: '',
     nombre: '',
     apellido: '',
-    dni:'',
-    credencial:'',
+    dni: '',
+    credencial: '',
   };
 
   uid = '';
 
-  collectionUsers : Usuario [] = [];
+  collectionUsers: Usuario[] = [];
 
   constructor(
     public serviceAuth: AuthService,
     public firestore: FirestoreService,
-    public router : Router,
+    public router: Router
   ) {}
 
   async registrarse() {
@@ -41,11 +41,10 @@ export class RegisterComponent implements OnInit{
       .registrar(credenciales.email, credenciales.password)
       .then((res) => {
         alert('Ha agregado un nuevo usuario con exito');
-        this.router.navigate(['/admin'])
+        this.router.navigate(['/admin']);
       })
       .catch((error) =>
         alert('Hubo un error al cargar el usuario :( \n' + error)
-        
       );
 
     //UID
@@ -70,10 +69,8 @@ export class RegisterComponent implements OnInit{
       });
   }
 
-  async ngOnInit(){
+  async ngOnInit() {
     const uid = await this.serviceAuth.getuid();
     console.log(uid);
   }
-
 }
- 

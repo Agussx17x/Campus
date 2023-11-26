@@ -27,7 +27,6 @@ export class AuthService {
     }, tiempoInactividad);
   }
 
-
   // Metodo para registrarse
   registrar(email: string, password: string) {
     // retorna nuevo valor de nombre y contrasena
