@@ -1,5 +1,6 @@
-<!-- Button trigger modal -->
+<!-- Botón que llama al modal "Agregar Sección" -->
 <button
+  *ngIf="usuario.credencial === 'doc'"
   style="display: flex"
   type="button"
   class="btn btn-primary"
@@ -12,7 +13,7 @@
   Agregar Sección
 </button>
 
-<!-- Modal -->
+<!-- Modal para "Agregar Sección" -->
 <div
   class="modal fade"
   id="exampleModal"
@@ -62,9 +63,11 @@
   <h2>{{ seccion.titulo }}</h2>
   <p>{{ seccion.descripcion }}</p>
 
-  <!-- Button trigger modal -->
+  <!-- Botones "Añadir Material" y para mostrar los materiales -->
   <div class="row" *ngIf="botones()">
+    <!-- Botón que llama al modal "Añadir Material" -->
     <button
+      *ngIf="usuario.credencial === 'doc'"
       style="
         border-radius: 100%;
         width: 40px;
@@ -78,6 +81,7 @@
     >
       <span class="material-symbols-outlined add"> add </span>
     </button>
+    <!-- Botón que  muestra la lista de materiales -->
     <button
       style="
         border-radius: 100%;
@@ -91,12 +95,13 @@
       [attr.data-bs-target]="'#' + seccion.titulo.split(' ').join('_')"
       aria-expanded="false"
       [attr.aria-controls]="seccion.titulo.split(' ').join('_')"
+      (click)="toggleSectionState(seccion)"
     >
       <span class="material-symbols-outlined"> list_alt </span>
     </button>
   </div>
 
-  <!-- Modal -->
+  <!-- Modal para "Añadir Material" -->
   <div
     class="modal fade"
     id="{{ seccion.titulo.split(' ').join('_') }}"
@@ -166,9 +171,11 @@
       </div>
     </div>
   </div>
+  <!-- Aquí es donde se aloja los materiales subidos -->
   <div class="material">
     <div
-      class="collapse multi-collapse"
+      class="collapse"
+      [ngClass]="{ show: isSectionExpanded(seccion) }"
       id="{{ seccion.titulo.split(' ').join('_') }}"
     >
       <div class="card card-body">
@@ -190,7 +197,9 @@
               <td>{{ material.titulo }}</td>
               <td>{{ material.descripcion }}</td>
               <td>{{ material.fechaEntrega }}</td>
-              <td><a [href]="material.urlDescarga" download>Descargar Archivo</a></td>
+              <td>
+                <a [href]="material.urlDescarga" download>Descargar Archivo</a>
+              </td>
             </tr>
           </tbody>
         </table>
