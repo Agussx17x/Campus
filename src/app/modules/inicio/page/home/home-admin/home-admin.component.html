@@ -20,6 +20,12 @@
           Agregar Aviso
         </a>
       </td>
+      <td class="td" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+        <a class="add">
+          <span class="material-symbols-outlined"> book_2 </span>
+          Agregar Materia
+        </a>
+      </td>
     </tr>
   </ul>
   <div class="row">
@@ -96,6 +102,73 @@
           >
             Subir
           </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Materias -->
+  <div
+    class="modal fade"
+    id="exampleModal2"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Agregar una nueva materia
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <!-- Título -->
+            <label class="form-control">
+              Nombre de la materia:
+              <input
+                class="form-control"
+                name="materia"
+                formControlName="titulo"
+                placeholder="Ingrese un título"
+                required
+              />
+            </label>
+            <!-- Descripción -->
+            <label class="form-control">
+              Icono:
+              <select class="form-select" aria-label="Default select example">
+                <option value="" disabled selected>Eliga un Icono</option>
+                <option value="fuction">Analisis Matematico</option>
+                <option value="smar tphone">Plataf. Móviles</option>
+                <option value="book_3">Ingles</option>
+                <option value="crowdsource">Relac. Humanas</option>
+                <option value="encrypted">Auditoria</option>
+                <option value="balance">Leg. Laboral</option>
+                <option value="savings">Emprendimiento</option>
+                <option value="contract_edit">COE</option>
+                <option value="terminal">Practicas Profesionilizantes</option>
+                <option value="code">Programacion</option>
+                <option value="smart_toy">Robotica</option>
+              </select>
+            </label>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cerrar
+          </button>
+          <button type="button" class="btn btn-primary">Crear</button>
         </div>
       </div>
     </div>
