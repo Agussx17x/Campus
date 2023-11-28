@@ -63,9 +63,12 @@ export class HomeAdminComponent {
     this.avisosService.obtenerAvisos().subscribe((avisos) => {
       this.coleccionAvisos = avisos;
     });
-    this.crudService.obtenerMateria().subscribe((materias) => {
-      this.coleccionMateria = materias;
+
+    this.materias = new FormGroup({
+      titulo: new FormControl('', Validators.required),
+      icono: new FormControl('', Validators.required),
     });
+
     // Mostrar usuario.
     this.afAuth.authState.subscribe((user) => {
       if (user) {
@@ -108,6 +111,13 @@ export class HomeAdminComponent {
         .catch((error) => {
           alert('Hubo un error al intentar cargar el nuevo aviso \n' + error);
         });
+    }
+  }
+
+  crearMateria() {
+    if (this.materias.valid) {
+      this.crudService.crearMateria(this.materias.value);
+      alert('Materia Creada');
     }
   }
 }

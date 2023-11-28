@@ -1,48 +1,50 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CrudService } from '../../services/crud.service';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css'],
 })
-export class CardComponent {
-  // Variable para mantener el estado de la vista (cuadrícula o lista).
+export class CardComponent implements OnInit {
   public isGridView: boolean = false;
-
-  // Objeto que define los estilos de la cuadrícula.
-  public gridStyle: {
-    display: string;
-    gridTemplateColumns?: string;
-    gap?: string;
-  } = {
+  public gridStyle: any = {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
     gap: '16px',
   };
-
-  // Array de materias.
-  public materias = [
-    { nombre: 'Analisis Matemático I', tipo: 'analisis', icon: 'function' },
-    { nombre: 'Química', tipo: 'quimica', icon: 'co2' },
-    // Agrega más materias según sea necesario...
-  ];
-
-  // Opción seleccionada en el menú desplegable.
+  public materias: any[] = [];
   public selectedOption = '1';
 
-  constructor() {
-    this.setGridStyle(); // Asegura que los estilos se establezcan correctamente al inicio
+  constructor(private crudService: CrudService) {
+    this.setGridStyle();
   }
 
-  // Metodo para cambiar la vista entre cuadricula y lista.
+  ngOnInit() {
+    this.crudService.obtenerMaterias().subscribe((data) => {
+      this.materias = data.map((e) => {
+        const data = e.payload.doc.data() as {
+          nombre: string;
+          tipo: string;
+          icono: string;
+        };
+        return {
+          id: e.payload.doc.id,
+          nombre: data.nombre || '',
+          tipo: data.tipo || '',
+          icono: data.icono || '',
+          ...(typeof data === 'object' ? data : {}),
+        };
+      });
+    });
+  }
+
   public changeButton() {
     this.isGridView = !this.isGridView;
     this.setGridStyle();
   }
 
-  // Método para aplicar el estilo de cuadrícula o lista.
   private setGridStyle() {
-    // Si isGridView es true, se vera en modo cuadrícula.
     if (this.isGridView) {
       this.gridStyle = {
         display: 'grid',
@@ -56,13 +58,12 @@ export class CardComponent {
     }
   }
 
-  // Método para manejar el cambio en la opción seleccionada.
   public onOrderChange() {
     switch (this.selectedOption) {
-      case '1': // Orden alfabético (A-Z)
+      case '1':
         this.materias.sort((a, b) => a.nombre.localeCompare(b.nombre));
         break;
-      case '2': // Orden alfabético (Z-A)
+      case '2':
         this.materias.sort((a, b) => b.nombre.localeCompare(a.nombre));
         break;
       default:

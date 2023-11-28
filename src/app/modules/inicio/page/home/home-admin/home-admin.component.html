@@ -106,6 +106,7 @@
       </div>
     </div>
   </div>
+
   <!-- Modal Materias -->
   <div
     class="modal fade"
@@ -128,11 +129,12 @@
           ></button>
         </div>
         <div class="modal-body">
-          <form  [formGroup]="materias">
+          <form [formGroup]="materias">
             <!-- Título -->
             <label class="form-control">
               Nombre de la materia:
               <input
+                formControlName="titulo"
                 class="form-control"
                 name="materia"
                 formControlName="titulo"
@@ -143,10 +145,14 @@
             <!-- Descripción -->
             <label class="form-control">
               Icono:
-              <select class="form-select" aria-label="Default select example">
+              <select
+                class="form-select"
+                formControlName="icono"
+                aria-label="Default select example"
+              >
                 <option value="" disabled selected>Eliga un Icono</option>
-                <option value="fuction">Analisis Matematico</option>
-                <option value="smar tphone">Plataf. Móviles</option>
+                <option value="function">Analisis Matematico</option>
+                <option value="smartphone">Plataf. Móviles</option>
                 <option value="book_3">Ingles</option>
                 <option value="crowdsource">Relac. Humanas</option>
                 <option value="encrypted">Auditoria</option>
@@ -168,7 +174,13 @@
           >
             Cerrar
           </button>
-          <button type="button" class="btn btn-primary">Crear</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="crearMateria()"
+          >
+            Crear
+          </button>
         </div>
       </div>
     </div>

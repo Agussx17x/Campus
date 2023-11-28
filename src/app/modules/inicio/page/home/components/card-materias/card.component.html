@@ -38,27 +38,27 @@
       <div class="section-materias" [ngStyle]="gridStyle">
         <div
           *ngFor="let materia of materias"
-          class="box {{ materia.tipo }}"
+          class="box quimica"
           routerLink="/materia"
         >
           <!-- Modo cuadrícula -->
           <div *ngIf="isGridView">
             <div class="fill-content circle">
               <span class="material-symbols-outlined">
-                {{ materia.icon }}
+                {{ materia.icono }}
               </span>
             </div>
           </div>
           <!-- Modo lista -->
-          <div *ngIf="!isGridView" class="list-box {{ materia.tipo }}">
+          <div *ngIf="!isGridView" class="list-box quimica">
             <div class="list-content">
               <div class="circle">
                 <span class="material-symbols-outlined">
-                  {{ materia.icon }}
+                  {{ materia.icono }}
                 </span>
               </div>
               <div class="info">
-                <h2>{{ materia.nombre }}</h2>
+                <h2>{{ materia.titulo }}</h2>
               </div>
             </div>
           </div>

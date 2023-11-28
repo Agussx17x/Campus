@@ -14,6 +14,7 @@ import { Seccion } from 'src/app/models/seccion';
 export class CrudService {
   materiaColletion: AngularFirestoreCollection<Materia>;
   seccionesCollection: AngularFirestoreCollection<Seccion>;
+  
 
   constructor(
     private database: AngularFirestore,
@@ -104,25 +105,19 @@ export class CrudService {
   }
 
   //Crear Materia admin
-  crearMateria(materia: Materia) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        // Toma el ID referenciando a la base de datos y crea un nuevo iD.
-        const id = this.database.createId();
-        materia.idMateria = id;
-
-        // Guarda ese nuevo ID.
-        const resultado = await this.materiaColletion.doc(id).set(materia);
-        resolve(resultado);
-      } catch (error) {
-        reject(error);
-      }
+  crearMateria(data: any) {
+    return new Promise<any>((resolve, reject) => {
+      this.database
+        .collection('materias')
+        .add(data)
+        .then(
+          (res) => {},
+          (err) => reject(err)
+        );
     });
   }
-
-  obtenerMateria() {
-    return this.materiaColletion
-      .snapshotChanges()
-      .pipe(map((action) => action.map((a) => a.payload.doc.data())));
+  obtenerMaterias() {
+    return this.database.collection('materias').snapshotChanges();
   }
+
 }
