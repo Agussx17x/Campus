@@ -40,33 +40,43 @@ export class CalendaryComponent implements OnInit {
     // Obtiene los días del mes actual.
     this.getDaysFromDate(moment().month() + 2, moment().year());
     // Obtiene las secciones y sus materiales de estudio
-    this.getSections().subscribe(sections => {
-      sections.forEach(section => {
-        this.getStudyMaterials(section.id).subscribe(materials => {
+    this.getSections().subscribe((sections) => {
+      sections.forEach((section) => {
+        this.getStudyMaterials(section.id).subscribe((materials) => {
           this.materials = [...this.materials, ...materials];
         });
       });
     });
   }
   getSections() {
-    return this.firestore.collection('secciones').snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as any; // Cambia 'unknown' por 'any'
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      }))
-    );
+    return this.firestore
+      .collection('secciones')
+      .snapshotChanges()
+      .pipe(
+        map((actions) =>
+          actions.map((a) => {
+            const data = a.payload.doc.data() as any; // Cambia 'unknown' por 'any'
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          })
+        )
+      );
   }
-  
+
   getStudyMaterials(seccionId: string) {
-    return this.firestore.collection(`secciones/${seccionId}/materiales`).snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as Trabajos;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      }))
-    );
-  }  
+    return this.firestore
+      .collection(`secciones/${seccionId}/materiales`)
+      .snapshotChanges()
+      .pipe(
+        map((actions) =>
+          actions.map((a) => {
+            const data = a.payload.doc.data() as Trabajos;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          })
+        )
+      );
+  }
   // Método para obtener los días de un mes y año específicos.
   getDaysFromDate(month: number, year: number) {
     const startDate = moment.utc(`${year}/${month}/01`);
@@ -78,13 +88,16 @@ export class CalendaryComponent implements OnInit {
       a = parseInt(a) + 1;
       const dayObject = moment(`${year}-${month}-${a}`);
       return {
-        name: dayObject.format('dddd'),
         value: a,
+        month: month - 1,  // los meses en JavaScript empiezan en 0
+        year: year,
+        name: dayObject.format('dddd'),
         indexWeek: dayObject.isoWeekday(),
       };
     });
     this.monthSelect = arrayDays;
   }
+  
   // Método para cambiar el mes actual.
   changeMonth(flag: number) {
     if (flag < 0) {
@@ -98,18 +111,25 @@ export class CalendaryComponent implements OnInit {
   // Método para obtener el contenido del popover.
   getPopoverContent(day: any) {
     // Filtra los materiales para obtener solo los que se deben entregar en el día especificado
-    const materialsForDay = this.materials.filter(material => moment(material.fechaEntrega, 'YYYY-MM-DD').date() === day.value);
+    const materialsForDay = this.materials.filter(
+      (material) =>
+        moment(material.fechaEntrega, 'YYYY-MM-DD').date() === day.value
+    );
     let content = '';
     for (const material of materialsForDay) {
       content += `Título: ${material.titulo}, Fecha de entrega: ${material.fechaEntrega}\n`;
     }
     return content;
   }
-  
+
   getId(day: any) {
     this.id = day;
   }
-  isCurrentDay(day: any): boolean {
-    return day.value === this.today.date();
-  }
+  
+  isCurrentDay(day: any) {
+  const today = moment();
+  const dayObject = moment(`${this.dateSelect.year()}-${this.dateSelect.month()}-${day.value}`);
+  return today.isSame(dayObject, 'day');
+}
+  
 }
