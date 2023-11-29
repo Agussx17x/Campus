@@ -38,6 +38,7 @@
       <div class="section-materias" [ngStyle]="gridStyle">
         <div
           *ngFor="let materia of materias"
+          [ngClass]="materia.icono"
           class="box quimica"
           routerLink="/materia"
         >
@@ -54,7 +55,7 @@
             <div class="list-content">
               <div class="circle">
                 <span class="material-symbols-outlined">
-                  {{ materia.icono }}
+                  {{materia.icono}}
                 </span>
               </div>
               <div class="info">

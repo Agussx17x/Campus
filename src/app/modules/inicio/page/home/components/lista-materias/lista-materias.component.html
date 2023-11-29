@@ -1,0 +1,140 @@
+<div class="body">
+  <!-- Tabla de las Materias -->
+  <table class="table table-hover">
+    <tr class="tHead">
+      <th>...</th>
+      <th scope="col" class="titulo">Nombre de la Materia</th>
+      <th scope="col">Icono</th>
+      <th scope="col">Acciones</th>
+    </tr>
+    <tr
+      class="tBody"
+      *ngFor="
+        let materia of coleccionMateria
+          | paginate : { itemsPerPage: 5, currentPage: pag };
+        let id = index
+      "
+    >
+      <td class="id">{{ id + 1 }}</td>
+      <td class="titulo">{{ materia.titulo }}</td>
+      <td class="iconos">
+        <span class="material-symbols-outlined">
+          {{ materia.icono }}
+        </span>
+      </td>
+      <td class="acciones">
+        <button
+          id="edit"
+          class="editar"
+          title="Editar"
+          data-bs-toggle="modal"
+          data-bs-target="#editarMateria"
+          (click)="mostrarEditar(materia)"
+        >
+          <span class="material-symbols-outlined"> edit </span>
+        </button>
+        <button
+          id="delete"
+          class="eliminar"
+          title="Eliminar"
+          (click)="borrarMateria(materia)"
+        >
+          <span class="material-symbols-outlined"> delete </span>
+        </button>
+      </td>
+    </tr>
+    <!-- Pagination -->
+    <tr class="paginacion">
+      <td colspan="3">
+        <pagination-controls
+          id="DEFAULT_PAGINATION_ID"
+          (pageChange)="pag = $event"
+          previousLabel="Anterior"
+          nextLabel="Siguiente"
+        ></pagination-controls>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Modal para editar -->
+  <div
+    class="modal fade"
+    id="editarMateria"
+    *ngFor="let materia of coleccionMateria"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Edite la siguiente materia.
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="materias">
+            <!-- Título -->
+            <label class="form-control">
+              Nombre de la materia:
+              <input
+                formControlName="titulo"
+                class="form-control"
+                name="materia"
+                formControlName="titulo"
+                placeholder="{{ materia.titulo }}"
+                required
+              />
+            </label>
+            <!-- Descripción -->
+            <label class="form-control">
+              Icono:
+              <select
+                class="form-select"
+                formControlName="icono"
+                aria-label="Default select example"
+              >
+                <option value="" disabled selected>{{ materia.titulo }}</option>
+                <option value="function">Analisis Matematico</option>
+                <option value="smartphone">Plataf. Móviles</option>
+                <option value="book_3">Ingles</option>
+                <option value="crowdsource">Relac. Humanas</option>
+                <option value="encrypted">Auditoria</option>
+                <option value="balance">Leg. Laboral</option>
+                <option value="savings">Emprendimiento</option>
+                <option value="contract_edit">COE</option>
+                <option value="terminal">Practicas Profesionilizantes</option>
+                <option value="code">Programacion</option>
+                <option value="smart_toy">Robotica</option>
+              </select>
+            </label>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <!-- Botón para cerrar el modal -->
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cerrar
+          </button>
+          <!-- Botón para editar el modal -->
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="editarMateria()"
+          >
+            Crear
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

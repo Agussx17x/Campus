@@ -14,7 +14,6 @@ import { Seccion } from 'src/app/models/seccion';
 export class CrudService {
   materiaColletion: AngularFirestoreCollection<Materia>;
   seccionesCollection: AngularFirestoreCollection<Seccion>;
-  
 
   constructor(
     private database: AngularFirestore,
@@ -104,7 +103,7 @@ export class CrudService {
     }
   }
 
-  //Crear Materia admin
+  //Crear Materia
   crearMateria(data: any) {
     return new Promise<any>((resolve, reject) => {
       this.database
@@ -116,8 +115,27 @@ export class CrudService {
         );
     });
   }
+
+  // Obtener Materia
   obtenerMaterias() {
     return this.database.collection('materias').snapshotChanges();
   }
 
+  editarMateria(idMateria: string, nuevaData: Materia) {
+    return this.database
+      .collection('materias')
+      .doc(idMateria)
+      .update(nuevaData);
+  }
+
+  eliminarMateria(idMateria: string) {
+    return new Promise((resolve, reject) => {
+      try {
+        const resp = this.materiaColletion.doc(idMateria).delete();
+        resolve(resp);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
 }
