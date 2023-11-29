@@ -21,7 +21,6 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 export class LoginComponent {
   email!: string;
 
-  // Interfaz
   usuarios: Usuario = {
     uid: '',
     email: '',
@@ -46,7 +45,7 @@ export class LoginComponent {
   passwordVisible = false;
 
   /////////////////////////// No Borrar /////////////////////////////////////
-  //Cambiar Active para modo Responsive
+  //Cambiar Active
   //Agregamos la clase Active
   activeSignup() {
     let formBx = document.getElementById('formBx');
@@ -63,7 +62,6 @@ export class LoginComponent {
     formBx?.classList.remove('active');
     body?.classList.remove('active');
   }
-
   /////////////////////////// Fin No Borrar /////////////////////////////////////
 
   constructor(
@@ -100,6 +98,7 @@ export class LoginComponent {
               .doc(user.uid)
               .valueChanges()
               .subscribe((data: any) => {
+                //Toma las credenciales y las compara
                 const credentials = data.credencial;
                 if (credentials === 'est') {
                   this.router.navigate(['/estudiante']);
@@ -129,7 +128,7 @@ export class LoginComponent {
       }
     }
   }
-
+  //Boton para Volver al inicio
   back() {
     this.router.navigate(['/inicio']);
   }

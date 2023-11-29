@@ -51,7 +51,7 @@ import { ListaMateriasComponent } from './components/lista-materias/lista-materi
     FormsModule,
     ReactiveFormsModule,
     PopoverModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   exports: [
     HomeAdminComponent,

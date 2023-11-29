@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-table',
@@ -99,6 +100,8 @@ export class TableComponent {
       const url = await this.crudService.uploadFile(this.file);
       this.nuevoMaterial.urlDescarga = url;
     }
+    // Convierte la fecha a formato ISO
+    this.nuevoMaterial.fechaEntrega = moment(this.nuevoMaterial.fechaEntrega).toISOString();
     this.crudService.crearMaterial(idSeccion, this.nuevoMaterial).then(() => {
       this.nuevoMaterial = {
         titulo: '',
