@@ -149,27 +149,79 @@
   margin: 10px;
 }
 
-.function{
-  --bg-color: #f07171;
+.function {
+  --bg-color: #ef3131;
   --bg-color-light: #ffeeba;
   --text-color-hover: #4c5656;
   --box-shadow-color: rgba(97, 218, 255, 0.48);
 }
 
-.contract_edit{
-  --bg-color: #e1ee70;
+.smartphone {
+  --bg-color: rgb(97, 150, 219);
   --bg-color-light: #ffeeba;
   --text-color-hover: #4c5656;
   --box-shadow-color: rgba(97, 218, 255, 0.48);
 }
-
-.smartphone{
-  --bg-color: #70a7ee;
+.book_3 {
+  --bg-color: #ad5cf9;
   --bg-color-light: #ffeeba;
   --text-color-hover: #4c5656;
   --box-shadow-color: rgba(97, 218, 255, 0.48);
 }
-
+.crowdsource {
+  --bg-color: #f9b55c;
+  --bg-color-light: #ffeeba;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.encrypted {
+  --bg-color: #3a71e9;
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.balance {
+  --bg-color: #876927;
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.savings {
+  --bg-color: rgb(61, 131, 40);
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.contract_edit {
+  --bg-color: rgb(204, 85, 214);
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.terminal {
+  --bg-color: rgb(85, 180, 214);
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.code {
+  --bg-color: rgb(135, 138, 139);
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.smart_toy {
+  --bg-color: rgb(221, 221, 101);
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.directions_run {
+  --bg-color: rgb(61, 131, 40);
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
 span {
   font-size: 5rem;
 }
