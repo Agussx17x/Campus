@@ -20,12 +20,20 @@
           Agregar Aviso
         </a>
       </td>
+      <td class="td" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+        <a class="add">
+          <span class="material-symbols-outlined"> book_2 </span>
+          Agregar Materia
+        </a>
+      </td>
     </tr>
   </ul>
+
   <div class="row">
     <div class="col-md-8">
       <!-- Contenido -->
       <app-avisos></app-avisos>
+      <app-lista-materias></app-lista-materias>
       <!--!FINContenido-->
     </div>
     <div id="barralateral" class="col-md-4">
@@ -34,6 +42,7 @@
       <!--*FINBarra Lateral-->
     </div>
   </div>
+
   <!-- Modal Avisos -->
   <div
     class="modal fade"
@@ -95,6 +104,86 @@
             (click)="agregarAviso()"
           >
             Subir
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Materias -->
+  <div
+    class="modal fade"
+    id="exampleModal2"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Agregar una nueva materia
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="materias">
+            <!-- Título -->
+            <label class="form-control">
+              Nombre de la materia:
+              <input
+                formControlName="titulo"
+                class="form-control"
+                name="materia"
+                formControlName="titulo"
+                placeholder="Ingrese un título"
+                required
+              />
+            </label>
+            <!-- Descripción -->
+            <label class="form-control">
+              Icono:
+              <select
+                class="form-select"
+                formControlName="icono"
+                aria-label="Default select example"
+              >
+                <option value="" disabled selected>Eliga un Icono</option>
+                <option value="function">Análisis matemático</option>
+                <option value="smartphone">Plataf. Móviles</option>
+                <option value="book_3">Inglés</option>
+                <option value="crowdsource">Relac. Humanas</option>
+                <option value="encrypted">Auditoría</option>
+                <option value="balance">Leg. Laboral</option>
+                <option value="savings">Emprendimiento</option>
+                <option value="contract_edit">COE</option>
+                <option value="terminal">Prácticas Profesionilizantes</option>
+                <option value="code">Programación</option>
+                <option value="smart_toy">Robótica</option>
+                <option value="directions_run">Ed física</option>
+              </select>
+            </label>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cerrar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="crearMateria()"
+          >
+            Crear
           </button>
         </div>
       </div>

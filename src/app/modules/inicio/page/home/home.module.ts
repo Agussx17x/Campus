@@ -5,6 +5,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { HomeEstudianteComponent } from './home-estudiante/home-estudiante.component';
 import { HomeDocenteComponent } from './home-docente/home-docente.component';
+
 //"" Compartidos
 import { AvisosComponent } from './components/avisos/avisos.component';
 import { CalendaryComponent } from './components/calendary/calendary.component';
@@ -22,7 +23,7 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TableComponent } from './components/table/table.component';
 import { NgxPaginationModule } from "ngx-pagination";
 import { CardComponent } from './components/card-materias/card.component';
-import { RouterModule } from '@angular/router';
+import { ListaMateriasComponent } from './components/lista-materias/lista-materias.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { RouterModule } from '@angular/router';
     MateriaComponent,
     PerfilComponent,
     ListaUsuariosComponent,
-    TableComponent
+    TableComponent,
+    ListaMateriasComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +64,8 @@ import { RouterModule } from '@angular/router';
     ListaUsuariosComponent,
     PerfilComponent,
     PopoverModule,
-    TableComponent
+    TableComponent,
+    ListaMateriasComponent
   ],
 })
 export class HomeModule {}

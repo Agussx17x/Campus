@@ -1,28 +1,18 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
 .body {
-  margin: 0;
-  padding: 50px;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 3rem;
 }
-
 table {
   border-radius: 10px;
   background: #e2e6e9;
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2), -15px -15px 30px #e2e6e9;
-}
-
-td,
-th {
-  padding: 0.5rem;
-}
-
-.nomapell {
-  width: 14rem;
+  width: 40rem;
 }
 
 table .tHead {
@@ -35,19 +25,16 @@ table .tHead th {
 
 table .tBody td {
   height: 50px;
-  width: calc(100% / 4);
   text-align: center;
 }
 
 table .tBody .acciones {
-  width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 
 table .tBody .acciones button {
-  width: 100px;
   border-radius: 10px;
   border-style: none;
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
@@ -76,24 +63,17 @@ table .tBody .acciones .eliminar {
 table .tBody .acciones button:hover {
   box-shadow: inset 10px 10px 30px rgba(0, 0, 0, 0.2);
 }
-#acciones,
-#accionesth {
-  width: 7rem;
-}
-/*CSS de icono de busqueda*/
-.search-container {
-  position: relative;
-}
-
-.search-container input[type="text"] {
-  padding-left: 30px;
-}
-
-.search-container .fa-search {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+.acciones{
+  display: flex;
+  justify-content: center;
 }
 .hide-icon {
   display: none;
+}
+pagination-controls{
+    padding: 0;
+    width: 2rem;
+}
+.titulo, .id{
+    width: 8rem;
 }

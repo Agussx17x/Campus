@@ -5,6 +5,7 @@ import { CrudService } from 'src/app/modules/inicio/page/home/services/crud.serv
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { Router } from '@angular/router';
 import { Avisos } from 'src/app/models/avisos';
+import { Materia } from 'src/app/models/materia';
 import { AvisosService } from '../services/avisos.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ListaUsuariosService } from '../services/lista-usuarios.service';
@@ -18,6 +19,7 @@ export class HomeAdminComponent {
   // Colecciones
   coleccionTrabajos: Trabajos[] = [];
   coleccionAvisos: Avisos[] = [];
+  coleccionMateria: Materia[] = [];
 
   // FormGroups
   trabajo = new FormGroup({
@@ -30,6 +32,11 @@ export class HomeAdminComponent {
   avisos = new FormGroup({
     titulo: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required),
+  });
+
+  materias = new FormGroup({
+    titulo: new FormControl('', Validators.required),
+    icono: new FormControl('', Validators.required),
   });
 
   nombre: string = '';
@@ -56,6 +63,12 @@ export class HomeAdminComponent {
     this.avisosService.obtenerAvisos().subscribe((avisos) => {
       this.coleccionAvisos = avisos;
     });
+
+    this.materias = new FormGroup({
+      titulo: new FormControl('', Validators.required),
+      icono: new FormControl('', Validators.required),
+    });
+
     // Mostrar usuario.
     this.afAuth.authState.subscribe((user) => {
       if (user) {
@@ -98,6 +111,13 @@ export class HomeAdminComponent {
         .catch((error) => {
           alert('Hubo un error al intentar cargar el nuevo aviso \n' + error);
         });
+    }
+  }
+
+  crearMateria() {
+    if (this.materias.valid) {
+      this.crudService.crearMateria(this.materias.value);
+      alert('Materia Creada');
     }
   }
 }

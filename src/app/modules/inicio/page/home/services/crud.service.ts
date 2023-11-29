@@ -5,24 +5,30 @@ import {
 } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize, map } from 'rxjs/operators';
+import { Materia } from 'src/app/models/materia';
 import { Seccion } from 'src/app/models/seccion';
+
 @Injectable({
   providedIn: 'root',
 })
 export class CrudService {
-
+  materiaColletion: AngularFirestoreCollection<Materia>;
   seccionesCollection: AngularFirestoreCollection<Seccion>;
 
-  constructor(private database: AngularFirestore, private storage: AngularFireStorage ) {
+  constructor(
+    private database: AngularFirestore,
+    private storage: AngularFireStorage
+  ) {
     this.seccionesCollection = database.collection('secciones');
+    this.materiaColletion = database.collection('materias');
   }
 
-  crearSeccion(seccion:any) {
+  crearSeccion(seccion: any) {
     return new Promise(async (resolve, reject) => {
       try {
         const id = this.database.createId();
         seccion.idSeccion = id;
-  
+
         const resultado = await this.seccionesCollection.doc(id).set(seccion);
         resolve(resultado);
       } catch (error) {
@@ -30,29 +36,35 @@ export class CrudService {
       }
     });
   }
-  
-  crearMaterial(idSeccion:any, material:any) {
+
+  crearMaterial(idSeccion: any, material: any) {
     return new Promise(async (resolve, reject) => {
       try {
         const id = this.database.createId();
         material.idMaterial = id;
-  
-        const resultado = await this.seccionesCollection.doc(idSeccion).collection('materiales').doc(id).set(material);
+
+        const resultado = await this.seccionesCollection
+          .doc(idSeccion)
+          .collection('materiales')
+          .doc(id)
+          .set(material);
         resolve(resultado);
       } catch (error) {
         reject(error);
       }
     });
   }
-  
+
   obtenerSecciones() {
     return this.seccionesCollection
       .snapshotChanges()
       .pipe(map((action) => action.map((a) => a.payload.doc.data())));
   }
-  
-  obtenerMateriales(idSeccion:any) {
-    return this.seccionesCollection.doc(idSeccion).collection('materiales')
+
+  obtenerMateriales(idSeccion: any) {
+    return this.seccionesCollection
+      .doc(idSeccion)
+      .collection('materiales')
       .snapshotChanges()
       .pipe(map((action) => action.map((a) => a.payload.doc.data())));
   }
@@ -64,20 +76,22 @@ export class CrudService {
       const filePath = `materiales/${file.name}`;
       const fileRef = this.storage.ref(filePath);
       const task = this.storage.upload(filePath, file);
-  
+
       // Observa el progreso de la subida
-      task.snapshotChanges().pipe(
-        finalize(async () => {
-          // Subida completada
-          const url = await fileRef.getDownloadURL().toPromise();
-          console.log(`${file.name} subido correctamente`);
-          console.log(`URL de descarga: ${url}`);
-          resolve(url);
-        })
-      ).subscribe();
+      task
+        .snapshotChanges()
+        .pipe(
+          finalize(async () => {
+            // Subida completada
+            const url = await fileRef.getDownloadURL().toPromise();
+            console.log(`${file.name} subido correctamente`);
+            console.log(`URL de descarga: ${url}`);
+            resolve(url);
+          })
+        )
+        .subscribe();
     });
   }
-  
 
   async listFiles() {
     const ref = this.storage.ref('materiales');
@@ -87,5 +101,41 @@ export class CrudService {
       console.log(`Nombre del archivo: ${item.name}`);
       console.log(`URL de descarga: ${url}`);
     }
+  }
+
+  //Crear Materia
+  crearMateria(data: any) {
+    return new Promise<any>((resolve, reject) => {
+      this.database
+        .collection('materias')
+        .add(data)
+        .then(
+          (res) => {},
+          (err) => reject(err)
+        );
+    });
+  }
+
+  // Obtener Materia
+  obtenerMaterias() {
+    return this.database.collection('materias').snapshotChanges();
+  }
+
+  editarMateria(idMateria: string, nuevaData: Materia) {
+    return this.database
+      .collection('materias')
+      .doc(idMateria)
+      .update(nuevaData);
+  }
+
+  eliminarMateria(idMateria: string) {
+    return new Promise((resolve, reject) => {
+      try {
+        const resp = this.materiaColletion.doc(idMateria).delete();
+        resolve(resp);
+      } catch (error) {
+        reject(error);
+      }
+    });
   }
 }

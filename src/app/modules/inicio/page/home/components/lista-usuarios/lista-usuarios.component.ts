@@ -55,6 +55,7 @@ export class ListaUsuariosComponent {
       credencial: usuarioSeleccionado.credencial,
     });
   }
+  
   // Función para editar usuario.
   editarUsuario() {
     let datos: Usuario = {
