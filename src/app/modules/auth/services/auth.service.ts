@@ -33,7 +33,7 @@ export class AuthService {
     return this.afAuth.createUserWithEmailAndPassword(email, password);
   }
 
-  //metodo login
+  // Metodo login
   async login(email: string, password: string) {
     try {
       await this.afAuth.signInWithEmailAndPassword(email, password);
@@ -42,12 +42,12 @@ export class AuthService {
       console.error(error);
     }
   }
-  //Cerrar sesion
+  // Cerrar sesion
   async logout() {
     await this.afAuth.signOut();
     this.router.navigate(['/login']);
   }
-  //!Obtener token
+  // Obtener token
   get token() {
     return this.afAuth.idToken;
   }
