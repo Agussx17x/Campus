@@ -22,6 +22,7 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TableComponent } from './components/table/table.component';
 import { NgxPaginationModule } from "ngx-pagination";
 import { CardComponent } from './components/card-materias/card.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import { CardComponent } from './components/card-materias/card.component';
     FormsModule,
     ReactiveFormsModule,
     PopoverModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   exports: [
     HomeAdminComponent,
