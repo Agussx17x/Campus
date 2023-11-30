@@ -306,7 +306,7 @@
 .contenido .perfil .cuenta .datosCuen table {
   display: flex;
   width: 100%;
-  gap: 10px;
+  gap: 10px; 
   border-top: 1px solid #cbcbcb;
   padding-top: 20px;
 }
