@@ -1,0 +1,109 @@
+<!--Importamos los Iconos de font-awesome-->
+<div *ngIf="shouldShowNavbar()" class="footer">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <!--Footer-->
+  <footer *ngIf="shouldShowNavbar()">
+    <div class="container">
+      <!--Sección "Sobre nosotros"-->
+      <div class="sec aboutus">
+        <h2>Sobre Nosotros</h2>
+        <p>
+          Somos una empresa desarrolladora de software profesional. Nos
+          especializamos en el diseño de páginas WEB.
+          <!-- </p>
+      <ul class="sci">
+        <li>
+          <a href="#">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+        </li>
+      </ul> -->
+        </p>
+      </div>
+      <!--Sección "Soporte"-->
+      <div class="sec quicklinks">
+        <h2>Soporte</h2>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Ayuda</a></li>
+        </ul>
+      </div>
+      <!--Sección "Contacto"-->
+      <div class="sec contact">
+        <h2>Contactanos</h2>
+        <ul class="info">
+          <li>
+            <span><i class="fa-solid fa-phone"></i></span>
+            <p><a href="tel:+54 0299 478-3676">+54 0299 478-3676</a></p>
+          </li>
+          <li>
+            <span><i class="fa-solid fa-envelope"></i></span>
+            <p>
+              <a href="mailto:cet30virtual@gmail.com">cet30virtual@gmail.com</a>
+            </p>
+          </li>
+          <li>
+            <span><i class="fa-brands fa-instagram fa-lg"></i></span>
+            <p>
+              <a href="https://www.instagram.com/cet30cipo/?next=%2F"
+                >Instagram</a
+              >
+            </p>
+          </li>
+          <li>
+            <span><i class="fa-brands fa-youtube"></i></span>
+            <p>
+              <a href="https://www.youtube.com/@centrodeeducaciontecnicace9419"
+                >YouTube</a
+              >
+            </p>
+          </li>
+          <li>
+            <span><i class="fa-solid fa-map-location-dot"></i></span>
+            <p>
+              <a
+                href="https://maps.app.goo.gl/8WTDpMhMTrJHmngA8"
+                >Ubicación</a
+              >
+            </p>
+          </li>
+        </ul>
+      </div>
+      <!--Sección "Logo"-->
+      <div class="sec quicklinks">
+        <img src="../../../assets/logo colegio.png" alt="Logo de la Escuela" />
+        <!-- <h2>Shop</h2>
+      <ul>
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">Kids</a></li>
+        <li><a href="#">Shoes</a></li>
+      </ul> -->
+      </div>
+    </div>
+  </footer>
+  <div class="copyrightText">
+    <p>Copyright ©2023 ZECAB. All Rights Reserved.</p>
+  </div>
+</div>

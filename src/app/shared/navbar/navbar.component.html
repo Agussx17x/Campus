@@ -1,0 +1,48 @@
+<div class="navbar">
+  <!--NavBar-->
+  <header *ngIf="shouldShowNavbar()">
+    <!--Logo-->
+    <a routerLink="/inicio" class="logo">
+      <div class="logoBody">
+        <img src="../../../assets/logo colegio.png" alt="Logo de la escuela" />
+      </div>
+    </a>
+    <!--Boton responsive-->
+    <div class="menuToggle" (click)="claseActive()"></div>
+    <nav>
+      <!--Lista de botones-->
+      <ul>
+        <li *ngIf="showInicio()">
+          <a routerLink="/inicio"
+            ><span class="material-symbols-outlined"> home </span>
+            <h4>inicio</h4></a
+          >
+        </li>
+        <li *ngIf="showNosotros()">
+          <a routerLink="/nosotros"
+            ><span class="material-symbols-outlined"> info </span>
+            <h4>Nosotros</h4></a
+          >
+        </li>
+        <li class="logout" *ngIf="logout()">
+          <a (click)="cerrarsesion()"
+            ><span class="material-symbols-outlined"> person </span>
+            <h4>LogOut</h4></a
+          >
+        </li>
+        <li *ngIf="perfil()">
+          <a id="perfil" routerLink="/perfil"
+            ><span class="material-symbols-outlined"> person </span>
+            <h4>Perfil</h4></a
+          >
+        </li>
+        <li *ngIf="login()">
+          <a id="login" routerLink="/login"
+            ><span class="material-symbols-outlined"> person </span>
+            <h4>Login</h4></a
+          >
+        </li>
+      </ul>
+    </nav>
+  </header>
+</div>

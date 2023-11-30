@@ -1,0 +1,176 @@
+/*GLOBAL*/
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.navbar {
+  display: block;
+  z-index: 999;
+}
+
+.Inactive {
+  display: none;
+}
+
+/*Cuerpo del NavBar*/
+header {
+  position: absolute;
+  width: 100%;
+  min-height: 60px;
+  background: #43a5f6;
+  padding: 0 0 0 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/*Logo*/
+header .logo {
+  color: #fff;
+  font-size: 1.75em;
+  font-weight: 600;
+  text-decoration: none;
+}
+/*Lista de botones*/
+header ul {
+  position: relative;
+}
+header ul li {
+  position: relative;
+  list-style: none;
+  float: left;
+}
+header ul li a {
+  color: #fff;
+  font-size: 1.1em;
+  padding: 20px 25px;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+}
+header ul li a:hover {
+  background: #2b93e3;
+}
+header ul li ul {
+  position: absolute;
+  left: 0;
+  width: 200px;
+  background: #445964;
+  display: none;
+}
+header ul li:hover > ul {
+  display: block;
+}
+header ul li ul li {
+  position: relative;
+  width: 100%;
+  border: 1px solid rgb(0, 0, 0, 0.2);
+}
+header ul li ul li ul {
+  top: 0;
+  left: 200px;
+}
+h4 {
+  padding-left: 1rem;
+  margin: 0%;
+  margin-right: auto;
+}
+.logout {
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  header {
+    padding: 10px 20px;
+  }
+  header nav {
+    position: absolute;
+    width: 100%;
+    top: 66px;
+    left: 0;
+    background: #445964;
+    display: none;
+  }
+  header.active nav {
+    display: block;
+  }
+  header nav ul li {
+    width: 100%;
+  }
+  header nav ul li ul {
+    position: relative;
+    width: 100%;
+    left: 0;
+  }
+  header ul li ul li ul {
+    top: 0;
+    left: 0;
+  }
+  header nav ul li:hover ul li {
+    background: #546e7b;
+  }
+  .menuToggle {
+    position: relative;
+    width: 40px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .menuToggle::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    transform: translateY(-12px);
+    box-shadow: 0 12px #fff;
+  }
+  .menuToggle::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    transform: translateY(12px);
+  }
+  header.active .menuToggle::before {
+    transform: rotate(45deg);
+    box-shadow: 0 0 #fff;
+  }
+  header.active .menuToggle::after {
+    transform: rotate(-45deg);
+  }
+  header.active {
+    /* Se abre el header en mobile, y desaparece el logo mientras esta abierto */
+    & img {
+      display: none;
+    }
+  }
+}
+
+/*PRUEBA*/
+.logoBody {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 10px;
+  left: 50px;
+}
+.logoBody img {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  transition: 0.3s;
+}
+.logoBody img:hover {
+  width: 105px;
+  height: 105px;
+  top: calc(10px-2.5px);
+  left: calc(50px-2.5px);
+}

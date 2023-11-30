@@ -1,0 +1,13 @@
+.contenido {
+  padding-top: 10rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+#barralateral{
+  display: flex;
+  justify-content: center;
+}
+
+/*! Cambios de Tomi*/
+/*! le agregue padding para que las letras tengan un poco mas de espacio dentro de la card y no esten tan pegadas con el borde*/

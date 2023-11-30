@@ -1,0 +1,426 @@
+/* GLOBAL */
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900"); /*Fuente Poppins*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+/* Alineacion del contenido */
+.componente {
+  background: transparent;
+  width: 100%;
+  height: 100vh;
+  padding: 120px 50px 0 50px;
+}
+.contenido {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+/* Alineacion del contenido de perfil */
+/* Datos y Foto */
+.contenido .perfil {
+  background: #fff;
+  position: relative;
+  display: grid;
+  grid-template-rows: 4fr 3fr 3fr;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+.contenido .perfil .informacion {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+.contenido .perfil .informacion .datos {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px;
+  gap: 10px;
+}
+.contenido .perfil .informacion .datos .imgBx {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.contenido .perfil .informacion .datos .imgBx .imgBorder {
+  border: 3px solid #51b9c0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.contenido .perfil .informacion .datos .imgBx .imgBorder:hover {
+  border: 3px solid #229144;
+}
+.contenido .perfil .informacion .datos .imgBx .imgBorder img {
+  border: 3px solid #fff;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+.contenido .perfil .informacion .datos .datosBx {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.contenido .perfil .informacion .datos .datosBx ul {
+  position: relative;
+  list-style: none;
+}
+.contenido .perfil .informacion .datos .datosBx ul li {
+  font-size: 0.9em;
+  font-weight: 500;
+}
+/* Estadisticas */
+/* Alineacion */
+.contenido .perfil .informacion .estadisticas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #f4f4f4;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 20px;
+  border-radius: 10px;
+}
+.contenido .perfil .informacion .estadisticas .est {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 20%;
+  width: 100%;
+}
+/* Barras del Grafico */
+.contenido .perfil .informacion .estadisticas .datosEst {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 90%;
+  height: 60%;
+  border-top: 1px solid #cbcbcb;
+  border-bottom: 1px solid #cbcbcb;
+}
+.contenido .perfil .informacion .estadisticas .datosEst .contEst {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.contenido .perfil .informacion .estadisticas .datosEst .contEst .estBarra {
+  position: relative;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+}
+.contenido .perfil .informacion .estadisticas .datosEst .contEst .estAlta {
+  background: #229144;
+  width: 90%;
+}
+.contenido .perfil .informacion .estadisticas .datosEst .contEst .estReciente {
+  background: #c3b923;
+  width: 70%;
+}
+.contenido .perfil .informacion .estadisticas .datosEst .contEst .estBaja {
+  background: #b82626;
+  width: 45%;
+}
+/* Leyenda del Grafico */
+.contenido .perfil .informacion .estadisticas .leyendaEst {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.contenido .perfil .informacion .estadisticas .leyendaEst .leyenda {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  min-width: 30%;
+  font-size: 1.1em;
+  cursor: default;
+}
+.contenido .perfil .informacion .estadisticas .leyendaEst .alta {
+  background: #229144;
+}
+.contenido .perfil .informacion .estadisticas .leyendaEst .baja {
+  background: #b82626;
+}
+.contenido .perfil .informacion .estadisticas .leyendaEst .reciente {
+  background: #c3b923;
+}
+/* Datos Personales */
+.contenido .perfil .personal .datosPer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  padding-top: 0;
+}
+.contenido .perfil .personal .datosPer table {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  border-top: 1px solid #cbcbcb;
+  padding-top: 20px;
+}
+.contenido .perfil .personal .datosPer table tr {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 20%;
+}
+.contenido .perfil .personal .datosPer table .info {
+  width: 40%;
+}
+.contenido .perfil .personal .datosPer table tr td {
+  position: relative;
+  min-height: 30px;
+}
+.contenido .perfil .personal .datosPer table tr .datosInfo {
+  padding: 5px 0;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+.contenido .perfil .personal .datosPer table tr td input {
+  outline: none;
+  padding-left: 10px;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  background: #f4f4f4;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #6d6d6d;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.contenido .perfil .personal .datosPer table tr td input:disabled {
+  border: 1px solid #cbcbcb;
+  cursor: default;
+}
+.contenido .perfil .personal .datosPer table tr td input:focus {
+  border: 1px solid #51b9c0;
+}
+.contenido .perfil .personal .datosPer table tr td input:valid {
+  border: 1px solid #229144;
+}
+.contenido .perfil .personal .datosPer table tr td .acciones {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  height: 100%;
+}
+.contenido .perfil .personal .datosPer table tr td .acciones .boton {
+  position: relative;
+  padding-top: 3px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+.contenido
+  .perfil
+  .personal
+  .datosPer
+  table
+  tr
+  td
+  .acciones
+  .boton:enabled:hover {
+  box-shadow: 10px 10px 10px inset rgba(0, 0, 0, 0.2);
+}
+.contenido .perfil .personal .datosPer table tr td .acciones .btnAplicar {
+  background: #229144;
+}
+.contenido .perfil .personal .datosPer table tr td .acciones .btnCancelar {
+  background: #b82626;
+}
+.contenido .perfil .personal .datosPer table tr td .acciones .btnEditar {
+  background: #c3b923;
+}
+.contenido
+  .perfil
+  .personal
+  .datosPer
+  table
+  tr
+  td
+  .acciones
+  .btnAplicar:disabled {
+  background: #256e3b;
+}
+.contenido
+  .perfil
+  .personal
+  .datosPer
+  table
+  tr
+  td
+  .acciones
+  .btnCancelar:disabled {
+  background: #792222;
+}
+.contenido
+  .perfil
+  .personal
+  .datosPer
+  table
+  tr
+  td
+  .acciones
+  .btnEditar:disabled {
+  background: #cac143;
+}
+/* Datos Cuenta */
+.contenido .perfil .cuenta .datosCuen {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  padding-top: 0;
+}
+.contenido .perfil .cuenta .datosCuen table {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  border-top: 1px solid #cbcbcb;
+  padding-top: 20px;
+}
+.contenido .perfil .cuenta .datosCuen table tr {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 20%;
+}
+.contenido .perfil .cuenta .datosCuen table .info {
+  width: 40%;
+}
+.contenido .perfil .cuenta .datosCuen table tr td {
+  position: relative;
+  min-height: 30px;
+}
+.contenido .perfil .cuenta .datosCuen table tr .datosInfo {
+  padding: 5px 0;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+.contenido .perfil .cuenta .datosCuen table tr td input {
+  outline: none;
+  padding-left: 10px;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  background: #f4f4f4;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #6d6d6d;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.contenido .perfil .cuenta .datosCuen table tr td input:disabled {
+  border: 1px solid #cbcbcb;
+  cursor: default;
+}
+.contenido .perfil .cuenta .datosCuen table tr td input:focus {
+  border: 1px solid #51b9c0;
+}
+.contenido .perfil .cuenta .datosCuen table tr td input:valid {
+  border: 1px solid #229144;
+}
+.contenido .perfil .cuenta .datosCuen table tr td .acciones {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  height: 100%;
+}
+.contenido .perfil .cuenta .datosCuen table tr td .acciones .boton {
+  position: relative;
+  padding-top: 3px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+.contenido
+  .perfil
+  .cuenta
+  .datosCuen
+  table
+  tr
+  td
+  .acciones
+  .boton:enabled:hover {
+  box-shadow: 10px 10px 10px inset rgba(0, 0, 0, 0.2);
+}
+.contenido .perfil .cuenta .datosCuen table tr td .acciones .btnAplicar {
+  background: #229144;
+}
+.contenido .perfil .cuenta .datosCuen table tr td .acciones .btnCancelar {
+  background: #b82626;
+}
+.contenido .perfil .cuenta .datosCuen table tr td .acciones .btnEditar {
+  background: #c3b923;
+}
+.contenido
+  .perfil
+  .cuenta
+  .datosCuen
+  table
+  tr
+  td
+  .acciones
+  .btnAplicar:disabled {
+  background: #256e3b;
+}
+.contenido
+  .perfil
+  .cuenta
+  .datosCuen
+  table
+  tr
+  td
+  .acciones
+  .btnCancelar:disabled {
+  background: #792222;
+}
+.contenido
+  .perfil
+  .cuenta
+  .datosCuen
+  table
+  tr
+  td
+  .acciones
+  .btnEditar:disabled {
+  background: #cac143;
+}
+/* Alineacion del contenido de preferencias */
+.contenido .preferencias {
+  background: #fff;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+}

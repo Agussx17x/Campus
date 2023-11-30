@@ -1,0 +1,54 @@
+button {
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 1rem;
+}
+
+.contenido {
+  padding-top: 10rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+label,
+input {
+  display: block;
+  text-align: center;
+}
+
+.add {
+  display: flex;
+  justify-content: center;
+}
+
+.material {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+table .acciones button {
+  width: 100px;
+  border-radius: 10px;
+  border-style: none;
+}
+
+#edit,
+#delete {
+  display: flex;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+}
+
+table .acciones .editar {
+  background: #43a5f6;
+}
+
+table .acciones .eliminar {
+  background: #e12a2a;
+}

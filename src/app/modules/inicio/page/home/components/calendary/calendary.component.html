@@ -1,0 +1,39 @@
+<div class="contenido">
+  <div class="wrapper-calendar">
+    <div class="header-calendar">
+      <div>
+        <button (click)="changeMonth(-1)" class="btn-prev">
+          <span class="material-symbols-outlined"> arrow_back </span>
+        </button>
+      </div>
+      <h1 class="name-month">{{ dateSelect | date : "MMMM, yyyy" }}</h1>
+      <div>
+        <button (click)="changeMonth(1)" class="btn-next">
+          <span class="material-symbols-outlined"> arrow_forward </span>
+        </button>
+      </div>
+    </div>
+    <ol>
+      <li *ngFor="let day of week" class="day-name"></li>
+      <li
+        [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
+        *ngFor="let day of monthSelect; let first = first"
+      >
+        <button
+          id="{{ id }}"
+          class="btn-day"
+          [ngStyle]="{
+            'background-color': isCurrentDay(day) ? 'rgb(38, 0, 255)' : 'aliceblue',
+            'color': isCurrentDay(day) ? 'white' : 'none'
+          }"
+          [popover]="getPopoverContent(day)"
+          triggers="mouseenter:mouseleave"
+          placement="top"
+          container="body"
+        >
+          <span (change)="getId(day?.value)">{{ day?.value }}</span>
+        </button>
+      </li>
+    </ol>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<div class="contenido">
+  <h1>¡Bienvenido, {{ nombre }} {{ apellido }}! ({{ tipoCredencial }})</h1>
+  <ul>
+    <tr class="lista">
+      <td class="td" routerLink="/register">
+        <a class="regis">
+          <span class="material-symbols-outlined"> person_add </span>
+          Agregar Usuario</a
+        >
+      </td>
+      <td class="td" routerLink="/lista">
+        <a class="regis">
+          <span class="material-symbols-outlined"> contract </span>
+          Lista de Usuarios
+        </a>
+      </td>
+      <td class="td" data-bs-toggle="modal" data-bs-target="#modalAlert">
+        <a class="add">
+          <span class="material-symbols-outlined"> notification_add </span>
+          Agregar Aviso
+        </a>
+      </td>
+    </tr>
+  </ul>
+  <div class="row">
+    <div class="col-md-8">
+      <!-- Contenido -->
+      <app-avisos></app-avisos>
+      <!--!FINContenido-->
+    </div>
+    <div id="barralateral" class="col-md-4">
+      <!--*Barra Lateral-->
+      <app-calendary></app-calendary>
+      <!--*FINBarra Lateral-->
+    </div>
+  </div>
+  <!-- Modal Avisos -->
+  <div
+    class="modal fade"
+    id="modalAlert"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Agregar un nuevo aviso
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <!-- Inputs -->
+        <div class="modal-body">
+          <form [formGroup]="avisos">
+            <!-- Título -->
+            <label class="form-control">
+              Título:
+              <input
+                class="form-control"
+                name="titulo"
+                formControlName="titulo"
+                placeholder="Ingrese un título"
+                required
+              />
+            </label>
+            <!-- Descripción -->
+            <label class="form-control">
+              Descripción del aviso:
+              <textarea
+                class="form-control"
+                name="descripcion"
+                formControlName="descripcion"
+                placeholder="Ingrese una descripción del aviso..."
+              ></textarea>
+            </label>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="agregarAviso()"
+          >
+            Subir
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

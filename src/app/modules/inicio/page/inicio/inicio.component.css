@@ -1,0 +1,86 @@
+  .body {
+    display : flex;
+    align-items : center;
+    justify-content : center;  
+    min-height : 650px;
+  }
+  .container{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .card {
+    position: relative;
+    max-width : 300px;
+    height : 200px;  
+    background-color : #0091ff;
+    margin : 30px 10px;
+    padding : 20px 15px;
+    
+    display : flex;
+    flex-direction : column;
+    box-shadow : 0 5px 20px rgba(0, 0, 0, 0.73);
+    transition : 0.3s ease-in-out;
+    border-radius : 15px;
+  }
+  .card:hover {
+    height : 300px;
+  }
+
+  h3{
+    margin-top: 1rem;
+  }
+  .txt{
+    margin-top: 0.5rem;
+  }
+
+
+  div .image{
+    border-radius : 15px;
+    background-color: #ffffff5e;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+  }
+  
+  
+  .container .card .image {
+    position : relative;
+    width : 260px;
+    height : 260px;
+    
+    top : -40%;
+    box-shadow : 0 5px 20px rgba(0, 0, 0, 0.567);
+    z-index : 1;
+  }
+  
+  .container .card .image img {
+    max-width : 100%;
+    border-radius : 15px;
+  }
+  
+  .container .card .content {
+    position : relative;
+    top : -140px;
+    padding : 10px 15px;
+    color : #111;
+    text-align : center;
+    
+    visibility : hidden;
+    opacity : 0;
+    transition : 0.3s ease-in-out;
+      
+  }
+  
+  .container .card:hover .content {
+     margin-top : 30px;
+     visibility : visible;
+     opacity : 1;
+     transition-delay: 0.2s;
+    
+  }
+  img{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }

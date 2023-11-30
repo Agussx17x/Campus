@@ -1,0 +1,75 @@
+<div class="contenido">
+  <div class="wrapper">
+    <img
+      src="https://media.lmcipolletti.com/p/c96d640e396873587cdddd80fb33121d/adjuntos/198/imagenes/002/527/0002527073/1200x675/smart/el-cet-30-funciona-la-esquina-paraguay-y-primeros-pobladores.jpg"
+      alt=""
+    />
+    <div class="text-box">
+      <h2>Institución</h2>
+      <p>
+        <em>
+          El C.E.T Nº. 30 es una Institución educativa pública que ofrece
+          formacion técnica y profesional en el área de la informática.
+        </em>
+      </p>
+      <p>
+        Se ubica en la calle Paraguay 1050, en el barrio Don Bosco, de la ciudad
+        de Cipolletti, provincia de Río Negro. Ofrece dos modalidades de
+        educación secundaria técnica: una orientada a la programación y otra
+        orientada al soporte y mantenimiento de sistemas informáticos. Ambas
+        modalidades tienen una duración de seis años y otorgan el título de
+        técnico en informática profesional y personal. Cuenta con talleres de
+        robótica, programación web, redes, hardware y software, donde los
+        estudiantes pueden desarrollar sus habilidades y competencias en el uso
+        de diferentes lenguajes, herramientas y dispositivos tecnológicos. Tiene
+        un entorno virtual de aprendizaje, donde los estudiantes y los docentes
+        pueden acceder a los contenidos, las actividades y las evaluaciones de
+        las asignaturas, así como a los recursos y los servicios del colegio.
+        Realiza proyectos de integración e innovación tecnológica, tanto dentro
+        como fuera del colegio, participando en ferias, concursos, exposiciones
+        y eventos relacionados con la informática y la educación. Promueve la
+        formación integral y ciudadana de los estudiantes, fomentando los
+        valores de la convivencia, el respeto, la solidaridad, la
+        responsabilidad y el compromiso social.
+      </p>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="text-box">
+      <h2>Equipo de Desarrollo</h2>
+      <p>
+        <em>
+          Nosotros somos el equipo ZECAB, un grupo de programadores de la
+          escuela técnica caracterizados por nuestro compromiso, esfuerzo,
+          conocimientos, gustos y aficiones donde enfrentamos cualquier tipo de
+          situación en base a nuestra experiencia. Nuestro refran simboliza a
+          cada integrante del equipo: "Un programador no come pan ni hace código
+          espagueti; otro programa bien, siempre y cuando la novia lo deje; uno
+          respira mejor cuanto diseño le sale feroz; el otro programador no hay
+          fecha que cumpla más que teclado procese; y el último más sabe por
+          viejo que por programador."
+        </em>
+      </p>
+      <p>
+        El nombre del equipo proviene de las iniciales del apellido de cada
+        integrante: Zellotti, Esponda, Cappellini, Acuña y Bravo. Somos un
+        pequeño grupo de estudiantes que en el último año se juntaron para crear
+        esta plataforma escolar, con el fin de tener un campus virtual propio de
+        la escuela, basando su desarrollo en Angular como framework, utlizando
+        como base de datos Firebase. La idea tiene como proposito agilizar
+        funciones sencillas tanto para estudiante, docente y administrador. Así
+        como adaptar un diseño moderno y atractivo para mejorar la interfaz y
+        experiencia de usuario.
+      </p>
+    </div>
+    <div class="gallery">
+      <div
+        *ngFor="let image of images"
+        class="img-box"
+        [style.background-image]="'url(' + image.url + ')'"
+      >
+        <h3>{{ image.name }}</h3>
+      </div>
+    </div>
+  </div>
+</div>
