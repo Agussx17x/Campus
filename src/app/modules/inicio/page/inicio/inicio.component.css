@@ -1,86 +1,96 @@
-  .body {
-    display : flex;
-    align-items : center;
-    justify-content : center;  
-    min-height : 650px;
-  }
-  .container{
-    display: flex;
-    justify-content: center;
-  }
-  
-  .card {
-    position: relative;
-    max-width : 300px;
-    height : 200px;  
-    background-color : #0091ff;
-    margin : 30px 10px;
-    padding : 20px 15px;
-    
-    display : flex;
-    flex-direction : column;
-    box-shadow : 0 5px 20px rgba(0, 0, 0, 0.73);
-    transition : 0.3s ease-in-out;
-    border-radius : 15px;
-  }
-  .card:hover {
-    height : 300px;
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900"); /*Fuente Poppins*/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+header {
+  background: url("https://firebasestorage.googleapis.com/v0/b/campusv2-72dd0.appspot.com/o/imagenes%2Fsextoprimera.jpg?alt=media&token=e49e21c9-e548-44df-892d-b550828ff700");
+  text-align: center;
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 85% 85% / 30%;
+}
+
+header .overlay {
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+  color: #fff;
+  text-shadow: 1px 1px 1px #333;
+  background-image: linear-gradient(135deg, #057aff69 10%, #057aff69 100%);
+}
+
+h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 80px;
+  margin-bottom: 30px;
+}
+
+h3,
+p {
+  font-family: "Open Sans", sans-serif;
+  margin-bottom: 30px;
+}
+
+button {
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: #333;
+  background: #fff;
+  margin-bottom: 50px;
+  box-shadow: 0 3px 20px 0 #0000003b;
+}
+
+button:hover {
+  cursor: pointer;
+}
+.carousel .carousel-control-prev {
+  position: absolute;
+  left: -30%;
+  z-index: 1;
+  color: #0a0a0a !important;
+  font-weight: bold;
+}
+
+.carousel .carousel-control-next {
+  position: absolute;
+  right: -30%;
+  z-index: 1;
+  color: #0a0a0a !important;
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+  .carousel .carousel-control-prev {
+    left: 0%;
+    color: #ffffff !important;
   }
 
-  h3{
-    margin-top: 1rem;
+  .carousel .carousel-control-next {
+    right: 0%;
+    color: #ffffff !important;
   }
-  .txt{
-    margin-top: 0.5rem;
-  }
-
-
-  div .image{
-    border-radius : 15px;
-    background-color: #ffffff5e;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: center;
-  }
+}
   
-  
-  .container .card .image {
-    position : relative;
-    width : 260px;
-    height : 260px;
-    
-    top : -40%;
-    box-shadow : 0 5px 20px rgba(0, 0, 0, 0.567);
-    z-index : 1;
-  }
-  
-  .container .card .image img {
-    max-width : 100%;
-    border-radius : 15px;
-  }
-  
-  .container .card .content {
-    position : relative;
-    top : -140px;
-    padding : 10px 15px;
-    color : #111;
-    text-align : center;
-    
-    visibility : hidden;
-    opacity : 0;
-    transition : 0.3s ease-in-out;
-      
-  }
-  
-  .container .card:hover .content {
-     margin-top : 30px;
-     visibility : visible;
-     opacity : 1;
-     transition-delay: 0.2s;
-    
-  }
-  img{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }

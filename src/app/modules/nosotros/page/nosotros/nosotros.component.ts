@@ -8,11 +8,11 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 })
 export class NosotrosComponent implements OnInit {
   images = [
-    { name: 'Zellotti Gerardo', fileName: 'zellotti.jpg', url: '' },
+    { name: 'Zellotti Gerardo', fileName: 'gerardo.jpg', url: '' },
     { name: 'Esponda Tomás', fileName: 'tomas.jpg', url: '' },
-    { name: 'Cappellini Ignacio', fileName: 'cappellini.jpg', url: '' },
+    { name: 'Cappellini Ignacio', fileName: 'nacho.jpg', url: '' },
     { name: 'Acuña Bruno', fileName: 'bruno.jpeg', url: '' },
-    { name: 'Bravo Franco', fileName: 'franco.jpeg', url: '' },
+    { name: 'Bravo Franco', fileName: 'franco.jpg', url: '' },
   ]; // Agrega los nombres y los nombres de archivo aquí
 
   constructor(private storage: AngularFireStorage) {}
