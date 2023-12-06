@@ -21,6 +21,9 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 export class LoginComponent {
   email!: string;
 
+  // Variable de verificación
+  adminLogeado: boolean = false;
+
   // Interfaz
   usuarios: Usuario = {
     uid: '',
@@ -30,6 +33,12 @@ export class LoginComponent {
     apellido: '',
     dni: '',
     credencial: '',
+  };
+
+  // Objeto para guardar las credenciales del usuario actual
+  credenciales = {
+    email1: '',
+    password1: '',
   };
 
   hide = true;
@@ -102,12 +111,35 @@ export class LoginComponent {
               .subscribe((data: any) => {
                 const credentials = data.credencial;
                 if (credentials === 'est') {
-                  this.router.navigate(['/estudiante']);
+                  // SI un admin se encuentra logeado no se volveran a ejecutar los navigate
+                  if (this.adminLogeado == false) {
+                    this.router.navigate(['/estudiante']);
+                  }
                 } else {
                   if (credentials === 'doc') {
-                    this.router.navigate(['/docente']);
+                    // SI un admin se encuentra logeado no se volveran a ejecutar los navigate
+                    if (this.adminLogeado == false) {
+                      this.router.navigate(['/docente']);
+                    }
                   } else {
-                    this.router.navigate(['/admin']);
+                    // SI un admin se encuentra logeado no se volveran a ejecutar los navigate
+                    if (this.adminLogeado == false) {
+                      this.router.navigate(['/admin']);
+                      // Guardamos las credenciales de ladministrador actual
+                      this.credenciales = {
+                        email1: email,
+                        password1: password,
+                      };
+                      console.log(this.credenciales);
+                      // Enviamos las credenciales del usuario actual
+                      this.authService.getCredenciales(
+                        this.credenciales.email1,
+                        this.credenciales.password1
+                      );
+                      // Cambiamos la variable verificacion
+                      this.adminLogeado = true;
+                      console.log(this.adminLogeado);
+                    }
                   }
                 }
               });
@@ -172,5 +204,12 @@ export class LoginComponent {
     } catch (error) {
       alert('Hubo un error al verificar el correo electrónico.');
     }
+  }
+
+  ngOnInit() {
+    // Cambiamos la verificación cada vez que se inicie el componente login
+    this.adminLogeado = false;
+
+    console.log(this.adminLogeado);
   }
 }

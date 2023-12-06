@@ -4,6 +4,9 @@ import { Usuario } from 'src/app/models/usuario';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { Router } from '@angular/router';
 
+// Importamos lo necesario para reiniciar sesion
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,6 +14,10 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   hide = true;
+
+  // Variables para los datos del usuario actual
+  auth: any;
+  credenciales1: any;
 
   usuarios: Usuario = {
     uid: '',
@@ -41,7 +48,6 @@ export class RegisterComponent implements OnInit {
       .registrar(credenciales.email, credenciales.password)
       .then((res) => {
         alert('Ha agregado un nuevo usuario con exito');
-        this.router.navigate(['/admin']);
       })
       .catch((error) =>
         alert('Hubo un error al cargar el usuario :( \n' + error)
@@ -63,14 +69,32 @@ export class RegisterComponent implements OnInit {
 
       .then((res) => {
         console.log(this.usuarios);
+        // Llamamos a la funcion para reiniciar sesion luego de registrar a un nuevo usuario
+        this.reinicio();
       })
       .catch((error) => {
         console.log('error => ', error);
+         // Llamamos a la funcion para reiniciar sesion luego de registrar a un nuevo usuario
+         this.reinicio();
       });
+  }
+
+  // Funcion para reiniciar sesion luego de registrar a un nuevo usuario
+  async reinicio() {
+    const userCredential = await signInWithEmailAndPassword(
+      this.auth,
+      this.credenciales1.email,
+      this.credenciales1.password
+    );
   }
 
   async ngOnInit() {
     const uid = await this.serviceAuth.getuid();
     console.log(uid);
+    // Conseguimos los datos para reiniciar la sesion
+    this.auth = getAuth();
+    this.credenciales1 = await this.serviceAuth.enviarCredenciales();
+
+    console.log(this.credenciales1.email, this.credenciales1.password);
   }
 }

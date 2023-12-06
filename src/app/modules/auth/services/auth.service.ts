@@ -9,6 +9,12 @@ import { Router } from '@angular/router';
 export class AuthService {
   private inactivityTimer: any;
 
+  // Objeto para guardar las credenciales del usuario actual
+  credenciales = {
+    email: '',
+    password: '',
+  };
+
   // Referenciamos Auth de Firebase
   constructor(private afAuth: AngularFireAuth, private router: Router) {}
 
@@ -37,7 +43,6 @@ export class AuthService {
   async login(email: string, password: string) {
     try {
       await this.afAuth.signInWithEmailAndPassword(email, password);
-      this.router.navigate(['/inicio']);
     } catch (error) {
       console.error(error);
     }
@@ -63,6 +68,18 @@ export class AuthService {
     } else {
       //Devuelve uid del usuario
       return user.uid;
-    }
-  }
+    }
+  }
+
+  // Funcion para conseguir las credenciales del componente login y guardarlas en el servicio
+  getCredenciales(email1: any, password1: any) {
+    this.credenciales = {
+      email: email1,
+      password: password1,
+    };
+  }
+  // Funcion para enviar las mismas credenciales al componente register
+  enviarCredenciales(){
+    return this.credenciales
+  }
 }
