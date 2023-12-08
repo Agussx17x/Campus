@@ -76,12 +76,11 @@ body {
 img {
   max-width: 420px;
   float: left;
-  border: 5px solid #fff;
   border-radius: 10px;
   margin-right: 15px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   img {
     max-width: 100%;
   }
