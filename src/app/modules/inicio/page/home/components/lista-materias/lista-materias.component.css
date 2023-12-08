@@ -1,0 +1,79 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+}
+table {
+  border-radius: 10px;
+  background: #e2e6e9;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2), -15px -15px 30px #e2e6e9;
+  width: 40rem;
+}
+
+table .tHead {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+table .tHead th {
+  text-align: center;
+}
+
+table .tBody td {
+  height: 50px;
+  text-align: center;
+}
+
+table .tBody .acciones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table .tBody .acciones button {
+  border-radius: 10px;
+  border-style: none;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+table .tBody .acciones .editar {
+  background: #43a5f6;
+}
+
+table .tBody .acciones .eliminar {
+  background: #e12a2a;
+}
+
+#edit,
+#delete {
+  display: flex;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+}
+
+table .tBody .acciones button:hover {
+  box-shadow: inset 10px 10px 30px rgba(0, 0, 0, 0.2);
+}
+.acciones{
+  display: flex;
+  justify-content: center;
+}
+.hide-icon {
+  display: none;
+}
+pagination-controls{
+    padding: 0;
+    width: 2rem;
+}
+.titulo, .id{
+    width: 8rem;
+}

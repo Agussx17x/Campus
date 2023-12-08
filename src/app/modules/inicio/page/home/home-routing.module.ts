@@ -39,7 +39,7 @@ const routes: Routes = [
     data: { role: ['est', 'doc'] },
   },
   {
-    path: 'materia',
+    path: 'materia/:id',// docente/materias/:id
     component: MateriaComponent,
     canActivate: [AuthGuard],
     data: { role: ['est', 'doc'] },

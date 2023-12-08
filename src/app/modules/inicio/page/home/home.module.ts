@@ -22,6 +22,7 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TableComponent } from './components/table/table.component';
 import { NgxPaginationModule } from "ngx-pagination";
 import { CardComponent } from './components/card-materias/card.component';
+import { ListaMateriasComponent } from './components/lista-materias/lista-materias.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { CardComponent } from './components/card-materias/card.component';
     MateriaComponent,
     PerfilComponent,
     ListaUsuariosComponent,
-    TableComponent
+    TableComponent,
+    ListaMateriasComponent
   ],
   imports: [
     CommonModule,
@@ -61,7 +63,8 @@ import { CardComponent } from './components/card-materias/card.component';
     ListaUsuariosComponent,
     PerfilComponent,
     PopoverModule,
-    TableComponent
+    TableComponent,
+    ListaMateriasComponent
   ],
 })
 export class HomeModule {}
