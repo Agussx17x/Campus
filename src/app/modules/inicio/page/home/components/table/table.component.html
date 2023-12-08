@@ -1,7 +1,6 @@
 <!-- Botón que llama al modal "Agregar Sección" -->
 <button
-  *ngIf="usuario.credencial === 'doc'"
-  style="display: flex"
+  style="display: flex; margin-bottom: 2rem"
   type="button"
   class="btn btn-primary"
   data-bs-toggle="modal"
@@ -64,10 +63,9 @@
   <p>{{ seccion.descripcion }}</p>
 
   <!-- Botones "Añadir Material" y para mostrar los materiales -->
-  <div class="row" *ngIf="botones()">
+  <div class="row">
     <!-- Botón que llama al modal "Añadir Material" -->
     <button
-      *ngIf="usuario.credencial === 'doc'"
       style="
         border-radius: 100%;
         width: 40px;
@@ -81,7 +79,7 @@
     >
       <span class="material-symbols-outlined add"> add </span>
     </button>
-    <!-- Botón que  muestra la lista de materiales -->
+    <!-- Botón que muestra la lista de materiales -->
     <button
       style="
         border-radius: 100%;
@@ -91,10 +89,6 @@
       "
       class="btn btn-primary add"
       type="button"
-      data-bs-toggle="collapse"
-      [attr.data-bs-target]="'#' + seccion.titulo.split(' ').join('_')"
-      aria-expanded="false"
-      [attr.aria-controls]="seccion.titulo.split(' ').join('_')"
       (click)="toggleSectionState(seccion)"
     >
       <span class="material-symbols-outlined"> list_alt </span>
@@ -125,33 +119,27 @@
         <div class="modal-body">
           <!-- Formulario para crear un nuevo material en esta sección -->
           <form (ngSubmit)="crearMaterial(seccion.idSeccion)">
-            <label class="form-control">
-              Título del material:
-              <input
-                class="form-control"
-                [(ngModel)]="nuevoMaterial.titulo"
-                name="titulo"
-              />
-            </label>
-            <label class="form-control">
-              Descripción breve del material:
-              <input
-                class="form-control"
-                [(ngModel)]="nuevoMaterial.descripcion"
-                name="descripcion"
-                maxlength="100"
-              />
-            </label>
-            <label class="form-control">
-              Fecha de entrega:
-              <input
-                class="form-control"
-                [(ngModel)]="nuevoMaterial.fechaEntrega"
-                name="fechaEntrega"
-                type="date"
-              />
-            </label>
-            <label class="form-control">
+            <label class="form-label"> Título del material: </label>
+            <input
+              class="form-control"
+              [(ngModel)]="nuevoMaterial.titulo"
+              name="titulo"
+            />
+            <label class="form-label"> Descripción breve del material: </label>
+            <input
+              class="form-control"
+              [(ngModel)]="nuevoMaterial.descripcion"
+              name="descripcion"
+              maxlength="100"
+            />
+            <label class="form-label"> Fecha de entrega: </label>
+            <input
+              class="form-control"
+              [(ngModel)]="nuevoMaterial.fechaEntrega"
+              name="fechaEntrega"
+              type="date"
+            />
+            <label class="form-label">
               Seleccionar material:
               <input
                 type="file"
@@ -159,11 +147,20 @@
                 style="display: none"
                 (change)="onFileSelected($event)"
               />
-              <button type="button" (click)="fileInput.click()">
+              <button
+                class="btn btn-primary"
+                type="button"
+                (click)="fileInput.click()"
+              >
                 Seleccionar archivo
               </button>
             </label>
-            <button class="btn btn-primary" type="submit">
+            <button
+              style="margin-top: 2rem"
+              data-bs-dismiss="modal"
+              class="btn btn-primary"
+              type="submit"
+            >
               Crear material
             </button>
           </form>
@@ -173,9 +170,9 @@
   </div>
   <!-- Aquí es donde se aloja los materiales subidos -->
   <div class="material">
+    <!-- Elemento de colapso -->
     <div
-      class="collapse"
-      [ngClass]="{ show: isSectionExpanded(seccion) }"
+      [ngClass]="{ collapse: true, show: isSectionExpanded(seccion) }"
       id="{{ seccion.titulo.split(' ').join('_') }}"
     >
       <div class="card card-body">
@@ -187,8 +184,6 @@
               <th scope="col">Descripcion</th>
               <th scope="col">Fecha de entrega</th>
               <th scope="col">Descarga material</th>
-              <th scope="col">Editar</th>
-              <th scope="col">Eliminar</th>
             </tr>
           </thead>
           <tbody>
@@ -200,23 +195,7 @@
               <td>{{ material.descripcion }}</td>
               <td>{{ material.fechaEntrega }}</td>
               <td>
-                <a [href]="material.urlDescarga" download>Descargar Archivo</a>
-              </td>
-              <td class="acciones">
-                <button
-                  id="edit"
-                  class="editar"
-                  title="Editar"
-                  data-bs-toggle="modal"
-                  data-bs-target="#editarUsuario"
-                >
-                  <span class="material-symbols-outlined"> edit </span>
-                </button>
-              </td>
-              <td class="acciones">
-                <button id="delete" class="eliminar" title="Eliminar">
-                  <span class="material-symbols-outlined"> delete </span>
-                </button>
+                <a [href]="material.url" download>Descargar Archivo</a>
               </td>
             </tr>
           </tbody>
