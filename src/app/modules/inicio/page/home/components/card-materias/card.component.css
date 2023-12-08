@@ -149,20 +149,79 @@
   margin: 10px;
 }
 
-.quimica {
-  --bg-color: #b8f9d3;
+.function {
+  --bg-color: #ef3131;
   --bg-color-light: #ffeeba;
   --text-color-hover: #4c5656;
   --box-shadow-color: rgba(97, 218, 255, 0.48);
 }
 
-.analisis {
-  --bg-color: #f9bcb8;
+.smartphone {
+  --bg-color: rgb(97, 150, 219);
   --bg-color-light: #ffeeba;
   --text-color-hover: #4c5656;
   --box-shadow-color: rgba(97, 218, 255, 0.48);
 }
-
+.book_3 {
+  --bg-color: #ad5cf9;
+  --bg-color-light: #ffeeba;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.crowdsource {
+  --bg-color: #f9b55c;
+  --bg-color-light: #ffeeba;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.encrypted {
+  --bg-color: #3a71e9;
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.balance {
+  --bg-color: #876927;
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.savings {
+  --bg-color: rgb(61, 131, 40);
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.contract_edit {
+  --bg-color: rgb(204, 85, 214);
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.terminal {
+  --bg-color: rgb(85, 180, 214);
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.code {
+  --bg-color: rgb(135, 138, 139);
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.smart_toy {
+  --bg-color: rgb(221, 221, 101);
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
+.directions_run {
+  --bg-color: rgb(61, 131, 40);
+  --bg-color-light: #baeaff;
+  --text-color-hover: #4c5656;
+  --box-shadow-color: rgba(97, 218, 255, 0.48);
+}
 span {
   font-size: 5rem;
 }
@@ -234,63 +293,3 @@ span {
     }
   }
 }
-
-/*@media (max-width: 470px) {
-  .title-container {
-    text-align: center;
-    position: relative;
-    top: auto;
-    right: auto;
-    margin-top: 50px;
-    margin-right: 20px;
-  }
-
-  h1 {
-    margin-left: 50px;
-    margin-top: 50px;
-    margin-right: 20px;
-    font-size: 25px;
-  }
-
-  .select-container {
-    position: absolute;
-    top: 250px;
-    right: 160px;
-    bottom: 10px;
-    left: auto;
-  }
-
-  .block-container {
-    position: absolute;
-    top: 240px;
-    right: 100px;
-  }
-}
-@media (max-width: 320px) {
-  .select-container {
-    position: absolute;
-    right: 120px;
-  }
-  .form-select {
-    width: 100px;
-    font-size: 9px;
-  }
-  .block-container {
-    position: absolute;
-    right: 70px;
-  }
-  .bi-grid-fill {
-    font-size: 15px;
-  }
-  .bi-list {
-    font-size: 15px;
-  }
-  .circle {
-    width: 50px;
-    height: 50px;
-  }
-  .svg {
-    width: 40px;
-    height: 40px;
-  }
-}*/
