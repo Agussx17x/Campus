@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
 /*Contenedor. Define lo que se ve y lo que no.*/
-.container {
+.contenido {
   position: relative;
   width: 60vw;
   height: 60vh;
@@ -14,11 +16,13 @@
   border-radius: 20px;
   margin: auto;
 }
+
 /*Ocultamos lo innecesario.*/
 .tabs input {
   visibility: hidden;
   display: none;
 }
+
 /*Alineamos los botones abajo en el centro.*/
 .buttons {
   position: absolute;
@@ -29,6 +33,7 @@
   gap: 10px;
   z-index: 10;
 }
+
 /*Le damos visibilidad y diseño a los botones.*/
 .buttons label {
   width: 15px;
@@ -40,14 +45,18 @@
   transition: 0.5s;
   margin: 0 5px; /* Agrega margen horizontal entre los puntos */
 }
+
 /*Le damos interacción a los botones.*/
 .tabs input:nth-child(1):checked ~ .buttons label:nth-child(1),
 .tabs input:nth-child(2):checked ~ .buttons label:nth-child(2),
 .tabs input:nth-child(3):checked ~ .buttons label:nth-child(3),
-.tabs input:nth-child(4):checked ~ .buttons label:nth-child(4) {
+.tabs input:nth-child(4):checked ~ .buttons label:nth-child(4),
+.tabs input:nth-child(5):checked ~ .buttons label:nth-child(5),
+.tabs input:nth-child(6):checked ~ .buttons label:nth-child(6) {
   opacity: 1;
   width: 30px;
 }
+
 /*Alineamos el contenido del slider.*/
 .content {
   position: relative;
@@ -55,6 +64,7 @@
   display: flex;
   transition: 0.5s;
 }
+
 .content .box {
   position: relative;
   width: 60vw;
@@ -65,10 +75,12 @@
   padding: 40px; /* Ajusta el espacio interno (padding) aquí */
   margin: 0; /* Ajusta el espacio externo (margin) aquí */
 }
+
 /*Diseño del fondo de cada slide.*/
 .content .box {
   background: #e2e6e9;
 }
+
 /* .content .box:nth-child(1) {
   background: linear-gradient(90deg, #43cea2, #185a9d);
 }
@@ -92,6 +104,12 @@
 .tabs input:nth-child(4):checked ~ .content {
   left: -180vw;
 }
+.tabs input:nth-child(5):checked ~ .content {
+  left: -240vw;
+}
+.tabs input:nth-child(6):checked ~ .content {
+  left: -300vw;
+}
 
 /*CSS Personalizado*/
 .contentBx {
@@ -100,13 +118,14 @@
   border-radius: 10px;
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2), -15px -15px 30px #e2e6e9;
 }
+
 .contentBx .avisoCont {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
   width: 600px;
-  height: 150px;
+  height: auto;
 }
 
 .contentBx .avisoCont .avisoHead {
@@ -115,10 +134,11 @@
   justify-content: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   margin-bottom: 5px;
-  gap: 10px;
+  gap: 90px;
   width: 100%;
   height: 30px;
 }
+
 .contentBx .avisoCont .avisoHead .avisoTitulo {
   text-align: start;
   font-size: 1.2em;
@@ -126,6 +146,7 @@
   width: 240px;
   height: 100%;
 }
+
 .contentBx .avisoCont .avisoHead .avisoBotones {
   display: flex;
   align-items: center;
@@ -134,6 +155,7 @@
   width: 100px;
   height: 100%;
 }
+
 .contentBx .avisoCont .avisoHead .avisoBotones .btn {
   color: #6b6b6b;
   text-align: center;
@@ -143,6 +165,7 @@
   height: 30px;
   transition: 0.5s;
 }
+
 .contentBx .avisoCont .avisoHead .avisoBotones .btn:hover {
   color: #51b9c0;
 }
@@ -152,28 +175,31 @@
   width: 100%;
   min-height: 90px;
 }
+
 .contentBx .avisoCont .avisoBody::-webkit-scrollbar {
   width: 5px;
 }
+
 .contentBx .avisoCont .avisoBody::-webkit-scrollbar-thumb {
   background: #51b9c0;
   border-radius: 5px;
 }
+
 /* Responsive */
 @media (max-width: 991px) {
   .contentBx .avisoCont {
     width: 350px;
-    height: 150px;
+    height: auto;
   }
 }
 @media (max-width: 767px) {
-  .container {
+  .contenido {
     width: 100%;
     margin-bottom: 30px;
   }
   .contentBx .avisoCont {
     width: 350px;
-    height: 150px;
+    height: auto;
   }
   /* Interpolacion necesaria */
   .content .box {
@@ -190,6 +216,12 @@
   }
   .tabs input:nth-child(4):checked ~ .content {
     left: -210vw;
+  }
+  .tabs input:nth-child(5):checked ~ .content {
+    left: -280vw;
+  }
+  .tabs input:nth-child(6):checked ~ .content {
+    left: -350vw;
   }
   @media (max-width: 375px) {
     .contentBx .avisoCont .avisoHead .avisoTitulo {
@@ -213,7 +245,7 @@
     }
     .contentBx .avisoCont {
       width: 180px;
-      height: 280px;
+      height: auto;
     }
     .content .box {
       width: 75vw;
@@ -230,10 +262,16 @@
     .tabs input:nth-child(4):checked ~ .content {
       left: -225vw;
     }
+    .tabs input:nth-child(5):checked ~ .content {
+      left: -300vw;
+    }
+    .tabs input:nth-child(6):checked ~ .content {
+      left: -375vw;
+    }
   }
 }
 /* @media (max-width: 767px) {
-  .container {
+  .contenido {
     width: 100%;
   }
 } */

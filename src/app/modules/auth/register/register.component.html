@@ -14,6 +14,7 @@
         id="name"
         required
         name="nombre"
+        placeholder="Ingrese un nombre"
         [(ngModel)]="usuarios.nombre"
       />
     </div>
@@ -25,10 +26,11 @@
         id="surname"
         required
         name="apellido"
+        placeholder="Ingrese un apellido"
         [(ngModel)]="usuarios.apellido"
       />
     </div>
-    
+
     <div class="col-12">
       <label for="email" class="form-label">Email</label>
       <input
@@ -37,10 +39,11 @@
         id="email"
         required
         name="email"
+        placeholder="Ingrese un correo electrónico"
         [(ngModel)]="usuarios.email"
       />
     </div>
-  
+
     <div class="col-md-6">
       <label for="password" class="form-label">Contraseña</label>
       <input
@@ -52,6 +55,7 @@
         #input
         minlength="6"
         name="password"
+        placeholder="Ingrese una contraseña"
       />
       <p>Minimo:6/{{ input.value.length }}</p>
     </div>
@@ -64,6 +68,7 @@
         required
         [(ngModel)]="usuarios.dni"
         name="dni"
+        placeholder="Documento Nacional de Identidad (DNI)"
       />
     </div>
     <div id="credenciales" class="col-md-4">
@@ -75,9 +80,10 @@
         [(ngModel)]="usuarios.credencial"
         name="credencial"
       >
-        <option value="adm" >Admin</option>
-        <option value="doc" >Profesor</option>
-        <option value="est" >Estudiante</option>
+        <option value="" disabled selected>Credencial</option>
+        <option value="adm">Admin</option>
+        <option value="doc">Profesor</option>
+        <option value="est">Estudiante</option>
       </select>
     </div>
     <div class="col-12">
@@ -87,7 +93,6 @@
     </div>
   </form>
 </div>
-
 
 <!--
   <mat-form-field appearance="fill">

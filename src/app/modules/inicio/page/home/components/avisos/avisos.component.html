@@ -1,19 +1,17 @@
-<div class="container">
+<div class="contenido">
   <div class="tabs">
-    <input id="web" type="radio" name="slider" checked />
-    <input id="graphics" type="radio" name="slider" />
-    <input id="photography" type="radio" name="slider" />
-    <input id="enter" type="radio" name="slider" />
+    <input id="1" type="radio" name="slider" checked />
+    <input id="2" type="radio" name="slider" />
+    <input id="3" type="radio" name="slider" />
+    <input id="4" type="radio" name="slider" />
+    <input id="5" type="radio" name="slider" />
+    <input id="6" type="radio" name="slider" />
     <div class="buttons">
       <!-- 
         let i = index establece una variable i que representa el índice del elemento actual en la colección.
-        [for]="'aviso-' + i" está utilizando una interpolación para asignar un atributo for único a cada etiqueta <label>.
-        class="button-label" agrega una clase CSS llamada "button-label" a cada etiqueta <label>.
       -->
       <label
         *ngFor="let aviso of coleccionAvisos; let i = index"
-        [for]="'aviso-' + i"
-        class="button-label"
         (click)="changeSlide(i)"
       ></label>
     </div>
@@ -53,6 +51,26 @@
                       d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
                     />
                   </svg>
+                </div>
+                <div
+                  *ngIf="usuario.credencial === 'adm'"
+                  class="btn"
+                  id="edit"
+                  title="Editar"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editarAviso"
+                  (click)="mostrarEditar(aviso)"
+                >
+                  <span class="material-symbols-outlined"> edit </span>
+                </div>
+                <div
+                  *ngIf="usuario.credencial === 'adm'"
+                  class="btn"
+                  id="delete"
+                  title="Eliminar"
+                  (click)="borrarAviso(aviso)"
+                >
+                  <span class="material-symbols-outlined"> delete </span>
                 </div>
               </div>
             </div>

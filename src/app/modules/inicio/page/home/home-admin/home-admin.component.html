@@ -2,24 +2,32 @@
   <h1>¡Bienvenido, {{ nombre }} {{ apellido }}! ({{ tipoCredencial }})</h1>
   <ul>
     <tr class="lista">
-      <td class="td" routerLink="/register">
-        <a class="regis">
-          <span class="material-symbols-outlined"> person_add </span>
-          Agregar Usuario</a
-        >
-      </td>
-      <td class="td" routerLink="/lista">
-        <a class="regis">
-          <span class="material-symbols-outlined"> contract </span>
-          Lista de Usuarios
-        </a>
-      </td>
-      <td class="td" data-bs-toggle="modal" data-bs-target="#modalAlert">
-        <a class="add">
-          <span class="material-symbols-outlined"> notification_add </span>
-          Agregar Aviso
-        </a>
-      </td>
+      <div class="row">
+        <div class="col">
+          <td class="td" routerLink="/register">
+            <a class="regis">
+              <span class="material-symbols-outlined"> person_add </span>
+              Agregar Usuario</a
+            >
+          </td>
+        </div>
+        <div class="col">
+          <td class="td" routerLink="/lista">
+            <a class="regis">
+              <span class="material-symbols-outlined"> contract </span>
+              Lista de Usuarios
+            </a>
+          </td>
+        </div>
+        <div class="col">
+          <td class="td" data-bs-toggle="modal" data-bs-target="#modalAlert">
+            <a class="add">
+              <span class="material-symbols-outlined"> notification_add </span>
+              Agregar Aviso
+            </a>
+          </td>
+        </div>
+      </div>
     </tr>
   </ul>
   <div class="row">
@@ -34,6 +42,7 @@
       <!--*FINBarra Lateral-->
     </div>
   </div>
+
   <!-- Modal Avisos -->
   <div
     class="modal fade"
@@ -76,7 +85,8 @@
                 class="form-control"
                 name="descripcion"
                 formControlName="descripcion"
-                placeholder="Ingrese una descripción del aviso..."
+                placeholder="Ingrese a continuación una descripción..."
+                (input)="ajustarAltura($event)"
               ></textarea>
             </label>
           </form>
@@ -95,6 +105,74 @@
             (click)="agregarAviso()"
           >
             Subir
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para editar aviso -->
+  <div
+    class="modal fade"
+    id="editarAviso"
+    *ngFor="let aviso of coleccionAvisos"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Edite el siguiente aviso.
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="avisos">
+            <label class="form-control">
+              Título:
+              <input
+                class="form-control"
+                name="titulo"
+                formControlName="titulo"
+                placeholder="{{ aviso.titulo }}"
+                required
+              />
+            </label>
+
+            <label class="form-control">
+              Descripción del aviso:
+              <textarea
+                class="form-control"
+                name="descripcion"
+                formControlName="descripcion"
+                placeholder="{{ aviso.descripcion }}"
+                (input)="ajustarAltura($event)"
+              ></textarea>
+            </label>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            class="btn btn-success"
+            data-bs-dismiss="modal"
+            (click)="editarAviso()"
+          >
+            Actualizar
           </button>
         </div>
       </div>

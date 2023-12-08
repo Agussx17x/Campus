@@ -110,14 +110,12 @@ export class TableComponent {
     });
   }
 
-  // Esta función deternminasu se deben mostrar los botones.
+  // Esta función determina si se deben mostrar los botones.
   botones() {
     // Obtiene la URL actual.
     const currentUrl = this.router.url;
     return currentUrl !== '/estudiante/materia';
   }
-
-  mostrarEditar() {}
 
   // Método para obtener/guardar el estado de la sección y cambiar su estado.
   toggleSectionState(seccion: Seccion): void {

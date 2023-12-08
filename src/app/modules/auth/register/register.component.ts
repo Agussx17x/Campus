@@ -33,6 +33,31 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   async registrarse() {
+    // Verifica si los campos están completos.
+    if (
+      !this.usuarios.email ||
+      !this.usuarios.password ||
+      !this.usuarios.nombre ||
+      !this.usuarios.apellido ||
+      !this.usuarios.dni ||
+      !this.usuarios.credencial
+    ) {
+      alert('Por favor, complete todos los campos.');
+      return;
+    }
+
+    // Verifica si el correo es de tipo email.
+    if (!this.validarEmail(this.usuarios.email)) {
+      alert('Por favor, ingresé un dato tipo correo');
+      return;
+    }
+
+    // Verifica si la contraseña tiene un un mínimo de 6 carácteres.
+    if (this.usuarios.password.length < 6) {
+      alert('La contraseña debe tener al menos 6 caracteres.');
+      return;
+    }
+
     const credenciales = {
       email: this.usuarios.email,
       password: this.usuarios.password,
@@ -41,7 +66,6 @@ export class RegisterComponent implements OnInit {
       .registrar(credenciales.email, credenciales.password)
       .then((res) => {
         alert('Ha agregado un nuevo usuario con exito');
-        this.router.navigate(['/admin']);
       })
       .catch((error) =>
         alert('Hubo un error al cargar el usuario :( \n' + error)
@@ -72,5 +96,11 @@ export class RegisterComponent implements OnInit {
   async ngOnInit() {
     const uid = await this.serviceAuth.getuid();
     console.log(uid);
+  }
+
+  validarEmail(email: string): boolean {
+    const simbolos =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return simbolos.test(email);
   }
 }
