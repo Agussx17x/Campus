@@ -18,21 +18,26 @@
       <li
         [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
         *ngFor="let day of monthSelect; let first = first"
+        [ngClass]="{ 'has-content': hasPopoverContent(day) }"
       >
-        <button
-          id="{{ id }}"
-          class="btn-day"
-          [ngStyle]="{
-            'background-color': isCurrentDay(day) ? 'rgb(38, 0, 255)' : 'aliceblue',
-            'color': isCurrentDay(day) ? 'white' : 'none'
-          }"
-          [popover]="getPopoverContent(day)"
-          triggers="mouseenter:mouseleave"
-          placement="top"
-          container="body"
-        >
-          <span (change)="getId(day?.value)">{{ day?.value }}</span>
-        </button>
+      <button
+      id="btn-day"
+      style="position: relative;" 
+      [ngStyle]="{
+        'background-color': isCurrentDay(day)
+          ? 'rgb(38, 0, 255)'
+          : 'aliceblue',
+        color: isCurrentDay(day) ? 'white' : 'none'
+      }"
+      [popover]="getPopoverContent(day)"
+      triggers="mouseenter:mouseleave"
+      placement="top"
+      container="body"
+    >
+      <span (change)="getId(day?.value)">{{ day?.value }}</span>
+      <span *ngIf="hasPopoverContent(day)" class="dot"></span> <!-- Este es el nuevo elemento -->
+    </button>
+    
       </li>
     </ol>
   </div>
