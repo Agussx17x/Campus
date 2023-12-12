@@ -1,16 +1,71 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
+import { ListaUsuariosService } from 'src/app/modules/inicio/page/home/services/lista-usuarios.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   icon: string = 'person_circle';
+  estaLogueado: boolean = false;
+  rutaHome!: string;
 
-  constructor(private router: Router, private afAuth: AuthService) {}
+  constructor(
+    private router: Router,
+    private AuthService: AuthService,
+    private afAuth: AngularFireAuth,
+    private listaUsuariosService: ListaUsuariosService
+  ) {
+     // Escucha los cambios de ruta
+     this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.actualizarEstadoAutenticacion();
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    this.actualizarEstadoAutenticacion();
+  }
+
+  actualizarEstadoAutenticacion(): void {
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        const uidUsuarioLogueado = user.uid;
+
+        this.listaUsuariosService.obtenerUsuarios().subscribe((usuarios) => {
+          const usuarioLogueado = usuarios.find(
+            (u) => u.uid === uidUsuarioLogueado
+          );
+
+          if (usuarioLogueado) {
+            this.estaLogueado = true;
+            switch (usuarioLogueado.credencial) {
+              case 'adm':
+                this.rutaHome = '/admin';
+                break;
+              case 'est':
+                this.rutaHome = '/estudiante';
+                break;
+              case 'doc':
+                this.rutaHome = '/docente';
+                break;
+              default:
+                this.rutaHome = '/home';
+            }
+          } else {
+            this.estaLogueado = false;
+          }
+        });
+      } else {
+        this.estaLogueado = false;
+      }
+    });
+  }
 
   // Esta función agrega y quita la clase 'active' para la responsividad.
   claseActive() {
@@ -110,6 +165,6 @@ export class NavbarComponent {
 
   // Esta función llama al método de cierre de sesión del servicio de autenticación.
   cerrarsesion() {
-    this.afAuth.logout();
+    this.AuthService.logout();
   }
 }
