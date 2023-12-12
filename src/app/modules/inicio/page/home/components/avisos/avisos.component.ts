@@ -96,11 +96,22 @@ export class AvisosComponent {
     if (confirmacion) {
       this.avisoSeleccionado = avisoSeleccionado;
       this.avisosService
-        .eliminarAvisos(this.avisoSeleccionado.idAvisos)
+        .eliminarAvisos(this.avisoSeleccionado.idAvisos, this.avisoSeleccionado)
         .then((respuesta) => {
           alert('Se ha eliminado con éxito el aviso.');
+          // Redirige al usuario al primer slider.
+          requestAnimationFrame(() => {
+            // Bucas el DOM un elemento con el id = '1'.
+            const element = document.getElementById('1') as HTMLInputElement;
+            // Verifica que el elemento no es null antes de intentar acceder a la propiedad 'checked'.
+            if (element) {
+              // Establece la propiedad 'checked' del elemento a true.
+              element.checked = true;
+            }
+          });
         })
         .catch((error) => {
+          console.error(error);
           alert(
             'Ha habido un error al intentar eliminar el aviso, razón: \n' +
               error

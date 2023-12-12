@@ -75,6 +75,7 @@
                 name="titulo"
                 formControlName="titulo"
                 placeholder="Ingrese un título"
+                maxlength="50"
                 required
               />
             </label>
@@ -89,6 +90,17 @@
                 (input)="ajustarAltura($event)"
               ></textarea>
             </label>
+            <!-- Imágen -->
+            <label class="form-control">
+              Seleccione una imágen:
+              <input
+                class="form-control"
+                accept=".png, .jpg, .jpeg"
+                type="file"
+                id="formFile"
+                (change)="manejarSeleccionImagen($event)"
+              />
+            </label>
           </form>
         </div>
         <div class="modal-footer">
@@ -102,6 +114,7 @@
           <button
             type="button"
             class="btn btn-primary"
+            data-bs-dismiss="modal"
             (click)="agregarAviso()"
           >
             Subir
@@ -135,6 +148,7 @@
         </div>
         <div class="modal-body">
           <form [formGroup]="avisos">
+            <!-- Título -->
             <label class="form-control">
               Título:
               <input
@@ -142,10 +156,11 @@
                 name="titulo"
                 formControlName="titulo"
                 placeholder="{{ aviso.titulo }}"
+                maxlength="50"
                 required
               />
             </label>
-
+            <!-- Descripción -->
             <label class="form-control">
               Descripción del aviso:
               <textarea
@@ -155,6 +170,17 @@
                 placeholder="{{ aviso.descripcion }}"
                 (input)="ajustarAltura($event)"
               ></textarea>
+            </label>
+            <!-- Imágen -->
+            <label class="form-control">
+              Seleccione una nueva imagen:
+              <input
+                class="form-control"
+                accept=".png, .jpg, .jpeg"
+                type="file"
+                id="formFile"
+                (change)="manejarSeleccionImagen($event)"
+              />
             </label>
           </form>
         </div>

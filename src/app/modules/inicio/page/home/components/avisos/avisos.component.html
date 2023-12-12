@@ -77,6 +77,14 @@
             <div class="avisoBody">
               {{ aviso.descripcion }}
             </div>
+            <div class="avisoFooter">
+              <img
+                class="img-fluid rounded"
+                *ngIf="aviso.imagenUrl"
+                src="{{ aviso.imagenUrl }}"
+                alt="imágen del aviso"
+              />
+            </div>
           </div>
         </div>
       </div>

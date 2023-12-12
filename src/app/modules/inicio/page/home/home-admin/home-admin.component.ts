@@ -47,6 +47,8 @@ export class HomeAdminComponent {
     est: 'Estudiante',
   };
 
+  imagenSeleccionada!: File;
+
   constructor(
     private crudService: CrudService,
     private avisosService: AvisosService,
@@ -123,15 +125,31 @@ export class HomeAdminComponent {
 
     // Si el formulario es valido crea un nuevo aviso.
     if (this.avisos.valid) {
+      const idAviso = this.avisosService.generarId();
+      console.log(`ID del aviso generado: ${idAviso}`);
+
+      // Genera el ID del aviso previo, para que se pueda guardar correctamente las imágenes.
       let nuevoAviso: Avisos = {
-        idAvisos: '',
+        idAvisos: idAviso,
         titulo: this.avisos.value.titulo!,
         descripcion: this.avisos.value.descripcion!,
+        imagenUrl: '',
       };
 
-      // Envía el nuevo aviso.
+      // Sube la imagen antes de crear el aviso.
+      if (this.imagenSeleccionada) {
+        alert('Subiendo imágen, espere por favor...');
+        nuevoAviso.imagenUrl = await this.avisosService.subirImagen(
+          this.imagenSeleccionada,
+          idAviso
+        );
+      }
+
+      console.log(nuevoAviso); // Registra el objeto nuevoAviso.
+
+      // Creas el aviso usando el mismo ID
       await this.avisosService
-        .crearAvisos(nuevoAviso)
+        .crearAvisos(idAviso, nuevoAviso)
         .then((avisos) => {
           alert('Ha agregado un nuevo aviso con éxito');
         })
@@ -150,19 +168,29 @@ export class HomeAdminComponent {
   }
 
   // Función para editar el aviso nuevo.
-  editarAviso() {
+  async editarAviso() {
     if (this.avisoSeleccionado) {
       // Preparamos los datos del aviso seleccionado.
       let datos: Avisos = {
         idAvisos: this.avisoSeleccionado.idAvisos,
         titulo: this.avisos.value.titulo!,
         descripcion: this.avisos.value.descripcion!,
+        imagenUrl: this.avisoSeleccionado.imagenUrl,
       };
 
+      // Si se seleccionó una nueva imagen, sube la imagen y actualiza la URL de la imagen en los datos del aviso.
+      if (this.imagenSeleccionada) {
+        alert('Actualizando su imágen, espere por favor...');
+        datos.imagenUrl = await this.avisosService.subirImagen(
+          this.imagenSeleccionada,
+          this.avisoSeleccionado.idAvisos
+        );
+      }
+      // Llama al método 'modificarAvisos' del servicio 'avisosService' para actualizar el aviso en la base de datos.
       this.avisosService
         .modificarAvisos(this.avisoSeleccionado.idAvisos, datos)
         .then((respuesta) => {
-          alert('El ha editado con éxito el aviso.');
+          alert('El aviso ha sido editado con éxito.');
         })
         .catch((error) => {
           alert(
@@ -171,6 +199,25 @@ export class HomeAdminComponent {
         });
     } else {
       alert('Por favor, selecciona un aviso antes de intentar editarlo.');
+    }
+  }
+
+  // Esta función maneja la sección de una imágen.
+  manejarSeleccionImagen(event: Event) {
+    // Obtiene el elemento HTML que disparo el input de tipo "File".
+    const input = event.target as HTMLInputElement;
+    // Verifica si el input tiene archivos y si el primer archivo existe.
+    if (input.files && input.files[0]) {
+      // Obtiene el primer archivo del input.
+      const file: File = input.files[0];
+      // Verifica si el archivo es una imagen.
+      if (!file.type.startsWith('image/')) {
+        // Si el archivo no es una imagen, muestra una alerta al usuario y termina la función.
+        alert('Por favor, selecciona una imagen.');
+        return;
+      }
+      // Si el archivo es una imagen, lo guarda en la propiedad "imagenSeleccionada".
+      this.imagenSeleccionada = file;
     }
   }
 }
