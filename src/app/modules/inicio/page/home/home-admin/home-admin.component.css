@@ -1,26 +1,32 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
 .lista {
   display: flex;
   gap: 20px;
 }
+
 ul {
   padding-left: 0;
   padding-bottom: 10px;
 }
+
 .contenido {
   padding-left: 2rem;
   padding-top: 10rem;
   padding-right: 2rem;
 }
+
 .td {
   margin-left: 1rem;
 }
+
 td {
   padding: 20px;
   background: #e2e6e9;
   border-radius: 20px;
   cursor: pointer;
 }
+
 a {
   transition: 0.5s;
   color: #43a5f6;
@@ -29,15 +35,35 @@ a {
   font-weight: 400;
   text-align: center;
 }
-td:hover {
 
+td:hover {
   background: #43a5f6;
 }
-td:hover a {
 
+td:hover a {
   color: #fff;
 }
+
 #barralateral {
   display: flex;
   justify-content: center;
+}
+
+.col {
+  margin: 10px;
+  width: 200px;
+}
+
+/* Responsive */
+@media (max-width: 320px) and (max-height: 886px) {
+  .td {
+    margin-left: 0.5rem;
+  }
+  td {
+    padding: 10px;
+    font-size: 1rem;
+  }
+  a {
+    font-size: 1rem;
+  }
 }

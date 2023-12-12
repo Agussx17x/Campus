@@ -6,8 +6,6 @@ import { Trabajos } from 'src/app/models/trabajos';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-import { SimpleChanges } from '@angular/core';
-import * as $ from 'jquery';
 import 'bootstrap';
 
 @Component({

@@ -2,30 +2,40 @@
   <h1>¡Bienvenido, {{ nombre }} {{ apellido }}! ({{ tipoCredencial }})</h1>
   <ul>
     <tr class="lista">
-      <td class="td" routerLink="/register">
-        <a class="regis">
-          <span class="material-symbols-outlined"> person_add </span>
-          Agregar Usuario</a
-        >
-      </td>
-      <td class="td">
-        <a class="regis" routerLink="/lista">
-          <span class="material-symbols-outlined"> contract </span>
-          Lista de Usuarios
-        </a>
-      </td>
-      <td class="td" data-bs-toggle="modal" data-bs-target="#modalAlert">
-        <a class="add">
-          <span class="material-symbols-outlined"> notification_add </span>
-          Agregar Aviso
-        </a>
-      </td>
-      <td class="td" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-        <a class="add">
-          <span class="material-symbols-outlined"> book_2 </span>
-          Agregar Materia
-        </a>
-      </td>
+      <div class="row">
+        <div class="col">
+          <td class="td" routerLink="/register">
+            <a class="regis">
+              <span class="material-symbols-outlined"> person_add </span>
+              Agregar Usuario</a
+            >
+          </td>
+        </div>
+        <div class="col">
+          <td class="td">
+            <a class="regis" routerLink="/lista">
+              <span class="material-symbols-outlined"> contract </span>
+              Lista de Usuarios
+            </a>
+          </td>
+        </div>
+        <div class="col">
+          <td class="td" data-bs-toggle="modal" data-bs-target="#modalAlert">
+            <a class="add">
+              <span class="material-symbols-outlined"> notification_add </span>
+              Agregar Aviso
+            </a>
+          </td>
+        </div>
+        <div class="col">
+          <td class="td" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+            <a class="add">
+              <span class="material-symbols-outlined"> book_2 </span>
+              Agregar Materia
+            </a>
+          </td>
+        </div>
+      </div>
     </tr>
   </ul>
 
@@ -75,6 +85,7 @@
                 name="titulo"
                 formControlName="titulo"
                 placeholder="Ingrese un título"
+                maxlength="50"
                 required
               />
             </label>
@@ -85,8 +96,20 @@
                 class="form-control"
                 name="descripcion"
                 formControlName="descripcion"
-                placeholder="Ingrese una descripción del aviso..."
+                placeholder="Ingrese a continuación una descripción..."
+                (input)="ajustarAltura($event)"
               ></textarea>
+            </label>
+            <!-- Imágen -->
+            <label class="form-control">
+              Seleccione una imágen:
+              <input
+                class="form-control"
+                accept=".png, .jpg, .jpeg"
+                type="file"
+                id="formFile"
+                (change)="manejarSeleccionImagen($event)"
+              />
             </label>
           </form>
         </div>
@@ -101,9 +124,91 @@
           <button
             type="button"
             class="btn btn-primary"
+            data-bs-dismiss="modal"
             (click)="agregarAviso()"
           >
             Subir
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para editar aviso -->
+  <div
+    class="modal fade"
+    id="editarAviso"
+    *ngFor="let aviso of coleccionAvisos"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Edite el siguiente aviso.
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="avisos">
+            <!-- Título -->
+            <label class="form-control">
+              Título:
+              <input
+                class="form-control"
+                name="titulo"
+                formControlName="titulo"
+                placeholder="{{ aviso.titulo }}"
+                maxlength="50"
+                required
+              />
+            </label>
+            <!-- Descripción -->
+            <label class="form-control">
+              Descripción del aviso:
+              <textarea
+                class="form-control"
+                name="descripcion"
+                formControlName="descripcion"
+                placeholder="{{ aviso.descripcion }}"
+                (input)="ajustarAltura($event)"
+              ></textarea>
+            </label>
+            <!-- Imágen -->
+            <label class="form-control">
+              Seleccione una nueva imagen:
+              <input
+                class="form-control"
+                accept=".png, .jpg, .jpeg"
+                type="file"
+                id="formFile"
+                (change)="manejarSeleccionImagen($event)"
+              />
+            </label>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            class="btn btn-success"
+            data-bs-dismiss="modal"
+            (click)="editarAviso()"
+          >
+            Actualizar
           </button>
         </div>
       </div>
