@@ -4,6 +4,8 @@ import { Seccion } from 'src/app/models/seccion';
 import { ActivatedRoute } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { Material } from 'src/app/models/material';
+import { ListaUsuariosService } from '../../services/lista-usuarios.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-table',
@@ -20,8 +22,11 @@ export class TableComponent {
   idSeccionSeleccionada!: string;
   idMateria!: string;
   nuevoMaterial = { titulo: '', descripcion: '', fechaEntrega: '', url: '' };
+  tipoCredencial!: string;
 
   constructor(
+    private afAuth: AngularFireAuth,
+    private listaUsuariosService: ListaUsuariosService,
     private crudService: CrudService,
     private route: ActivatedRoute
   ) {}
@@ -46,6 +51,21 @@ export class TableComponent {
           return { ...data, id };
         });
       });
+    });
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        const uidUsuarioLogueado = user.uid;
+
+        this.listaUsuariosService.obtenerUsuarios().subscribe((usuarios) => {
+          const usuarioLogueado = usuarios.find(
+            (u) => u.uid === uidUsuarioLogueado
+          );
+
+          if (usuarioLogueado) {
+            this.tipoCredencial = usuarioLogueado.credencial;
+          }
+        });
+      }
     });
   }
   // Crear seccion dentro de la coleccion de materias.
