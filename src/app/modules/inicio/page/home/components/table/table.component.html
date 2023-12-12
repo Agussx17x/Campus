@@ -5,6 +5,7 @@
   class="btn btn-primary"
   data-bs-toggle="modal"
   data-bs-target="#exampleModal"
+  *ngIf="tipoCredencial !== 'est'"
 >
   <span style="margin-right: 1rem" class="material-symbols-outlined">
     add
@@ -76,9 +77,11 @@
       class="btn btn-primary"
       data-bs-toggle="modal"
       [attr.data-bs-target]="'#' + seccion.titulo.split(' ').join('_')"
+      *ngIf="tipoCredencial !== 'est'"
     >
       <span class="material-symbols-outlined add"> add </span>
     </button>
+
     <!-- Botón que muestra la lista de materiales -->
     <button
       style="
