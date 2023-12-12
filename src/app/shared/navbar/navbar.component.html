@@ -36,10 +36,16 @@
             <h4>Perfil</h4></a
           >
         </li>
-        <li *ngIf="login()">
+        <li *ngIf="!estaLogueado">
           <a id="login" routerLink="/login"
             ><span class="material-symbols-outlined"> person </span>
             <h4>Login</h4></a
+          >
+        </li>
+        <li *ngIf="estaLogueado">
+          <a id="aula" [routerLink]="rutaHome"
+            ><span class="material-symbols-outlined"> person </span>
+            <h4>Aula</h4></a
           >
         </li>
       </ul>
