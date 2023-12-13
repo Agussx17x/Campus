@@ -6,39 +6,36 @@
           <span class="material-symbols-outlined"> arrow_back </span>
         </button>
       </div>
-      <h1 class="name-month">{{ dateSelect | date : "MMMM, yyyy" }}</h1>
+      <h1 class="name-month">{{ dateSelect.format("MMMM, YYYY") }}</h1>
       <div>
         <button (click)="changeMonth(1)" class="btn-next">
           <span class="material-symbols-outlined"> arrow_forward </span>
         </button>
       </div>
     </div>
-    <ol>
-      <li *ngFor="let day of week" class="day-name"></li>
+    <ol *ngIf="!isLoading; else loading">
       <li
-        [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
-        *ngFor="let day of monthSelect; let first = first"
-        [ngClass]="{ 'has-content': hasPopoverContent(day) }"
+        *ngFor="let day of monthSelect"
+        [style.gridColumnStart]="day.indexWeek"
       >
       <button
       id="btn-day"
-      style="position: relative;" 
-      [ngStyle]="{
-        'background-color': isCurrentDay(day)
-          ? 'rgb(38, 0, 255)'
-          : 'aliceblue',
-        color: isCurrentDay(day) ? 'white' : 'none'
-      }"
+      style="position: relative"
+      [ngClass]="{ today: day.isToday }"
       [popover]="getPopoverContent(day)"
       triggers="mouseenter:mouseleave"
-      placement="top"
-      container="body"
     >
-      <span (change)="getId(day?.value)">{{ day?.value }}</span>
-      <span *ngIf="hasPopoverContent(day)" class="dot"></span> <!-- Este es el nuevo elemento -->
+      <span class="day-value">{{ day.value }}</span>
+      <span *ngIf="day.materiales.length > 0" class="dot"></span>
     </button>
-    
       </li>
     </ol>
+    <ng-template #loading>
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p>Cargando Calendario...</p>
+    </ng-template>
   </div>
 </div>
+
