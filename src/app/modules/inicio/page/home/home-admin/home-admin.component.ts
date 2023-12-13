@@ -231,14 +231,17 @@ export class HomeAdminComponent {
 
   crearMateria() {
     if (this.materias.valid) {
+      // Crea un objeto de Materia con los datos del formulario
       let data: Materia = {
         idMateria: this.materias.value.idMateria || this.crudService.crearId(),
         titulo: this.materias.value.titulo || '',
         icono: this.materias.value.icono || '',
       };
+      // Llama al servicio para crear la materia
       this.crudService.crearMateria(data);
+      // Muestra una alerta indicando que la materia se ha creado con éxito
       alert('Materia Creada');
-      // Restablece el formulario con un nuevo ID
+      // Restablece el formulario con un nuevo ID y campos vacíos
       this.materias.setValue({
         idMateria: this.crudService.crearId(),
         titulo: '',

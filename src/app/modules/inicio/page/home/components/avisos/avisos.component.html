@@ -1,5 +1,6 @@
 <div class="contenido">
   <div class="tabs">
+    <!-- Input radio para cada slider -->
     <input id="1" type="radio" name="slider" checked />
     <input id="2" type="radio" name="slider" />
     <input id="3" type="radio" name="slider" />
@@ -16,13 +17,16 @@
       ></label>
     </div>
     <div class="content">
+      <!-- Contenido de cada slider -->
       <div class="box web" *ngFor="let aviso of coleccionAvisos">
         <div class="contentBx">
           <div class="avisoCont">
+            <!-- Cabecera del aviso -->
             <div class="avisoHead">
               <div class="avisoTitulo" [title]="aviso.titulo">
                 {{ aviso.titulo }}
               </div>
+              <!-- Botones para marcar como leído, eliminar, editar y borrar (visible solo para usuarios administradores) -->
               <div class="avisoBotones">
                 <div class="btn btnLeido" title="Marcar Como Leído">
                   <svg
@@ -52,6 +56,7 @@
                     />
                   </svg>
                 </div>
+                <!-- Botones de editar y borrar (visible solo para usuarios administradores) -->
                 <div
                   *ngIf="usuario.credencial === 'adm'"
                   class="btn"
@@ -74,9 +79,11 @@
                 </div>
               </div>
             </div>
+            <!-- Cuerpo del aviso -->
             <div class="avisoBody">
               {{ aviso.descripcion }}
             </div>
+            <!-- Pie del aviso con imagen (si está disponible) -->
             <div class="avisoFooter">
               <img
                 class="img-fluid rounded"

@@ -21,10 +21,10 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 export class LoginComponent {
   email!: string;
 
-  // Variable de verificación
+  // Variable de verificación para determinar si un administrador está logeado
   adminLogeado: boolean = false;
 
-  // Interfaz
+  // Interfaz para representar la estructura de un usuario
   usuarios: Usuario = {
     uid: '',
     email: '',
@@ -43,13 +43,15 @@ export class LoginComponent {
 
   hide = true;
 
-  // FormGroup del Login
+  // FormGroup para el formulario de inicio de sesión
+
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
   });
 
-  // Variable para controlar si se muestra el mensaje de advertencia.
+  // Variables de control para mensajes de advertencia
+
   emailDoesNotExist: boolean = false;
   wrongPassword: boolean = false;
   passwordVisible = false;
@@ -57,6 +59,7 @@ export class LoginComponent {
   /////////////////////////// No Borrar /////////////////////////////////////
   //Cambiar Active para modo Responsive
   //Agregamos la clase Active
+  // Funciones para cambiar la clase 'active' en el formulario (no borrar)
   activeSignup() {
     let formBx = document.getElementById('formBx');
     let body = document.getElementById('body');
@@ -84,6 +87,7 @@ export class LoginComponent {
   ) {}
 
   // Esta función te permite logearte
+  // Función para el proceso de inicio de sesión
   async login() {
     // Obtenemos la instancia de autenticación de Firebase.
     const auth = getAuth();
@@ -104,6 +108,7 @@ export class LoginComponent {
         // Si el inicio de sesión es exitoso, navegamos a la página correspondiente.
         this.afAuth.authState.subscribe((user) => {
           if (user) {
+            // Si el usuario está autenticado, obtenemos sus datos desde Firestore.
             this.firestore
               .collection('usuarios')
               .doc(user.uid)
@@ -111,6 +116,7 @@ export class LoginComponent {
               .subscribe((data: any) => {
                 const credentials = data.credencial;
                 if (credentials === 'est') {
+                  // Si el usuario tiene credenciales de estudiante y no hay un admin logeado, navegamos a la página de estudiante.
                   // SI un admin se encuentra logeado no se volveran a ejecutar los navigate
                   if (this.adminLogeado == false) {
                     this.router.navigate(['/estudiante']);
@@ -136,7 +142,7 @@ export class LoginComponent {
                         this.credenciales.email1,
                         this.credenciales.password1
                       );
-                      // Cambiamos la variable verificacion
+                      // Cambiamos la variable de verificación para indicar que un admin está logeado.
                       this.adminLogeado = true;
                       console.log(this.adminLogeado);
                     }
@@ -161,16 +167,21 @@ export class LoginComponent {
       }
     }
   }
-
+  // Función para retroceder a la página de inicio
   back() {
     this.router.navigate(['/inicio']);
   }
 
   //Funcion para CERRAR SESION
+  // Función para cerrar sesión
   async salir() {
+    // Llamada al método de cierre de sesión proporcionado por el servicio AuthService.
     const res = await this.authService.logout().then((res) => {
+      // Muestra un mensaje de alerta indicando que la sesión se cerró con éxito.
       alert('ha cerrado sesión con éxito!');
+      // Imprime el resultado (puede ser útil para propósitos de depuración).
       console.log(res);
+      // Navega a la página de inicio después de cerrar sesión.
       this.router.navigate(['/inicio']);
     });
   }
@@ -205,7 +216,7 @@ export class LoginComponent {
       alert('Hubo un error al verificar el correo electrónico.');
     }
   }
-
+  // Función que se ejecuta al inicializar el componente
   ngOnInit() {
     // Cambiamos la verificación cada vez que se inicie el componente login
     this.adminLogeado = false;

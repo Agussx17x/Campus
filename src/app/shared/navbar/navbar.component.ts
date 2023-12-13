@@ -20,8 +20,8 @@ export class NavbarComponent implements OnInit {
     private afAuth: AngularFireAuth,
     private listaUsuariosService: ListaUsuariosService
   ) {
-     // Escucha los cambios de ruta
-     this.router.events.subscribe((event) => {
+    // Escucha los cambios de ruta
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.actualizarEstadoAutenticacion();
       }
@@ -33,16 +33,20 @@ export class NavbarComponent implements OnInit {
   }
 
   actualizarEstadoAutenticacion(): void {
+    // Se suscribe al observable authState de AngularFireAuth para monitorear el estado de autenticación del usuario.
     this.afAuth.authState.subscribe((user) => {
       if (user) {
+        // Cuando el usuario está conectado, se obtiene el uid del usuario actual.
         const uidUsuarioLogueado = user.uid;
-
+        // Se suscribe al observable obtenerUsuarios() de ListaUsuariosService para recuperar todos los usuarios.
         this.listaUsuariosService.obtenerUsuarios().subscribe((usuarios) => {
+          // Se busca el usuario actual en la lista de usuarios recuperada.
           const usuarioLogueado = usuarios.find(
             (u) => u.uid === uidUsuarioLogueado
           );
 
           if (usuarioLogueado) {
+            // Si se encuentra el usuario actual, se establece estaLogueado en true y se determina la rutaHome según su credencial.
             this.estaLogueado = true;
             switch (usuarioLogueado.credencial) {
               case 'adm':
@@ -58,10 +62,12 @@ export class NavbarComponent implements OnInit {
                 this.rutaHome = '/home';
             }
           } else {
+            // Si no se encuentra el usuario actual en la lista, se establece estaLogueado en false.
             this.estaLogueado = false;
           }
         });
       } else {
+        // Si el usuario no está conectado, se establece estaLogueado en false.
         this.estaLogueado = false;
       }
     });
@@ -69,7 +75,9 @@ export class NavbarComponent implements OnInit {
 
   // Esta función agrega y quita la clase 'active' para la responsividad.
   claseActive() {
+    // Verifica si se encontró el elemento <header> antes de intentar operar con él.
     let header = document.querySelector('header');
+    // Agrega o quita la clase 'active' al elemento <header> según su presencia actual.
     header?.classList.toggle('active');
   }
 

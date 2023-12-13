@@ -88,16 +88,21 @@ export class AvisosComponent {
 
   // Función para eliminar un aviso.
   borrarAviso(avisoSeleccionado: Avisos) {
+    // Confirmar si el usuario está seguro de borrar el aviso
     const confirmacion = confirm(
       '¿Está seguro que desea borrar el siguiente aviso? (' +
         avisoSeleccionado.titulo +
         ')'
     );
+    // Si el usuario confirma la eliminación
     if (confirmacion) {
+      // Almacenar el aviso seleccionado
       this.avisoSeleccionado = avisoSeleccionado;
+      // Llamar al servicio para eliminar el aviso
       this.avisosService
         .eliminarAvisos(this.avisoSeleccionado.idAvisos, this.avisoSeleccionado)
         .then((respuesta) => {
+          // Mostrar un mensaje de éxito
           alert('Se ha eliminado con éxito el aviso.');
           // Redirige al usuario al primer slider.
           requestAnimationFrame(() => {
@@ -111,6 +116,7 @@ export class AvisosComponent {
           });
         })
         .catch((error) => {
+          // Manejar errores en caso de que la eliminación falle
           console.error(error);
           alert(
             'Ha habido un error al intentar eliminar el aviso, razón: \n' +
