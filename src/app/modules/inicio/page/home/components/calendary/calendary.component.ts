@@ -18,7 +18,7 @@ export class CalendaryComponent implements OnInit, AfterViewInit {
   // Fecha actual seleccionada.
   dateSelect: any;
   materiales: any[] = [];
-  isLoading = true;  // Agrega esta línea
+  isLoading = true; // Agrega esta línea
 
   constructor(private firestore: AngularFirestore) {
     moment.locale('es'); // Establece el idioma español como el idioma por defecto.
@@ -29,8 +29,11 @@ export class CalendaryComponent implements OnInit, AfterViewInit {
   }
 
   async getMateriales() {
-    this.isLoading = true;  // Muestra el spinner
-    const materiasSnapshot = await this.firestore.collection('materias').get().toPromise() as firebase.firestore.QuerySnapshot;
+    this.isLoading = true; // Muestra el spinner
+    const materiasSnapshot = (await this.firestore
+      .collection('materias')
+      .get()
+      .toPromise()) as firebase.firestore.QuerySnapshot;
     for (const doc of materiasSnapshot.docs) {
       const materia = doc.data();
       const seccionesSnapshot = await doc.ref.collection('secciones').get();
@@ -45,8 +48,7 @@ export class CalendaryComponent implements OnInit, AfterViewInit {
     }
     this.getDaysFromDate(this.dateSelect.month(), this.dateSelect.year());
   }
-  
-  
+
   // Método para obtener los días de un mes y año específicos.
   getDaysFromDate(month: number, year: number) {
     const startDate = moment([year, month]);
@@ -56,8 +58,10 @@ export class CalendaryComponent implements OnInit, AfterViewInit {
     const arrayDays = [...Array(numberDays)].map((_, i) => {
       const dayObject = moment([year, month, i + 1]);
       const isToday = dayObject.isSame(moment(), 'day');
-      const fecha = dayObject.format('YYYY-MM-DD');  // Asegúrate de que el formato de la fecha sea 'YYYY-MM-DD'.
-      const materialesDelDia = this.materiales.filter(m => m.fechaEntrega === fecha);
+      const fecha = dayObject.format('YYYY-MM-DD'); // Asegúrate de que el formato de la fecha sea 'YYYY-MM-DD'.
+      const materialesDelDia = this.materiales.filter(
+        (m) => m.fechaEntrega === fecha
+      );
       return {
         value: i + 1,
         month: month,
@@ -65,11 +69,11 @@ export class CalendaryComponent implements OnInit, AfterViewInit {
         name: dayObject.format('dddd'),
         indexWeek: dayObject.isoWeekday(),
         isToday: isToday,
-        materiales: materialesDelDia
+        materiales: materialesDelDia,
       };
     });
     this.monthSelect = arrayDays;
-    this.isLoading = false;  // Oculta el spinner después de cargar los datos
+    this.isLoading = false; // Oculta el spinner después de cargar los datos
   }
   // Método para cambiar el mes actual.
   changeMonth(flag: number) {
@@ -81,17 +85,20 @@ export class CalendaryComponent implements OnInit, AfterViewInit {
     this.getDaysFromDate(this.dateSelect.month(), this.dateSelect.year());
   }
 
-  getPopoverContent(day:any) {
-    let content = '';
+  getPopoverContent(day: any) {
+    let content: string[] = []; // Especifica explícitamente que 'content' es un arreglo de cadenas
     if (day.materiales && day.materiales.length > 0) {
       day.materiales.forEach((material: Material) => {
-        const fechaFormateada = moment(material.fechaEntrega, 'YYYY-MM-DD').format('DD-MM-YYYY');
-        content += `Título: ${material.titulo}, Fecha de entrega: ${fechaFormateada}\n`;
+        const fechaFormateada = moment(
+          material.fechaEntrega,
+          'YYYY-MM-DD'
+        ).format('DD-MM-YYYY');
+        content.push(` | Título: ${material.titulo}`); // Agrega cada título al arreglo
       });
     }
-    return content;
+    return content.join(''); // Une el arreglo sin ningún separador
   }
-  
+
   ngAfterViewInit() {
     var popoverTriggerList = [].slice.call(
       document.querySelectorAll('[data-bs-toggle="popover"]')
@@ -100,5 +107,4 @@ export class CalendaryComponent implements OnInit, AfterViewInit {
       return new bootstrap.Popover(popoverTriggerEl);
     });
   }
-  
 }
