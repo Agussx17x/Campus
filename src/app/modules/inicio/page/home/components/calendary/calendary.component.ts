@@ -18,7 +18,7 @@ export class CalendaryComponent implements OnInit, AfterViewInit {
   // Fecha actual seleccionada.
   dateSelect: any;
   materiales: any[] = [];
-  isLoading = true; // Agrega esta línea
+  isLoading = true; // Loading para el spinner
 
   constructor(private firestore: AngularFirestore) {
     moment.locale('es'); // Establece el idioma español como el idioma por defecto.
@@ -75,6 +75,7 @@ export class CalendaryComponent implements OnInit, AfterViewInit {
     this.monthSelect = arrayDays;
     this.isLoading = false; // Oculta el spinner después de cargar los datos
   }
+  
   // Método para cambiar el mes actual.
   changeMonth(flag: number) {
     if (flag < 0) {
@@ -85,6 +86,7 @@ export class CalendaryComponent implements OnInit, AfterViewInit {
     this.getDaysFromDate(this.dateSelect.month(), this.dateSelect.year());
   }
 
+  //Obtener contenido del popover
   getPopoverContent(day: any) {
     let content: string[] = []; // Especifica explícitamente que 'content' es un arreglo de cadenas
     if (day.materiales && day.materiales.length > 0) {
@@ -99,11 +101,12 @@ export class CalendaryComponent implements OnInit, AfterViewInit {
     return content.join(''); // Une el arreglo sin ningún separador
   }
 
+  //Este código se ejecuta después de que Angular haya inicializado completamente la vista del componente.
   ngAfterViewInit() {
     var popoverTriggerList = [].slice.call(
-      document.querySelectorAll('[data-bs-toggle="popover"]')
+      document.querySelectorAll('[data-bs-toggle="popover"]')//selecciona todos los elementos del DOM que tienen el atributo data-bs-toggle="popover". Estos elementos son los gatillos de los popovers.
     );
-    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) { // recorre cada elemento del arreglo popoverTriggerList y crea una nueva instancia de Popover de Bootstrap 
       return new bootstrap.Popover(popoverTriggerEl);
     });
   }
