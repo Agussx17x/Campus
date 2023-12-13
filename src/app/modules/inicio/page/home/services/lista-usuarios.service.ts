@@ -11,6 +11,7 @@ export class ListaUsuariosService {
   private usuariosColeccion: AngularFirestoreCollection<Usuario>;
 
   constructor(private database: AngularFirestore) {
+    // Inicializa la propiedad usuariosColeccion con una referencia a la colección 'usuarios' en Firestore.
     this.usuariosColeccion = database.collection('usuarios');
   }
 
@@ -19,9 +20,13 @@ export class ListaUsuariosService {
     // snapshot -> Captura los cambios.
     // pipe -> Tubería por donde viajan esos nuevos datos.
     // map -> Recorre esos datos, los lee.
-    return this.usuariosColeccion
-      .snapshotChanges()
-      .pipe(map((action) => action.map((a) => a.payload.doc.data())));
+    return (
+      this.usuariosColeccion
+        // Devuelve un observable que emite eventos cada vez que hay cambios en la colección de usuarios.
+        .snapshotChanges()
+        // Utiliza el operador 'map' para transformar la acción de cambios en datos de usuario.
+        .pipe(map((action) => action.map((a) => a.payload.doc.data())))
+    );
   }
 
   // Modificar Usuario.
@@ -33,9 +38,11 @@ export class ListaUsuariosService {
   eliminarUsuario(uid: string) {
     return new Promise((resolve, reject) => {
       try {
+        // Intenta eliminar el documento con el UID proporcionado de la colección de usuarios.
         const resp = this.usuariosColeccion.doc(uid).delete();
         resolve(resp);
       } catch (error) {
+        // En caso de error, rechaza la promesa con el error correspondiente.
         reject(error);
       }
     });
