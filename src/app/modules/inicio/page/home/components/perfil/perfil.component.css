@@ -10,7 +10,7 @@
 .componente {
   background: transparent;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   padding: 120px 50px 0 50px;
 }
 .contenido {
@@ -26,7 +26,7 @@
   background: #fff;
   position: relative;
   display: grid;
-  grid-template-rows: 4fr 3fr 3fr;
+  grid-template-rows: 1fr 1fr ;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
 }
 .contenido .perfil .informacion {
@@ -68,14 +68,17 @@
   width: 100%;
   height: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
 }
 .contenido .perfil .informacion .datos .datosBx ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   position: relative;
   list-style: none;
 }
 .contenido .perfil .informacion .datos .datosBx ul li {
-  font-size: 0.9em;
+  font-size: 1.2em;
   font-weight: 500;
 }
 /* Estadisticas */
@@ -285,133 +288,6 @@
   .perfil
   .personal
   .datosPer
-  table
-  tr
-  td
-  .acciones
-  .btnEditar:disabled {
-  background: #cac143;
-}
-/* Datos Cuenta */
-.contenido .perfil .cuenta .datosCuen {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-  padding-top: 0;
-}
-.contenido .perfil .cuenta .datosCuen table {
-  display: flex;
-  width: 100%;
-  gap: 10px; 
-  border-top: 1px solid #cbcbcb;
-  padding-top: 20px;
-}
-.contenido .perfil .cuenta .datosCuen table tr {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 20%;
-}
-.contenido .perfil .cuenta .datosCuen table .info {
-  width: 40%;
-}
-.contenido .perfil .cuenta .datosCuen table tr td {
-  position: relative;
-  min-height: 30px;
-}
-.contenido .perfil .cuenta .datosCuen table tr .datosInfo {
-  padding: 5px 0;
-  font-size: 0.9em;
-  font-weight: 500;
-}
-.contenido .perfil .cuenta .datosCuen table tr td input {
-  outline: none;
-  padding-left: 10px;
-  border-radius: 10px;
-  width: 100%;
-  height: 100%;
-  background: #f4f4f4;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-  border: 1px solid #6d6d6d;
-  cursor: pointer;
-  transition: 0.5s;
-}
-.contenido .perfil .cuenta .datosCuen table tr td input:disabled {
-  border: 1px solid #cbcbcb;
-  cursor: default;
-}
-.contenido .perfil .cuenta .datosCuen table tr td input:focus {
-  border: 1px solid #51b9c0;
-}
-.contenido .perfil .cuenta .datosCuen table tr td input:valid {
-  border: 1px solid #229144;
-}
-.contenido .perfil .cuenta .datosCuen table tr td .acciones {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  height: 100%;
-}
-.contenido .perfil .cuenta .datosCuen table tr td .acciones .boton {
-  position: relative;
-  padding-top: 3px;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  border: none;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-}
-.contenido
-  .perfil
-  .cuenta
-  .datosCuen
-  table
-  tr
-  td
-  .acciones
-  .boton:enabled:hover {
-  box-shadow: 10px 10px 10px inset rgba(0, 0, 0, 0.2);
-}
-.contenido .perfil .cuenta .datosCuen table tr td .acciones .btnAplicar {
-  background: #229144;
-}
-.contenido .perfil .cuenta .datosCuen table tr td .acciones .btnCancelar {
-  background: #b82626;
-}
-.contenido .perfil .cuenta .datosCuen table tr td .acciones .btnEditar {
-  background: #c3b923;
-}
-.contenido
-  .perfil
-  .cuenta
-  .datosCuen
-  table
-  tr
-  td
-  .acciones
-  .btnAplicar:disabled {
-  background: #256e3b;
-}
-.contenido
-  .perfil
-  .cuenta
-  .datosCuen
-  table
-  tr
-  td
-  .acciones
-  .btnCancelar:disabled {
-  background: #792222;
-}
-.contenido
-  .perfil
-  .cuenta
-  .datosCuen
   table
   tr
   td

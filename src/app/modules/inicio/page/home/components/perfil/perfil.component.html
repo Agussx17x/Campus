@@ -6,16 +6,15 @@
         <div class="datos">
           <div class="imgBx">
             <div class="imgBorder">
-              <img src="../../../../../../../assets/perfil.jpg" alt="" />
+              <img src="../../../../../../../assets/perfil.png" alt="" />
             </div>
           </div>
           <div class="datosBx">
             <ul>
-              <li><b>Profesor</b></li>
+              <li><b>Rol: Profesor</b></li>
               <li>Usuario: Cachurmino</li>
               <li>Nombre: Ignacio</li>
               <li>Apellido: Cappellini</li>
-              <li>Correo: nachocappellinigmail.com</li>
             </ul>
           </div>
         </div>
@@ -43,21 +42,34 @@
         <div class="datosPer">
           <table>
             <tr class="info">
+              <td class="datosInfo">Usuario: Cachurmino</td>
               <td class="datosInfo">Nombre: Ignacio</td>
               <td class="datosInfo">Apellido: Cappellini</td>
-              <td class="datosInfo">Correo: nachocappellini@gmail.com</td>
             </tr>
             <tr class="info">
               <td>
-                <input type="text" placeholder="Ignacio" required disabled />
-              </td>
-              <td>
-                <input type="text" placeholder="Cappellini" required />
+                <input
+                  type="text"
+                  placeholder="Cachurmino"
+                  id="inputUsuario"
+                  required
+                  disabled
+                />
               </td>
               <td>
                 <input
                   type="text"
-                  placeholder="nachocappellini@gmail.com"
+                  placeholder="Ignacio"
+                  id="inputNombre"
+                  required
+                  disabled
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Cappellini"
+                  id="inputApellido"
                   required
                   disabled
                 />
@@ -66,51 +78,90 @@
             <tr>
               <td>
                 <div class="acciones">
-                  <button class="boton btnAplicar" disabled>
+                  <button
+                    class="boton btnAplicar"
+                    id="btnAplicarUsuario"
+                    disabled
+                  >
                     <span class="material-symbols-outlined">
                       check_circle
                     </span>
                   </button>
 
-                  <button class="boton btnCancelar" disabled>
+                  <button
+                    class="boton btnCancelar"
+                    id="btnCancelarUsuario"
+                    (click)="editarUsuario()"
+                    disabled
+                  >
                     <span class="material-symbols-outlined"> cancel </span>
                   </button>
 
-                  <button class="boton btnEditar">
+                  <button
+                    class="boton btnEditar"
+                    id="btnEditarUsuario"
+                    (click)="editarUsuario()"
+                  >
                     <span class="material-symbols-outlined"> edit_note </span>
                   </button>
                 </div>
               </td>
               <td>
                 <div class="acciones">
-                  <button class="boton btnAplicar">
+                  <button
+                    class="boton btnAplicar"
+                    id="btnAplicarNombre"
+                    disabled
+                  >
                     <span class="material-symbols-outlined">
                       check_circle
                     </span>
                   </button>
 
-                  <button class="boton btnCancelar">
+                  <button
+                    class="boton btnCancelar"
+                    id="btnCancelarNombre"
+                    (click)="editarNombre()"
+                    disabled
+                  >
                     <span class="material-symbols-outlined"> cancel </span>
                   </button>
 
-                  <button class="boton btnEditar" disabled>
+                  <button
+                    class="boton btnEditar"
+                    id="btnEditarNombre"
+                    (click)="editarNombre()"
+                  >
                     <span class="material-symbols-outlined"> edit_note </span>
                   </button>
                 </div>
               </td>
               <td>
                 <div class="acciones">
-                  <button class="boton btnAplicar" disabled>
+                  <button
+                    class="boton btnAplicar"
+                    id="btnAplicarApellido"
+                    disabled
+                  >
                     <span class="material-symbols-outlined">
                       check_circle
                     </span>
                   </button>
 
-                  <button class="boton btnCancelar" disabled>
+                  <button
+                    class="boton btnCancelar"
+                    id="btnCancelarApellido"
+                    (click)="editarApellido()"
+                    disabled
+                  >
                     <span class="material-symbols-outlined"> cancel </span>
                   </button>
 
-                  <button class="boton btnEditar">
+                  <button
+                    class="boton btnEditar"
+                    id="btnEditarApellido"
+                    (click)="editarApellido()"
+                  >
                     <span class="material-symbols-outlined"> edit_note </span>
                   </button>
                 </div>
@@ -119,7 +170,7 @@
           </table>
         </div>
       </div>
-      <div class="seccion cuenta">
+      <!-- <div class="seccion cuenta">
         <div class="datosCuen">
           <table>
             <tr class="info">
@@ -172,8 +223,8 @@
             </tr>
           </table>
         </div>
-      </div>
+      </div> -->
     </div>
-    <div class="preferencias">Preferencias</div>
+    <div class="preferencias"></div>
   </div>
 </div>
