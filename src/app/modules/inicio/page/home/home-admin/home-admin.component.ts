@@ -230,6 +230,11 @@ export class HomeAdminComponent {
   }
 
   crearMateria() {
+    if (!this.materias.value.titulo || !this.materias.value.icono) {
+      alert('Por favor, complete todos los campos.');
+      return;
+    }
+
     if (this.materias.valid) {
       // Crea un objeto de Materia con los datos del formulario
       let data: Materia = {
