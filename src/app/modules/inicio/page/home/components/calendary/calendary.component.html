@@ -6,19 +6,36 @@
           <span class="material-symbols-outlined"> arrow_back </span>
         </button>
       </div>
-      <h1 class="name-month">{{ dateSelect.format('MMMM, YYYY') }}</h1>
+      <h1 class="name-month">{{ dateSelect.format("MMMM, YYYY") }}</h1>
       <div>
         <button (click)="changeMonth(1)" class="btn-next">
           <span class="material-symbols-outlined"> arrow_forward </span>
         </button>
       </div>
     </div>
-    <ol>
-      <li *ngFor="let day of monthSelect" [style.gridColumnStart]="day.indexWeek">
-        <button id="btn-day" style="position: relative;" [ngClass]="{'today': day.isToday}">
-          <span>{{ day.value }}</span>
-        </button>
+    <ol *ngIf="!isLoading; else loading">
+      <li
+        *ngFor="let day of monthSelect"
+        [style.gridColumnStart]="day.indexWeek"
+      >
+      <button
+      id="btn-day"
+      style="position: relative"
+      [ngClass]="{ today: day.isToday }"
+      [popover]="getPopoverContent(day)"
+      triggers="mouseenter:mouseleave"
+    >
+      <span class="day-value">{{ day.value }}</span>
+      <span *ngIf="day.materiales.length > 0" class="dot"></span>
+    </button>
       </li>
-    </ol>    
+    </ol>
+    <ng-template #loading>
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p>Cargando Calendario...</p>
+    </ng-template>
   </div>
 </div>
+

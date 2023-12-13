@@ -29,6 +29,7 @@
   height: 3rem;
   border-radius: 50%;
   background-color: aliceblue;
+  text-align: center;
 }
 
 .blue {
@@ -98,4 +99,18 @@ h2 {
   background-color: #43a5f63d;
 }
 
+.dot {
+  display: inline-block;
+  height: 5px;
+  width: 5px;
+  background-color: #43a5f687;  /* Punto verde */
+  border-radius: 50%;
+  margin-left: 5px;  /* Ajusta esto para cambiar la distancia entre el número del día y el punto */
+  vertical-align: middle;
+}
 
+.spinner-border {
+  width: 3rem;    /* Ancho del spinner */
+  height: 3rem;   /* Alto del spinner */
+  margin-top: 35%;
+}
