@@ -49,7 +49,7 @@ import { ListaMateriasComponent } from './components/lista-materias/lista-materi
     MatSlideToggleModule,
     FormsModule,
     ReactiveFormsModule,
-    PopoverModule,
+    PopoverModule.forRoot(),
     NgxPaginationModule
   ],
   exports: [

@@ -6,6 +6,7 @@
 <div id="body">
   <div class="container">
     <div class="blueBg">
+      <!-- Sección para cambiar entre Iniciar Sesión y Recuperar Contraseña -->
       <div class="box signin">
         <h2>¿ Recordaste tu Contraseña ?</h2>
         <button class="signinBtn" (click)="activeSignin()">
@@ -17,11 +18,13 @@
         <button class="signupBtn" (click)="activeSignup()">Recuperar</button>
       </div>
     </div>
+    <!-- Contenedor principal del formulario -->
     <div class="formBx" id="formBx">
       <div class="form signinForm">
         <!-- Formulario -->
         <form [formGroup]="loginForm" (ngSubmit)="login()">
           <h3>Iniciar Sesión</h3>
+          <!-- Campo de Correo Electrónico -->
           <!-- Correo Eléctronico -->
           <input
             formControlName="email"
@@ -48,7 +51,6 @@
               type="button"
               (click)="passwordVisible = !passwordVisible"
             >
-            
               <mat-icon>{{
                 passwordVisible ? "visibility" : "visibility_off"
               }}</mat-icon>
@@ -60,7 +62,7 @@
               >La contraseña es incorrecta, por favor intente de nuevo.</small
             >
           </div>
-
+          <!-- Botones para Iniciar Sesión y Volver -->
           <div class="row">
             <input
               class="col"
@@ -78,6 +80,7 @@
           </div>
         </form>
       </div>
+      <!-- Formulario para Recuperar Cuenta -->
       <!-- Recuperar Cuenta -->
       <div class="form signupForm">
         <form (submit)="resetPassword()">

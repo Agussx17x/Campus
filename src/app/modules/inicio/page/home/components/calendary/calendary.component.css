@@ -29,6 +29,7 @@
   height: 3rem;
   border-radius: 50%;
   background-color: aliceblue;
+  text-align: center;
 }
 
 .blue {
@@ -93,15 +94,23 @@ h2 {
   background-color: transparent;
   border: 0;
 }
-.dot {
-  height: 5px;
-  width: 5px;
-  background-color: rgb(23, 173, 0);
-  border-radius: 50%;
-  display: inline-block;
-  position: absolute; /* El punto tiene position: absolute */
-  top: 50%; /* Centra el punto verticalmente */
-  right: 0,5; /* Alinea el punto a la derecha */
-  transform: translate(50%, -50%); /* Centra el punto en el eje Y y lo mueve a la derecha en el eje X */
+
+#btn-day.today {
+  background-color: #43a5f63d;
 }
 
+.dot {
+  display: inline-block;
+  height: 5px;
+  width: 5px;
+  background-color: #43a5f687;  /* Punto verde */
+  border-radius: 50%;
+  margin-left: 5px;  /* Ajusta esto para cambiar la distancia entre el número del día y el punto */
+  vertical-align: middle;
+}
+
+.spinner-border {
+  width: 3rem;    /* Ancho del spinner */
+  height: 3rem;   /* Alto del spinner */
+  margin-top: 35%;
+}

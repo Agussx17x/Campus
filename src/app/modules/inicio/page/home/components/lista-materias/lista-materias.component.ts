@@ -27,12 +27,15 @@ export class ListaMateriasComponent implements OnInit {
   constructor(public crudService: CrudService) {}
 
   ngOnInit(): void {
+    // Suscribe al observable para obtener datos sobre materias desde el servicio
     this.crudService.obtenerMaterias().subscribe((data) => {
       this.coleccionMateria = data.map((e) => {
+        // Mapea los datos recibidos para formatearlos según las propiedades deseadas
         const data = e.payload.doc.data() as {
           titulo: string;
           icono: string;
         };
+        // Devuelve un objeto con propiedades seguras
         return {
           idMateria: e.payload.doc.id,
           titulo: data.titulo || '',
@@ -45,8 +48,9 @@ export class ListaMateriasComponent implements OnInit {
 
   // Esta función llama al modal editar.
   mostrarEditar(materiaSeleccionado: Materia) {
+    // Asigna la materia seleccionada a la propiedad materiaSeleccionado del componente
     this.materiaSeleccionado = materiaSeleccionado;
-
+    // Establece los valores en un formulario o algún otro objeto que tiene una propiedad 'setValue'
     this.materias.setValue({
       titulo: materiaSeleccionado.titulo,
       icono: materiaSeleccionado.icono,
@@ -75,18 +79,24 @@ export class ListaMateriasComponent implements OnInit {
 
   // Esta función eliminar las materias.
   borrarMateria(materiaSeleccionado: Materia) {
+    // Pide confirmación al usuario antes de eliminar la materia
     const confirmacion = confirm(
       '¿Esta seguro que desea eliminar esta materia?: ' +
         materiaSeleccionado.titulo
     );
+    // Si el usuario confirma, procede con la eliminación
     if (confirmacion) {
+      // Asigna la materia seleccionada a la propiedad materiaSeleccionado del componente
       this.materiaSeleccionado = materiaSeleccionado;
+      // Llama al servicio 'crudService' para eliminar la materia utilizando su ID
       this.crudService
         .eliminarMateria(this.materiaSeleccionado.idMateria)
         .then((respuesta) => {
+          // Muestra una alerta indicando que la materia se eliminó con éxito
           alert('La materia se ha eliminado con éxito.');
         })
         .catch((error) => {
+          // Muestra una alerta si hay un error al intentar eliminar la materia
           alert(
             'Hubo un error al intentar eliminar una materia, razón: \n' + error
           );

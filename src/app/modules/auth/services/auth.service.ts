@@ -42,7 +42,9 @@ export class AuthService {
   // Metodo login
   async login(email: string, password: string) {
     try {
+      // Intentar iniciar sesión con el correo electrónico y la contraseña proporcionados
       await this.afAuth.signInWithEmailAndPassword(email, password);
+      // Si el inicio de sesión es exitoso, puedes realizar acciones adicionales aquí, como redireccionar a otra página.
     } catch (error) {
       console.error(error);
     }
@@ -74,12 +76,13 @@ export class AuthService {
   // Funcion para conseguir las credenciales del componente login y guardarlas en el servicio
   getCredenciales(email1: any, password1: any) {
     this.credenciales = {
+      // Crear un objeto con las credenciales
       email: email1,
       password: password1,
     };
   }
   // Funcion para enviar las mismas credenciales al componente register
-  enviarCredenciales(){
-    return this.credenciales
+  enviarCredenciales() {
+    return this.credenciales;
   }
 }

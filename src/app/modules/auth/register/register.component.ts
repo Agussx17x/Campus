@@ -75,11 +75,11 @@ export class RegisterComponent implements OnInit {
 
     // Crea las cedenciales del usuario.
     const credenciales = {
+      // Obtener credenciales del formulario
       email: this.usuarios.email,
       password: this.usuarios.password,
     };
-
-    // Intenta registrar al usuario con las credenciales proporcionadas.
+    // Llamar al servicio de autenticación para registrar al usuario
     const res = await this.serviceAuth
       .registrar(credenciales.email, credenciales.password)
       .then((res) => {
@@ -103,6 +103,7 @@ export class RegisterComponent implements OnInit {
   }
 
   async guardarUser() {
+    // Llamar al servicio Firestore para agregar el usuario
     this.firestore
       .agregarUsuario(this.usuarios, this.usuarios.uid)
 
@@ -120,6 +121,7 @@ export class RegisterComponent implements OnInit {
 
   // Funcion para reiniciar sesion luego de registrar a un nuevo usuario
   async reinicio() {
+    // Utilizar las credenciales para iniciar sesión nuevamente
     const userCredential = await signInWithEmailAndPassword(
       this.auth,
       this.credenciales1.email,
@@ -128,12 +130,14 @@ export class RegisterComponent implements OnInit {
   }
 
   async ngOnInit() {
+    // Obtener el UID del usuario actual
     const uid = await this.serviceAuth.getuid();
     console.log(uid);
     // Conseguimos los datos para reiniciar la sesion
     this.auth = getAuth();
+    // Obtener las credenciales del usuario para reiniciar sesión
     this.credenciales1 = await this.serviceAuth.enviarCredenciales();
-
+    // Imprimir en la consola las credenciales del usuario (solo para propósitos de depuración)
     console.log(this.credenciales1.email, this.credenciales1.password);
   }
 
