@@ -6,6 +6,7 @@ import { Trabajos } from 'src/app/models/trabajos';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import * as $ from 'jquery';
 import 'bootstrap';
 
 @Component({
@@ -158,10 +159,12 @@ export class CalendaryComponent implements OnInit {
     });
     return materialsForDay.length > 0;
   }
+
   getId(day: any) {
     console.log('Obteniendo id');
     this.id = day;
   }
+  
   //Dia Actual
   isCurrentDay(day: any) {
     const today = moment();

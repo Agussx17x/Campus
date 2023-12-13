@@ -6,6 +6,7 @@
 </div>
 <div class="formulario">
   <form class="row g-3">
+    <!-- Nombre -->
     <div class="col-md-6">
       <label for="name" class="form-label">Nombre</label>
       <input
@@ -17,6 +18,7 @@
         [(ngModel)]="usuarios.nombre"
       />
     </div>
+    <!-- Apellido-->
     <div class="col-md-6">
       <label for="surname" class="form-label">Apellido</label>
       <input
@@ -28,7 +30,7 @@
         [(ngModel)]="usuarios.apellido"
       />
     </div>
-    
+    <!-- Email-->
     <div class="col-12">
       <label for="email" class="form-label">Email</label>
       <input
@@ -40,7 +42,7 @@
         [(ngModel)]="usuarios.email"
       />
     </div>
-  
+    <!-- Contraseña -->
     <div class="col-md-6">
       <label for="password" class="form-label">Contraseña</label>
       <input
@@ -55,6 +57,7 @@
       />
       <p>Minimo:6/{{ input.value.length }}</p>
     </div>
+    <!-- DNI -->
     <div class="col-md-6">
       <label for="dni" class="form-label">DNI</label>
       <input
@@ -64,8 +67,10 @@
         required
         [(ngModel)]="usuarios.dni"
         name="dni"
+        maxlength="8"
       />
     </div>
+    <!-- Credenciales -->
     <div id="credenciales" class="col-md-4">
       <label for="credencial" class="form-label">Credencial</label>
       <select
@@ -75,11 +80,12 @@
         [(ngModel)]="usuarios.credencial"
         name="credencial"
       >
-        <option value="adm" >Admin</option>
-        <option value="doc" >Profesor</option>
-        <option value="est" >Estudiante</option>
+        <option value="adm">Admin</option>
+        <option value="doc">Profesor</option>
+        <option value="est">Estudiante</option>
       </select>
     </div>
+    <!-- Botón de Registrar -->
     <div class="col-12">
       <button type="submit" (click)="registrarse()" class="btn btn-primary">
         Registrarse

@@ -230,6 +230,11 @@ export class HomeAdminComponent {
   }
 
   crearMateria() {
+    if (!this.materias.value.titulo || !this.materias.value.icono) {
+      alert('Por favor, complete todos los campos.');
+      return;
+    }
+
     if (this.materias.valid) {
       let data: Materia = {
         idMateria: this.materias.value.idMateria || this.crudService.crearId(),

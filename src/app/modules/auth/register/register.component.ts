@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
   auth: any;
   credenciales1: any;
 
+  // Define un objeto de tipo Usuario.
   usuarios: Usuario = {
     uid: '',
     email: '',
@@ -39,11 +40,46 @@ export class RegisterComponent implements OnInit {
     public router: Router
   ) {}
 
+  // Esta función registra a un Usuario.
   async registrarse() {
+    // Verifica si los campos están completos.
+    if (
+      !this.usuarios.email ||
+      !this.usuarios.password ||
+      !this.usuarios.nombre ||
+      !this.usuarios.apellido ||
+      !this.usuarios.dni ||
+      !this.usuarios.credencial
+    ) {
+      alert('Por favor, complete todos los campos.');
+      return;
+    }
+
+    // Verifica si el correo es de tipo email.
+    if (!this.validarEmail(this.usuarios.email)) {
+      alert('Por favor, ingresé un dato tipo correo');
+      return;
+    }
+
+    // Verifica si la contraseña tiene un un mínimo de 6 carácteres.
+    if (this.usuarios.password.length < 6) {
+      alert('La contraseña debe tener al menos 6 caracteres.');
+      return;
+    }
+
+    // Verifica si el DNI tiene es un valor de tipo número. IsNaN convierte el parametro a un numero, y devuelve true o false.
+    if (isNaN(Number(this.usuarios.dni))) {
+      alert('El DNI debe ser un número.');
+      return;
+    }
+
+    // Crea las cedenciales del usuario.
     const credenciales = {
       email: this.usuarios.email,
       password: this.usuarios.password,
     };
+
+    // Intenta registrar al usuario con las credenciales proporcionadas.
     const res = await this.serviceAuth
       .registrar(credenciales.email, credenciales.password)
       .then((res) => {
@@ -53,16 +89,19 @@ export class RegisterComponent implements OnInit {
         alert('Hubo un error al cargar el usuario :( \n' + error)
       );
 
-    //UID
-    const uid = await this.serviceAuth.getuid(); // obteniendo uid
+    // Obtiene el UID del usuario recién registrado.
+    const uid = await this.serviceAuth.getuid();
 
-    this.usuarios.uid = uid; //Guardando el uid
+    // Guarda el UID en el objeto usuarios.
+    this.usuarios.uid = uid;
 
     //Mostrando resultados
     console.log(res);
-    //Guardar Usuario
+
+    // Guarda el usuario en Firestore.
     this.guardarUser();
   }
+
   async guardarUser() {
     this.firestore
       .agregarUsuario(this.usuarios, this.usuarios.uid)
@@ -74,8 +113,8 @@ export class RegisterComponent implements OnInit {
       })
       .catch((error) => {
         console.log('error => ', error);
-         // Llamamos a la funcion para reiniciar sesion luego de registrar a un nuevo usuario
-         this.reinicio();
+        // Llamamos a la funcion para reiniciar sesion luego de registrar a un nuevo usuario
+        this.reinicio();
       });
   }
 
@@ -96,5 +135,14 @@ export class RegisterComponent implements OnInit {
     this.credenciales1 = await this.serviceAuth.enviarCredenciales();
 
     console.log(this.credenciales1.email, this.credenciales1.password);
+  }
+
+  // Esta función valida si el dato es de tipo correo.
+  validarEmail(email: string): boolean {
+    // Define una expresión regular para validar el formato de un correo electrónico.
+    const simbolos =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // Prueba si el correo electrónico cumple con el formato de la expresión regular.
+    return simbolos.test(email);
   }
 }
