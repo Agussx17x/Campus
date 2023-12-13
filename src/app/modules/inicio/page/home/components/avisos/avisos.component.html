@@ -80,10 +80,11 @@
               </div>
             </div>
             <!-- Cuerpo del aviso -->
-            <div class="avisoBody">
+            <div class="avisoBody" style="margin-top: 1rem;">
               {{ aviso.descripcion }}
               <div class="avisoFooter">
                 <img
+                  style="margin-top: 1rem; margin-left: auto; margin-right: auto; display: flex; align-items: center;"
                   class="img-fluid rounded"
                   *ngIf="aviso.imagenUrl"
                   src="{{ aviso.imagenUrl }}"

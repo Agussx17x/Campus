@@ -1,13 +1,57 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ListaUsuariosService } from '../../services/lista-usuarios.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css'],
 })
-export class PerfilComponent {
-  constructor(private _formBuilder: FormBuilder) {}
+export class PerfilComponent implements OnInit {
+  nombre: string = '';
+  apellido: string = '';
+  tipoCredencial: string = '';
+  // Mapeo de credenciales abreviadas a formas completas.
+  credencialesMapping: { [key: string]: string } = {
+    adm: 'Administrador',
+    doc: 'Docente',
+    est: 'Estudiante',
+  };
+
+
+  constructor(private _formBuilder: FormBuilder,
+    private listaUsuariosService: ListaUsuariosService,
+    private afAuth: AngularFireAuth) {}
+
+  async ngOnInit() {
+    // Muestra el nombre, apellido y credencial del usuario actual suscribiendose.
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        // Si el usuario se logea, obtiene el uid del usuario atenticado.
+        const uidUsuarioLogueado = user.uid;
+
+        // Luego, obtiene la lista de usuarios.
+        this.listaUsuariosService.obtenerUsuarios().subscribe((usuarios) => {
+          // Encuentra al usuario autenticado en la lista de usuarios.
+          const usuarioLogueado = usuarios.find(
+            (u) => u.uid === uidUsuarioLogueado
+          );
+
+          // Si el usuario autenticado se encuentra en la lista de usuarios
+          if (usuarioLogueado) {
+            // Almacena el nombre y apellido del usuario.
+            this.nombre = usuarioLogueado.nombre;
+            this.apellido = usuarioLogueado.apellido;
+            // Traduce la credencial abreviada.
+            this.tipoCredencial =
+              this.credencialesMapping[usuarioLogueado.credencial] ||
+              'Usuario sin tipo';
+          }
+        });
+      }
+    });
+  }
 
   isChecked = true;
   formGroup = this._formBuilder.group({

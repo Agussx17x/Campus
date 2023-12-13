@@ -91,42 +91,6 @@ export class NavbarComponent implements OnInit {
   }
 
   // Esta función verifica si la URL actual está en la lista de rutas donde el botón de inicio no debe mostrarse. Si es así, no muestra el botón de inicio.
-  showInicio(): boolean {
-    // Obtener la URL actual
-    const currentUrl = this.router.url;
-
-    // Lista de rutas donde el botón de inicio no debe mostrarse.
-    const noInicioRoutes = [
-      '/admin',
-      '/docente',
-      '/estudiante',
-      '/register',
-      '/lista',
-      '/materia',
-    ];
-
-    // Verificar si la URL actual está en la lista de rutas donde el botón de inicio no debe mostrarse.
-    return !noInicioRoutes.includes(currentUrl);
-  }
-
-  // Esta función verifica si la URL actual, está en la lista de rutas donde el botón de nosotros no debe mostrarse. Si es así, no muestra el botón de nosotros.
-  showNosotros(): boolean {
-    // Obtener la URL actual
-    const currentUrl = this.router.url;
-
-    // Lista de rutas donde el botón de nosotros no debe mostrarse.
-    const noNosotrosRoutes = [
-      '/admin',
-      '/docente',
-      '/estudiante',
-      '/register',
-      '/lista',
-      '/materia',
-    ];
-
-    // Verificar si la URL actual está en la lista de rutas donde el botón de nosotros no debe mostrarse.
-    return !noNosotrosRoutes.includes(currentUrl);
-  }
 
   // Esta función verifica si la URL actual está en la lista de rutas donde el botón de inicio de sesión no debe mostrarse. Si es así, no muestra el botón de inicio de sesión.
   login(): boolean {

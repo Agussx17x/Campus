@@ -11,10 +11,10 @@
           </div>
           <div class="datosBx">
             <ul>
-              <li><b>Rol: Profesor</b></li>
-              <li>Usuario: Cachurmino</li>
-              <li>Nombre: Ignacio</li>
-              <li>Apellido: Cappellini</li>
+              <li><b>Rol: {{tipoCredencial}}</b></li>
+              <li>Usuario: user1234$</li>
+              <li>Nombre: {{nombre}}</li>
+              <li>Apellido: {{apellido}}</li>
             </ul>
           </div>
         </div>
@@ -42,15 +42,15 @@
         <div class="datosPer">
           <table>
             <tr class="info">
-              <td class="datosInfo">Usuario: Cachurmino</td>
-              <td class="datosInfo">Nombre: Ignacio</td>
-              <td class="datosInfo">Apellido: Cappellini</td>
+              <td class="datosInfo">Usuario: User1234$</td>
+              <td class="datosInfo">Nombre: {{nombre}}</td>
+              <td class="datosInfo">Apellido: {{apellido}}</td>
             </tr>
             <tr class="info">
               <td>
                 <input
                   type="text"
-                  placeholder="Cachurmino"
+                  placeholder="User1234$"
                   id="inputUsuario"
                   required
                   disabled
@@ -59,7 +59,7 @@
               <td>
                 <input
                   type="text"
-                  placeholder="Ignacio"
+                  placeholder="{{nombre}}"
                   id="inputNombre"
                   required
                   disabled
@@ -68,7 +68,7 @@
               <td>
                 <input
                   type="text"
-                  placeholder="Cappellini"
+                  placeholder="{{apellido}}"
                   id="inputApellido"
                   required
                   disabled

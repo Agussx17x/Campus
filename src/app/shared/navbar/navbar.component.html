@@ -12,13 +12,13 @@
     <nav>
       <!--Lista de botones-->
       <ul>
-        <li *ngIf="showInicio()">
+        <li>
           <a routerLink="/inicio"
             ><span class="material-symbols-outlined"> home </span>
             <h4>inicio</h4></a
           >
         </li>
-        <li *ngIf="showNosotros()">
+        <li>
           <a routerLink="/nosotros"
             ><span class="material-symbols-outlined"> info </span>
             <h4>Nosotros</h4></a
@@ -44,7 +44,7 @@
         </li>
         <li *ngIf="estaLogueado">
           <a id="aula" [routerLink]="rutaHome"
-            ><span class="material-symbols-outlined"> person </span>
+            ><span class="material-symbols-outlined"> school </span>
             <h4>Aula</h4></a
           >
         </li>
