@@ -93,15 +93,9 @@ h2 {
   background-color: transparent;
   border: 0;
 }
-.dot {
-  height: 5px;
-  width: 5px;
-  background-color: rgb(23, 173, 0);
-  border-radius: 50%;
-  display: inline-block;
-  position: absolute; /* El punto tiene position: absolute */
-  top: 50%; /* Centra el punto verticalmente */
-  right: 0,5; /* Alinea el punto a la derecha */
-  transform: translate(50%, -50%); /* Centra el punto en el eje Y y lo mueve a la derecha en el eje X */
+
+#btn-day.today {
+  background-color: #43a5f63d;
 }
+
 

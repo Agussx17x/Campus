@@ -6,7 +6,7 @@
           <span class="material-symbols-outlined"> arrow_back </span>
         </button>
       </div>
-      <h1 class="name-month">{{ dateSelect | date : "MMMM, yyyy" }}</h1>
+      <h1 class="name-month">{{ dateSelect.format('MMMM, YYYY') }}</h1>
       <div>
         <button (click)="changeMonth(1)" class="btn-next">
           <span class="material-symbols-outlined"> arrow_forward </span>
@@ -14,31 +14,11 @@
       </div>
     </div>
     <ol>
-      <li *ngFor="let day of week" class="day-name"></li>
-      <li
-        [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
-        *ngFor="let day of monthSelect; let first = first"
-        [ngClass]="{ 'has-content': hasPopoverContent(day) }"
-      >
-      <button
-      id="btn-day"
-      style="position: relative;" 
-      [ngStyle]="{
-        'background-color': isCurrentDay(day)
-          ? 'rgb(38, 0, 255)'
-          : 'aliceblue',
-        color: isCurrentDay(day) ? 'white' : 'none'
-      }"
-      [popover]="getPopoverContent(day)"
-      triggers="mouseenter:mouseleave"
-      placement="top"
-      container="body"
-    >
-      <span (change)="getId(day?.value)">{{ day?.value }}</span>
-      <span *ngIf="hasPopoverContent(day)" class="dot"></span> <!-- Este es el nuevo elemento -->
-    </button>
-    
+      <li *ngFor="let day of monthSelect" [style.gridColumnStart]="day.indexWeek">
+        <button id="btn-day" style="position: relative;" [ngClass]="{'today': day.isToday}">
+          <span>{{ day.value }}</span>
+        </button>
       </li>
-    </ol>
+    </ol>    
   </div>
 </div>
